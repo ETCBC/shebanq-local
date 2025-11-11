@@ -56,7 +56,6 @@ Thumbs.db
 *.swp
 *.pyc
 *.pyo
-*.tfx
 
 # Build directories #
 #####################
