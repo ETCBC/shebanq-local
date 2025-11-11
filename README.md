@@ -6,6 +6,25 @@
 ![tf](/src/shebanq/static/images/tf-small.png)
 [![etcbc](src/shebanq/static/images/etcbc-small.png)](https://github.com/ETCBC)
 
+## Status
+
+**The days of shebanq.ancient-data.org as a website are numbered.**
+
+**At some point in the (near) future shebanq will be shut down.**
+
+**However, all public data in it has been curated
+and this repo makes it available to you.**
+
+**You can run shebanq on your own computer for personal use,
+with the latest data loaded.**
+
+**You can find here the metadata of all
+[published queries](https://etcbc.github.io/shebanq-local/index.html)**
+
+**Finally, you can download the
+[results of all published queries](content/qresults.tfx)
+and view them in the Text-Fabric browser.**
+
 ## About
 
 *System for HEBrew Text: ANnotations for Queries and Markup*
