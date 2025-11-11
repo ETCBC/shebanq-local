@@ -1,20 +1,17 @@
 # SHEBANQ
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7234733.svg)](https://doi.org/10.5281/zenodo.7234733)
-[![SWH](https://archive.softwareheritage.org/badge/origin/https://gitlab.huc.knaw.nl/shebanq/hebrewbible.git/)](https://archive.softwareheritage.org/browse/origin/?origin_url=https://gitlab.huc.knaw.nl/shebanq/hebrewbible.git)
 
 ![shebanq](/src/shebanq/static/images/shebanq_logo_small.png)
 ![tf](/src/shebanq/static/images/tf-small.png)
 [![etcbc](src/shebanq/static/images/etcbc-small.png)](https://github.com/ETCBC)
-[![huc](src/shebanq/static/images/huc-small.png)](https://di.huc.knaw.nl/text-analysis-en.html)
 
 ## About
 
 *System for HEBrew Text: ANnotations for Queries and Markup*
 
 [SHEBANQ](https://shebanq.ancient-data.org)
-is a website with a search engine for the Hebrew Bible, powered by the
+was, until ??-??-20?? a website with a search engine for the Hebrew Bible, powered by the
 [BHSA](https://github.com/ETCBC/bhsa)
 linguistic database, also known as ETCBC or WIVU.
 
@@ -33,28 +30,84 @@ It still contains the documentation and lots of useful information.
 As of 2023-12-21 SHEBANQ migrated to KNAW/HuC in the context of CLARIAH,
 which acts as the successor of CLARIN.
 
-## Deployment
+On 2026-03-01 the maker of SHEBANQ, retired. This repository is a curated version
+of SHEBANQ.
+It contains the resources to set up a local shebanq on your computer which contains
+all the public material that users have contributed over time until the moment
+of curation.
 
-The deployment is now via *docker* and everything needed to deploy SHEBANQ
-can be found in this repository.
+## Local deployment
 
-**You can have your own shebanq!**
+These are the steps to **get your own shebanq**:
 
-Just install the Docker app, clone this repo, copy `env_template` to `.env`,
-and give the command:
+1.  Install a docker engine (we recommend [Rancher Desktop](https://rancherdesktop.io)
+    but [Docker Desktop](https://www.docker.com/products/docker-desktop/) is also an
+    excellent choice.
 
-```
-docker compose up -d
-```
+1.  Start a bash shell and verify that it can do the `git` command
 
-See [USAGE](USAGE.md) for the ins and outs of this deployment.
+    ```
+    git --version
+    ```
 
-SHEBANQ as seen on
-[shebanq.ancient-data.org](https://shebanq.ancient-data.org)
-is deployed by
-[KNAW/HuC](https://di.huc.knaw.nl/infrastructure-services-en.html).
-with configurations in
-[behind a firewall](https://code.huc.knaw.nl/tt/shebanq).
+1.  Clone this repository:
+
+    ```
+    cd to/your/directory/of/choice
+    git clone https://github.com/ETCBC/shebanq-local.git
+    cd shebanq-local
+
+1.  Start the local shebanq server by
+
+    ```
+    ./shebanq.sh up
+    ```
+
+    (which is an abbreviation for `docker compose up`)
+
+1.  Open a bash shell in the same directory and do
+
+    ```
+    ./shebanq.sh browse
+    ```
+
+    and now a browser window opens with the shebanq website in it.
+
+## Inspect query results in the TF browser
+
+Without setting up your own local shebanq, you can still view the results of
+published queries in the Text-Fabric browser.
+These are the steps to do that:
+
+1.  Install [Python](https://www.python.org)
+
+1.  Start a bash shell and verify that it can do the `git` command
+
+    ```
+    git --version
+    ```
+
+1.  Clone this repository:
+
+    ```
+    cd to/your/directory/of/choice
+    git clone https://github.com/ETCBC/shebanq-local.git
+    cd shebanq-local
+
+
+1.  Install [Text-Fabric](https://github.com/annotation/text-fabric) by
+    
+    ```
+    pip install 'text-fabric[all]'
+    ```
+
+1.  Start the TF browser and load the query results:
+
+    ```
+    tf ETCBC/bhsa sets=content/qresults.tfx
+    ```
+
+1.  In the search box, enter the id and version of a query.
 
 # Author
 
@@ -63,8 +116,3 @@ with configurations in
 
 See [team](https://github.com/ETCBC/shebanq/wiki/Team) for a list of people
 that have contributed in various ways to the existence of the website SHEBANQ.
-
-Big thanks to my colleagues for making this deployment work:
-
-*   Vic (QiQing) Ding (for navigating through the K8S landscape)
-*   Dorian Harmans (for connecting the final dots)

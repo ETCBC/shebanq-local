@@ -1,16 +1,38 @@
 from textwrap import dedent
 from markdown import markdown
 
-from tf.core.helpers import console
-from tf.core.files import dirContents, initTree
+from tf.core.helpers import console, run
+from tf.core.files import dirContents, initTree, fileExists, writeJson, expanduser as ex
 from tf.lib import writeSets
+from tf.app import use
+
 
 VERSIONS = ("4", "4b", "2016", "2017", "c", "2021")
+VNEXT = {
+    "4": "4b",
+    "4b": "2016",
+    "2016": "2017",
+    "2017": "2021",
+    "c": "2021",
+}
+
+
+def getLocations(obj, BASEDIR):
+    baseDir = ex(BASEDIR)
+    obj.baseDir = baseDir
+    obj.shebanqDir = f"{baseDir}/ETCBC/shebanq-local"
+    obj.bhsaDir = f"{baseDir}/ETCBC/bhsa"
+    obj.backupDir = f"{obj.shebanqDir}/backup"
+    obj.contentDir = f"{obj.shebanqDir}/content"
+    obj.tempDir = f"{obj.shebanqDir}/_temp"
+    obj.docsDir = f"{obj.shebanqDir}/docs"
+    obj.queryDir = f"{obj.docsDir}/hebrew/query"
+    obj.bhsa = "ETCBC/bhsa"
 
 
 class SQL:
-    def __init__(self, backupDir, zapTables=set()):
-        self.backupDir = backupDir
+    def __init__(self, BASEDIR, zapTables=set()):
+        getLocations(self, BASEDIR)
         self.zapTables = zapTables
         self.data = {}
         self.readData()
@@ -165,8 +187,9 @@ class SQL:
             for field in fields:
                 r[field] = "\\N"
 
-    def writeQResultsTF(self, mappingsFrom, destDir):
+    def writeQResultsTF(self, mappingsFrom):
         data = self.data
+        contentDir = self.contentDir
 
         monadRows = data["shebanq_web"]["monads"]
         queryexeRows = data["shebanq_web"]["query_exe"]
@@ -174,22 +197,23 @@ class SQL:
         versionFromQueryexe = {}
 
         for r in queryexeRows:
-            qeId, version = r[0], r[2]
-            versionFromQueryexe[qeId] = version
+            qId, qeId, version = r[10], r[0], r[2]
+            versionFromQueryexe[qeId] = (qId, version)
 
         resultsTF = {}
 
         for qeId, fromM, toM in monadRows:
-            version = versionFromQueryexe[qeId]
+            (qId, version) = versionFromQueryexe[qeId]
             is2021 = version == "2021"
+            versionRep = "" if is2021 else f"_{version}"
 
             for i in range(int(fromM), int(toM) + 1):
-                resultsTF.setdefault(f"qe{qeId}", set()).add(
+                resultsTF.setdefault(f"q{qId}{versionRep}", set()).add(
                     i if is2021 else mappingsFrom[version][i]
                 )
-        writeSets(resultsTF, f"{destDir}/qresults.tfx")
+        writeSets(resultsTF, f"{contentDir}/qresults.tfx")
 
-    def genQueryPages(self, docDir):
+    def genQueryPages(self):
         def nonNull(x):
             return not (x == "" or x == "\\N")
 
@@ -203,9 +227,10 @@ class SQL:
         LOCAL = "localhost:8000/hebrew/query"
 
         data = self.data
+        docsDir = self.docsDir
+        queryDir = self.queryDir
 
         console("Cleaning previous results ... ")
-        queryDir = f"{docDir}/hebrew/query"
         initTree(queryDir, fresh=True, gentle=True)
 
         userRows = data["shebanq_web"]["auth_user"]
@@ -220,7 +245,7 @@ class SQL:
 
         for r in projectRows:
             (projectId, name, website) = r[0:3]
-            projects[projectId] = f"[{name}]({website})" if nonNull(website) else name
+            projects[projectId] = (name, website if nonNull(website) else "")
 
         console("Gathering organizations ... ")
 
@@ -228,7 +253,7 @@ class SQL:
 
         for r in orgRows:
             (orgId, name, website) = r[0:3]
-            orgs[orgId] = f"[{name}]({website})" if nonNull(website) else name
+            orgs[orgId] = (name, website if nonNull(website) else "")
 
         console("Gathering users ... ")
 
@@ -303,6 +328,8 @@ class SQL:
         nq = 0
         nqe = 0
 
+        tocData = []
+
         for qId in sorted(queries):
             qInfo = queries[qId]
             qMeta = qInfo["meta"]
@@ -311,11 +338,14 @@ class SQL:
             name = qMeta["name"]
             description = qMeta["description"]
             createdBy = qMeta["createdBy"]
-            project = qMeta["project"]
-            organization = qMeta["organization"]
+            (project, pUrl) = qMeta["project"]
+            (organization, oUrl) = qMeta["organization"]
             dateCreated = qMeta["dateCreated"]
             dateModified = qMeta["dateModified"]
             dateShared = qMeta["dateShared"]
+
+            pRep = f"[{project}]({pUrl})" if pUrl else project
+            oRep = f"[{organization}]({oUrl})" if oUrl else organization
 
             origShort = f"{ORIG}?id={qId}"
             origFull = f"https://{origShort}"
@@ -334,8 +364,8 @@ class SQL:
                 | *local link* | [{localShort}]({localFull}) |
                 | *original link* | [{origShort}]({origFull}) |
                 | *created by* | {createdBy} |
-                | *project* | {project} |
-                | *organization* | {organization} |
+                | *project* | {pRep} |
+                | *organization* | {oRep} |
                 | *date created* | {dateCreated} |
                 | *date modified* | {dateModified} |
                 | *date shared* | {dateShared} |
@@ -357,6 +387,7 @@ class SQL:
                 if version not in qVersions:
                     continue
 
+                versionRep = "" if version == "2021" else f"-{version}"
                 qeInfo = qVersions[version]
                 qeId = qeInfo["qeId"]
                 mql = qeInfo["mql"]
@@ -372,7 +403,28 @@ class SQL:
                 localVShort = f"{localShort}&version={version}"
                 localVFull = f"{localFull}&version={version}"
 
-                origFull = "http://shebanq.ancient-data.org/hebrew/query?version=4b&id=1780"
+                tfSet = f"q{qId}{versionRep}"
+
+                origFull = (
+                    "http://shebanq.ancient-data.org/hebrew/query?version=4b&id=1780"
+                )
+
+                tocData.append(
+                    (
+                        qId,
+                        version,
+                        name,
+                        createdBy,
+                        project,
+                        organization,
+                        datePublished,
+                        pUrl,
+                        oUrl,
+                        tfSet,
+                        localVFull,
+                        origVFull,
+                    )
+                )
 
                 nqe += 1
                 md += dedent(
@@ -382,7 +434,7 @@ class SQL:
                     | property | value |
                     | --- | --- |
                     | *id* | `{qeId}` |
-                    | *TF set* | **`qe{qeId}`** |
+                    | *TF set* | **`{tfSet}`** |
                     | *local link* | [{localVShort}]({localVFull}) |
                     | *original link* | [{origVShort}]({origVFull}) |
                     | *results* | **`{results}`** |
@@ -409,4 +461,209 @@ class SQL:
             with open(f"{queryDir}/{qId}.html", "w") as fh:
                 fh.write(markdown(md, extensions=["tables", "fenced_code"]))
 
+        with open(f"{docsDir}/index.html", "w") as fh:
+            fh.write(
+                dedent(
+                    """\
+                    <!DOCTYPE html>
+                    <html>
+                      <head>
+                        <meta charset="utf-8" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                        <title>SHEBANQ Published Queries</title>
+                      </head>
+                      <body>
+                      <h1>SHEBANQ Published Queries - Overview</h1>
+                      <div id="table">
+                      </div>
+                      <script>
+                      var tocData =
+                    """
+                )
+            )
+            fh.write(writeJson(tocData))
+            fh.write(
+                dedent(
+                    """\
+
+                      </script>
+                      </body>
+                    </html>
+                    """
+                )
+            )
+
         console(f"Generated {nqe} pages for {nq} queries")
+
+
+class Check:
+    def __init__(self, BASEDIR):
+        getLocations(self, BASEDIR)
+
+    def unzip(self):
+        bhsaDir = self.bhsaDir
+        tempDir = self.tempDir
+
+        for version in VERSIONS:
+            mqlZipFile = (
+                f"{bhsaDir}/bhsa/shebanq/{version}/shebanq_etcbc{version}.mql.bz2"
+            )
+            mqlFile = f"{tempDir}/shebanq_etcbc{version}.mql"
+
+            if not fileExists(mqlFile):
+                console(f"unzipping {mqlZipFile}")
+                result = run(f"bunzip2 -k -c {mqlZipFile} > {mqlFile}")
+
+                if not result[0]:
+                    console(result[-1], error=True)
+
+    def monads(self):
+        tempDir = self.tempDir
+
+        for version in VERSIONS:
+            mqlFile = f"{tempDir}/shebanq_etcbc{version}.mql"
+
+            console(f"Checking {version} from {mqlFile}")
+
+            curMonad = 0
+            gaps = []
+
+            with open(mqlFile) as fh:
+                skip = True
+
+                for ln, line in enumerate(fh):
+                    if line == "WITH OBJECT TYPE[word]\n":
+                        skip = False
+
+                    if line == "GO\n":
+                        skip = True
+
+                    if skip:
+                        continue
+
+                    if line.startswith("FROM MONADS"):
+                        monad = int(
+                            line.split("=", 1)[1]
+                            .replace("{", "")
+                            .replace("}", "")
+                            .strip()
+                        )
+
+                        if curMonad + 1 != monad:
+                            gaps.append((ln + 1, curMonad, monad))
+
+                        curMonad = monad
+
+            nGaps = len(gaps)
+
+            console(f"\tlast monad = {monad}")
+            console(f"\tthere were {nGaps} gaps", error=nGaps > 0)
+
+            for ln, b, e in gaps:
+                console(f"\t\tline {ln}: gap from {b} to {e}", error=True)
+
+
+class Mapper:
+    def __init__(self, BASEDIR):
+        getLocations(self, BASEDIR)
+        A = {}
+        self.A = A
+
+    def load(self):
+        A = self.A
+        baseDir = self.baseDir
+        bhsa = self.bhsa
+
+        for v in VERSIONS:
+            A[v] = use(
+                f"{bhsa}:clone",
+                checkout="clone",
+                mod=[],
+                version=v,
+                source=baseDir,
+            )
+
+    def unload(self):
+        self.A = {}
+
+    def makeMappings(self):
+        A = self.A
+
+        self.mappingsFrom = {}
+        mappingsFrom = self.mappingsFrom
+        self.mappingsGaps = {}
+        mappingsGaps = self.mappingsGaps
+
+        for v in reversed(VERSIONS):
+            if v == "2021":
+                continue
+
+            console(f"map {v}-slots to 2021 slots ...")
+            nextV = VNEXT[v]
+
+            mapFeat = f"omap@{v}-{nextV}"
+            A[nextV].load(mapFeat)
+            smap = A[nextV].api.Es(mapFeat).f
+            maxSlot = A[v].api.F.otype.maxSlot
+
+            thisMapping = {}
+            theseGaps = {}
+
+            for n in range(1, maxSlot + 1):
+                x = smap(n)
+
+                if x:
+                    thisMapping[n] = list(x)[0][0]
+                else:
+                    theseGaps[n] = (v, None)
+
+            if nextV == "2021":
+                mappingsFrom[v] = thisMapping
+            else:
+                remainingMapping = mappingsFrom[nextV]
+                mappingsFrom[v] = {}
+                fullMapping = mappingsFrom[v]
+
+                for n in range(1, maxSlot + 1):
+                    if n in thisMapping:
+                        nn = thisMapping[n]
+
+                        if nn in remainingMapping:
+                            fullMapping[n] = remainingMapping[nn]
+                        else:
+                            theseGaps[n] = (nextV, nn)
+
+            mappingsGaps[v] = theseGaps
+            nGaps = len(theseGaps)
+            console(f"\t{nGaps} gaps")
+
+    def checkGaps(self):
+        A = self.A
+
+        mappingsFrom = self.mappingsFrom
+
+        for v in VERSIONS:
+            if v == "2021":
+                continue
+
+            maxSlot = A[v].api.F.otype.maxSlot
+
+            gaps = 0
+            thisMapping = mappingsFrom[v]
+
+            for n in range(1, maxSlot):
+                if n not in thisMapping:
+                    gaps += 1
+
+            console(f"mapping {v} to 2021 has {gaps} gaps")
+
+    def showValues(self, *nodes):
+        mappingsFrom = self.mappingsFrom
+
+        for n in nodes:
+            for v in reversed(VERSIONS):
+                if v == "2021":
+                    continue
+
+                console(f"{v:>4}-slot {n} maps to {mappingsFrom[v][n]}")
+            console("")
