@@ -1,0 +1,113 @@
+<h1>Assignment 5.3</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>3562</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3562">localhost:8000/hebrew/query?id=3562</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3562">shebanq.ancient-data.org/hebrew/query?id=3562</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Mark Klooster</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.etcbc.nl">MA_Analytical_Tools_2019</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2019-09-18 18:08:05</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-09-18 18:11:01</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2019-09-18 18:11:08</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>This query searches for all phrases with (in any order, hence the [UnorderedGroup) the words ‘evil’, ‘spirit’, and ‘God/YHWH/Adonai’. </p>
+<p>I have not specified whether ‘evil’ should be an adjective or a noun because ‘evil’ could be attributive to the noun ‘spirit’ in both forms. I have chosen to search for phrases instead of sentences, as we are searching for the phrase ‘an evil spirit of God/the Lord’. When running with [sentence instead of [phrase, the query detects another occurrence, namely Judges 9:23, where God (as the grammatical subject) sends an evil spirit.</p>
+<h2>Versions</h2>
+<h3>2017</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4190</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe4190</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3562&amp;version=2017">localhost:8000/hebrew/query?id=3562&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3562&amp;version=2017">shebanq.ancient-data.org/hebrew/query?id=3562&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>15</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>15</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2019-09-18 18:11:13</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-09-18 18:11:01</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2019-09-18 18:11:28</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where 
+   [phrase
+      [UnorderedGroup
+         [word FOCUS lex = &quot;RWX/&quot;]
+         [word FOCUS lex = &quot;R&lt;/&quot;]
+         [word FOCUS lex = &quot;&gt;L/&quot; OR lex = &quot;&gt;LHJM/&quot; OR lex = &quot;JHWH/&quot;]
+      ]
+   ]
+
+</code></pre>

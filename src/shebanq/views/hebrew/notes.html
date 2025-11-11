@@ -1,0 +1,63 @@
+{{ left_sidebar_enabled = True }}
+{{ right_sidebar_enabled = True }}
+{{extend 'layout.html'}}
+
+<input type="hidden" id="key_id" value="{{=key_id}}"/>
+<div id="notes"></div>
+
+{{ block left_sidebar }}
+
+<p>
+    <a href="#" id="c_view_simple" class="ctl nvradio">simple</a>
+    <a href="#" id="c_view_advanced" class="ctl nvradio">advanced</a>
+</p>
+
+<h4>Filter</h4>
+<input type="text" id="filter_contents"/> <span id="filter_msg"></span></p>
+<p class="brn"><a class="ctl nfradio" href="#" id="filter_control_a">all matches</a>
+<span id="allmatches">&nbsp;</span>
+</p>
+<p><a class="ctl nfradio" href="#" id="filter_control_c">all with children</a>
+<span id="branchmatches">&nbsp;</span>
+</p>
+<p class="brn"><a class="ctl nfradio" href="#" id="filter_control_n">in all notes</a>
+<span id="notematches">&nbsp;</span>
+</p>
+<p><a class="ctl nfradio" href="#" id="filter_clear">clear filter</a></p>
+
+<h4>Level</h4>
+<p><a class="ctl nlradio" href="#" id="level_u">users</a> (<span id='count_u'></span>)</p>
+<p><a class="ctl nlradio" href="#" id="level_n">notes</a> (<span id='count_n'></span>)</p>
+<p><a class="ctl nlradio" href="#" id="level_">manual</a></p>
+
+<script src="{{=URL('static','js/jquery.fancytree-all.min.js')}}"></script>
+<script type="text/javascript">{{=XML(pageConfig)}}</script>
+<script src="{{=URL('static', 'js/app/notetree.js')}}" type="module"></script>
+
+{{ end }}
+
+{{ block right_sidebar }}
+
+{{if not mayUpload:}}
+<h4>Bulk note upload through csv</h4>
+<p>You are not allowed to upload csv files with notes.
+Permission has to be asked, see the
+<a href="https://github.com/ETCBC/shebanq/wiki" target="_blank">shebanq wiki</a>
+for a contact address.</p>
+{{else:}}
+<p>Upload a csv file with notes here.</p>
+{{pass}}
+<p>Here are the
+<a target="_blank" href="https://github.com/ETCBC/shebanq/wiki/Notes-Bulk">specifications</a>.
+</p>
+{{if mayUpload:}}
+<form method="post" id="fileinfo" name="fileinfo">
+    <input type="hidden" name="uid" value="{{=user_id}}"/>
+    <label>Choose csv file:</label> <input type="file" name="file" id="ncsv" required />
+</form>
+<p><a class="ctl" id="ncsv_upload" href='#'>upload and process</a></p>
+<div id="upl_msgs"></div>
+<p><a href="#" title="clear diagnostic messages"><span id="trash_upl_msgs" class="ctl ir fa fa-trash fa-lg"></span></a></p>
+{{pass}}
+
+{{ end }}

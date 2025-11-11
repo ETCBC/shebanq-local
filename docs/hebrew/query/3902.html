@@ -1,0 +1,136 @@
+<h1>Passive Qal candidates</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>3902</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3902">localhost:8000/hebrew/query?id=3902</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3902">shebanq.ancient-data.org/hebrew/query?id=3902</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>David Van Acker</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://shebanq.ancient-data.org">Introductie Shebanq</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.kuleuven.be/kuleuven/">KU Leuven</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2020-05-08 09:29:38</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2020-05-20 09:31:17</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2020-05-20 09:15:56</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>In an attempt to find Passive Qal forms in the database ('vs = pqal' gives only 6 results in version 2017, so it is likely inconsistent), we may look to all those forms that have Pu'al qatal or Hif'il yiqtol, and also occur in Qal.
+Passive Qal looks in the qatal exactly like Pu'al and in the yiqtol like Hof'al. Therefore, the database does not recognize Passive Qal. Yet, when the stem of a Pu'al or Hif'il exists in Qal too, we have a candidate for Passive Qal. Manual post-processing may then determine whether or not we have an actual Passive Qal.
+Ideally we would look explicitly to those Pu'als and Hof'als that have no Pi'el or Hif'il form. These would not include all Passive Qals, but would give a closer approximation of actual Passive Qals. Unfortunately such a requirement cannot be formulated in MQL ('vs&lt;&gt;hif' or 'vs&lt;&gt;piel' in the first blocks would not do this, as it includes any stem that happens to be not Hif'il or Pi'el, rather than that the stem does not exist in Hif'il or Pi'el).</p>
+<p>This query reduces all 919 Hof'als and Pu'als to a list of 272 forms that can possibly be a Passive Qal. As said, many may not acually be Passive Qal. Manual post-processing is needed to determine these forms that are (likely) Passive Qals.</p>
+<h2>Versions</h2>
+<h3>2017</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4594</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe4594</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3902&amp;version=2017">localhost:8000/hebrew/query?id=3902&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3902&amp;version=2017">shebanq.ancient-data.org/hebrew/query?id=3902&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>47335</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>272</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2020-05-20 09:31:19</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2020-05-20 09:26:18</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2020-05-20 09:31:48</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>Select all objects where
+
+[word AS stem1 NORETRIEVE vs = qal]             //Looks for any word (word 1) that is Qal.
+                                //Saved in memory, but not retrieved as results.
+                                //This is referred to as ‘stem1’.
+
+..                              //The first, non-retrieved word, may occur anywhere.
+                                //The second, (following) retrieved word, may also occur anywhere.
+                                //An indefinite gap may exist between two words.
+                                //I.e. the second and first word may occur anywhere in the OT.
+                                //This creates a lot of possibilities, 
+                                //yet the requirements of word 1 and word 2 limit the eventual result.
+                                //The query will take long to run, though, 
+                                //as word 1 loads many words into memory,
+                                //while word 2 only selects a few as actual hits.
+
+[word FOCUS lex = stem1.lex AND vs = hof AND vt = impf]     //Looks for any word (word 2) that is Hof’al yiqtol,
+                                //and that has the same stem as a word 1 (‘stem1’ which must be Qal)
+                                //hereby all Hof’als that also have a qal are found.
+                                //This limits all (427) Hof’als to those that can maybe be Passive Qal.
+
+OR                              //The same is repeated,
+                                //but now for Pu'al (492 in total) qatals that can have Qal.
+
+[word AS stem2 NORETRIEVE vs = qal]
+
+..
+
+[word FOCUS lex = stem2.lex AND vs = pual AND vt = perf]
+
+</code></pre>

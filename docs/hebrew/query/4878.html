@@ -1,0 +1,130 @@
+<h1>Hif'il of נצב + object if any</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4878</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=4878">localhost:8000/hebrew/query?id=4878</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=4878">shebanq.ancient-data.org/hebrew/query?id=4878</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Rieks Hekman</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://uvt.osiris-student.nl/#/onderwijscatalogus/extern/examenprogramma/36390/9L300-2021?taal=nl">Oude Testament 2 (2021-2022)</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="https://www.tilburguniversity.edu/about/schools/theology/">Tilburg University</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2021-11-13 13:32:36</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2021-11-13 13:58:06</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2021-11-13 13:58:35</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>Selects all instances of the hif'il of נצב, and their objects if present, by looking for:<br>
+<br>
+- a participle or predicate (complement) (with object/subject suffix) phrase with the hif'il of נצב and an object phrase within the same clause (both phrases in FOCUS) (19 cases);<br>
+- a participle or predicate (complement) (with object/subject suffix) phrase with the hif'il of נצב without an object phrase (2 cases);<br>
+<br>
+NB: if the phrase with נצב is a participle with object suffix phrase, any additional object phrase is most likely not the object of the participle. (However, there are 0 of these cases).</p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>5728</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe5728</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=4878&amp;version=2021">localhost:8000/hebrew/query?id=4878&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=4878&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=4878&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>21</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>58</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2021-11-13 13:58:08</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2021-11-13 13:58:06</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2021-11-13 13:58:34</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>Select all objects where
+
+[clause
+   [phrase FOCUS function IN (PrcS,Pred,PreC,PreO,PreS,PtcO)
+      [word lex=&quot;NYB[&quot; AND vs=hif]
+   ]
+   ..
+   [phrase FOCUS function=Objc]
+   OR
+   [phrase FOCUS function=Objc]
+   ..
+   [phrase FOCUS function IN (PrcS,Pred,PreC,PreO,PreS,PtcO)
+      [word lex=&quot;NYB[&quot; AND vs=hif]
+   ]
+]
+OR
+[clause
+   [phrase FOCUS function IN (PrcS,Pred,PreC,PreO,PreS,PtcO)
+      [word lex=&quot;NYB[&quot; AND vs=hif]
+   ]
+   NOTEXIST [phrase function=Objc]
+]
+</code></pre>

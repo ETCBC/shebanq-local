@@ -1,0 +1,126 @@
+<h1>To fight + against in Isaiah</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>74</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=74">localhost:8000/hebrew/query?id=74</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=74">shebanq.ancient-data.org/hebrew/query?id=74</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Reinoud Oosting</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.nwo.nl/onderzoek-en-resultaten/onderzoeksprojecten/87/2300159387.html">Book of Isaiah (D&amp;T)</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.godgeleerdheid.vu.nl/etcbc">ETCBC</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2014-08-25 16:16:52</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2015-02-12 21:24:51</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2015-02-12 21:24:51</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>Combination of the verb LXM (nif) ('to fight') with the preposition B or &lt;L in Isaiah</p>
+<h2>Versions</h2>
+<h3>4b</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>82</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe82</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=74&amp;version=4b">localhost:8000/hebrew/query?id=74&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=74&amp;version=4b">shebanq.ancient-data.org/hebrew/query?id=74&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>6</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>12</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2015-05-15 11:43:25</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2015-02-12 21:24:51</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2015-05-15 11:46:38</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.4.0</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects
+where
+[chapter book IN (Jesaia)
+ [clause
+   [phrase function = Pred OR function = PreC
+     [word FOCUS sp = verb AND vs = nif AND lex = &quot;LXM[&quot; ]
+         ]
+    ..
+    [phrase function = Cmpl
+    [word FOCUS lex = &quot;B&quot; OR lex = &quot;&lt;L&quot;]
+   ]
+ ]
+OR
+ [clause
+    [phrase function = Cmpl
+      [word FOCUS lex = &quot;B&quot; OR lex = &quot;&lt;L&quot;]
+    ]
+..
+   [phrase function = Pred OR function = PreC
+     [word FOCUS sp = verb AND vs = nif AND lex = &quot;LXM[&quot;]
+   ]
+ ]
+]
+</code></pre>

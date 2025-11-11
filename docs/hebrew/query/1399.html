@@ -1,0 +1,122 @@
+<h1>L&gt; plus participle</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1399</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1399">localhost:8000/hebrew/query?id=1399</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1399">shebanq.ancient-data.org/hebrew/query?id=1399</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Martijn Naaijer</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.godgeleerdheid.vu.nl/en/news-agenda/news-archive/2013/three-new-researchers-appointed-to-biblical-hebrew-research.asp">SynVar</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2016-08-26 21:19:51</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2016-08-26 21:20:28</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2016-08-26 21:21:27</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>None</p>
+<h2>Versions</h2>
+<h3>4b</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1722</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe1722</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1399&amp;version=4b">localhost:8000/hebrew/query?id=1399&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1399&amp;version=4b">shebanq.ancient-data.org/hebrew/query?id=1399&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>116</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>900</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2016-08-26 21:20:28</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2016-08-26 21:20:28</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2016-08-26 21:21:04</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>3.4.1.pre12</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+
+[clause focus
+    [word lex = 'L&gt;']
+     ..
+    [phrase function = PreC
+        [word vt in (ptca, ptcp)]
+    ]
+]
+
+OR 
+
+[clause focus
+    [phrase function = PreC
+       [word vt in (ptca, ptcp)]
+    ]
+   ..
+    [word lex = 'L&gt;']    
+]
+</code></pre>

@@ -1,0 +1,206 @@
+<h1>OT Study</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1505</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1505">localhost:8000/hebrew/query?id=1505</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1505">shebanq.ancient-data.org/hebrew/query?id=1505</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>fengsheng Liu</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.andrews.edu/">Bible Software Labs</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="https://www.andrews.edu">Andrews University Seminary</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2017-01-23 18:15:26</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2017-01-23 18:19:52</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2017-02-09 15:37:55</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>None</p>
+<h2>Versions</h2>
+<h3>4b</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1843</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe1843</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1505&amp;version=4b">localhost:8000/hebrew/query?id=1505&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1505&amp;version=4b">shebanq.ancient-data.org/hebrew/query?id=1505&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>36</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>60</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2017-02-08 04:06:45</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2017-02-08 04:06:45</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2017-02-09 15:37:55</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>3.4.1.pre12</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+
+[book book IN (Jeremia)
+ [clause
+    [phrase FOCUS function= Subj 
+      [word FOCUS lex_utf8=&quot;אל/&quot; OR lex_utf8=&quot;אלֹהים/&quot; OR lex_utf8=&quot;יהוה/&quot;]
+    ]  
+     ..
+    [phrase FOCUS function=Pred
+      [word FOCUS lex_utf8=&quot;דבר[&quot; OR lex_utf8=&quot;אמר[&quot; OR lex_utf8=&quot;ענה[&quot; OR lex_utf8=&quot;קרא[&quot;]
+    ]
+     ..
+    [phrase FOCUS function=Cmpl
+     [ word FOCUS prs=&quot;J&quot;]    
+]
+ ]
+OR 
+[clause
+     [phrase FOCUS function=Pred
+      [word FOCUS lex_utf8=&quot;דבר[&quot; OR lex_utf8=&quot;אמר[&quot; OR lex_utf8=&quot;ענה[&quot; OR lex_utf8=&quot;קרא[&quot;]
+    ]
+     ..
+   [phrase FOCUS function= Subj 
+      [word FOCUS lex_utf8=&quot;אל/&quot; OR lex_utf8=&quot;אלֹהים/&quot; OR lex_utf8=&quot;יהוה/&quot;]
+    ]      ..
+     [phrase FOCUS function=Cmpl
+      [ word FOCUS prs=&quot;J&quot;]
+    ]
+ ]
+OR
+[clause
+     [phrase FOCUS function=Pred
+      [word FOCUS lex_utf8=&quot;דבר[&quot; OR lex_utf8=&quot;אמר[&quot; OR lex_utf8=&quot;ענה[&quot; OR lex_utf8=&quot;קרא[&quot;]
+    ]
+     ..
+     [phrase FOCUS function=Cmpl
+      [ word FOCUS prs=&quot;J&quot;]
+    ]
+     ..
+   [phrase FOCUS function= Subj 
+      [word FOCUS lex_utf8=&quot;אל/&quot; OR lex_utf8=&quot;אלֹהים/&quot; OR lex_utf8=&quot;יהוה/&quot;]
+    ]  
+ ]
+
+OR
+[clause
+    [phrase FOCUS function= Subj 
+      [word FOCUS lex_utf8=&quot;אל/&quot; OR lex_utf8=&quot;אלֹהים/&quot; OR lex_utf8=&quot;יהוה/&quot;]
+    ]   
+     ..
+     [phrase FOCUS function=Cmpl
+      [ word FOCUS prs=&quot;J&quot;]
+    ]
+     ..
+    [phrase FOCUS function=Pred
+      [word FOCUS lex_utf8=&quot;דבר[&quot; OR lex_utf8=&quot;אמר[&quot; OR lex_utf8=&quot;ענה[&quot; OR lex_utf8=&quot;קרא[&quot;]
+    ]
+ ]
+
+OR
+[clause
+    [phrase FOCUS function=Cmpl
+      [ word FOCUS prs=&quot;J&quot;]
+    ]
+     ..
+   [phrase FOCUS function=Pred
+      [word FOCUS lex_utf8=&quot;דבר[&quot; OR lex_utf8=&quot;אמר[&quot; OR lex_utf8=&quot;ענה[&quot; OR lex_utf8=&quot;קרא[&quot;]
+    ]
+     ..
+  [phrase FOCUS function= Subj 
+      [word FOCUS lex_utf8=&quot;אל/&quot; OR lex_utf8=&quot;אלֹהים/&quot; OR lex_utf8=&quot;יהוה/&quot;]
+    ]   
+ ]
+OR
+[clause
+     [phrase FOCUS function=Pred
+      [word FOCUS lex_utf8=&quot;דבר[&quot; OR lex_utf8=&quot;אמר[&quot; OR lex_utf8=&quot;ענה[&quot; OR lex_utf8=&quot;קרא[&quot;]
+    ]
+     ..
+   [phrase FOCUS function= Subj 
+      [word FOCUS lex_utf8=&quot;אל/&quot; OR lex_utf8=&quot;אלֹהים/&quot; OR lex_utf8=&quot;יהוה/&quot;]
+    ]   
+     ..
+     [phrase FOCUS function=Cmpl
+      [ word FOCUS prs=&quot;J&quot;]
+    ]
+ ]
+OR
+[clause
+     [phrase FOCUS function=Cmpl
+      [ word FOCUS prs=&quot;J&quot;]
+    ]
+     ..
+   [phrase FOCUS function= Subj 
+      [word FOCUS lex_utf8=&quot;אל/&quot; OR lex_utf8=&quot;אלֹהים/&quot; OR lex_utf8=&quot;יהוה/&quot;]
+    ]   
+     ..
+   [phrase FOCUS function=Pred
+      [word FOCUS lex_utf8=&quot;דבר[&quot; OR lex_utf8=&quot;אמר[&quot; OR lex_utf8=&quot;ענה[&quot; OR lex_utf8= &quot;קרא[&quot;]
+    ]
+ ]
+]
+
+</code></pre>

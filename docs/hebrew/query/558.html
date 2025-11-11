@@ -1,0 +1,170 @@
+<h1>נָתַן and locatives</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>558</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=558">localhost:8000/hebrew/query?id=558</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=558">shebanq.ancient-data.org/hebrew/query?id=558</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Dirk Roorda</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.nwo.nl/onderzoek-en-resultaten/onderzoeksprojecten/87/2300159387.html">Data and Tradition</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.godgeleerdheid.vu.nl/etcbc">ETCBC</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2015-03-04 13:41:04</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2015-03-09 11:44:53</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2015-03-09 11:44:53</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<h1>Complements of נָתַן</h1>
+<h2>Subject</h2>
+<p>A special case in the quest for valence patterns: <a href="http://shebanq.ancient-data.org/hebrew/word?id=6381">נָתַן</a> with Pred + Objc + Cmpl.</p>
+<h2>Topic</h2>
+<p>Which of the phrases marked as <code>Cmpl</code> are locatives and which are indirect object?</p>
+<h2>Query</h2>
+<p>This query only extracts the set of candidates, further analysis of them is done in a corresponding LAF-Fabric <a href="http://nbviewer.ipython.org/github/etcbc/laf-fabric-nbs/blob/master/valence/ntn-locatives.ipynb">notebook</a></p>
+<h2>MQL technique</h2>
+<p>Two things complicate the otherwise straightforward formulation of this query:</p>
+<ul>
+<li>We look for htree phrases in <em>any order</em>, and MQL requires that we write out all orders explicitly</li>
+<li>We want all the words of the phrase marked as <code>Cmpl</code>. If we just say <code>[word]*</code> there are many spurious matches, because we did not say that these words should be all words of the complement. So we must use the keywords <code>first</code> and <code>last</code>, but then we have also the case that there is only one word, which should be <code>first and last</code>.</li>
+</ul>
+<p>So the body of this query has become a bit monstrous.</p>
+<h2>Versions</h2>
+<h3>4</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>737</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe737</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=558&amp;version=4">localhost:8000/hebrew/query?id=558&amp;version=4</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=558&amp;version=4">shebanq.ancient-data.org/hebrew/query?id=558&amp;version=4</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>937</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>3081</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2015-03-09 11:44:53</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2015-03-09 11:44:53</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2015-04-09 12:25:08</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.4.0</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+
+// it is a pity that we have to enumerate all 6 permutations
+
+[book[chapter[verse
+[clause // VOC
+
+ [phrase function = Pred [word focus lex = 'NTN[']]
+ ..
+ [phrase function = Objc]
+ ..
+ [phrase function = Cmpl [word focus first and last] or [word focus first] [word focus]* [word focus last]]
+
+ or // VCO
+
+ [phrase function = Pred [word focus lex = 'NTN[']]
+ ..
+ [phrase function = Cmpl [word focus first and last] or [word focus first] [word focus]* [word focus last]]
+ ..
+ [phrase function = Objc]
+
+ or // OVC
+
+ [phrase function = Objc]
+ ..
+ [phrase function = Pred [word focus lex = 'NTN[']]
+ ..
+ [phrase function = Cmpl [word focus first and last] or [word focus first] [word focus]* [word focus last]]
+
+ or // OCV
+
+ [phrase function = Objc]
+ ..
+ [phrase function = Cmpl [word focus first and last] or [word focus first] [word focus]* [word focus last]]
+ ..
+ [phrase function = Pred [word focus lex = 'NTN[']]
+
+ or // CVO
+
+ [phrase function = Cmpl [word focus first and last] or [word focus first] [word focus]* [word focus last]]
+ ..
+ [phrase function = Pred [word focus lex = 'NTN[']]
+ ..
+ [phrase function = Objc]
+
+ or // COV
+
+ [phrase function = Cmpl [word focus first and last] or [word focus first] [word focus]* [word focus last]]
+ ..
+ [phrase function = Objc]
+ ..
+ [phrase function = Pred [word focus lex = 'NTN[']]
+]
+]]]
+</code></pre>

@@ -1,0 +1,120 @@
+<h1>Aartsmoeders die bevelen geven</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>6398</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6398">localhost:8000/hebrew/query?id=6398</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6398">shebanq.ancient-data.org/hebrew/query?id=6398</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Henri Pool</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://vu.nl/">Exegese OT</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="https://www.vu.nl/nl/index.aspx">Vrije universiteit</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2024-02-13 18:42:56</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2024-02-14 14:38:05</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2024-02-14 14:38:13</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>Imperatieven (ev. en mv.) in Gen. 12-49 met een vrouwelijk subject, om te onderzoeken waar en wanneer aartsmoeders bevelen geven.</p>
+<p>In Gen. 27 vinden staan verschillende bevelen (imperatieven). Niet alleen van Isaak, maar ook van Rebekka. Komt het vaker voor dat in de geschiedenis van de aartsvaders Abraham, Isaak en Jakob de vrouwen (aartsmoeders) bevelen geven?</p>
+<p>Om dit te onderzoeken, zoek ik eerst naar een enkelvoudige zin in het narratief die vrouwelijk is. Daarna zoek ik naar een enkelvoudige zin die een mannelijk imperatief bevat.</p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>7407</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe7407</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6398&amp;version=2021">localhost:8000/hebrew/query?id=6398&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6398&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=6398&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>24</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>37</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2024-02-14 14:38:07</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2024-02-14 14:09:16</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2024-02-14 14:38:13</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>Select all objects where
+
+[verse book = Genesis AND chapter &gt;=12 AND chapter &lt;=49
+         [clause domain = 'N'
+            [phrase typ = VP
+                [word FOCUS gn = f]
+            ]
+        ]
+        ..
+        [clause domain = 'Q'
+           [phrase typ = VP
+               [word FOCUS vt = impv AND gn = m]
+           ]
+        ]
+]
+</code></pre>

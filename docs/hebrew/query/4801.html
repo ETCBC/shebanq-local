@@ -1,0 +1,123 @@
+<h1>Way - we-X-qotel - Way</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4801</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=4801">localhost:8000/hebrew/query?id=4801</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=4801">shebanq.ancient-data.org/hebrew/query?id=4801</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Rieks Hekman</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://uvt.osiris-student.nl/#/onderwijscatalogus/extern/examenprogramma/36390/9L300-2021?taal=nl">Oude Testament 2 (2021-2022)</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="https://www.tilburguniversity.edu/about/schools/theology/">Tilburg University</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2021-10-15 11:15:48</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2021-10-15 12:13:23</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2021-10-15 12:17:06</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>Search for all instances of 1--&gt;2--&gt;3, where:<br>
+1 = Wayyiqtol-clause (with or without explicit subject);<br>
+2 = Participle clause with pattern a--&gt;b--&gt;c (directly<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adjacent), where:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a = the conjunction "W" at the first place in the clause;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b = a subject;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c = the participle (--&gt; predicate complement or<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;participle with direct object);<br>
+3 = Wayyiqtol-clause (with or without explicit subject).<br>
+Clauses 1, 2 and 3 should be directly adjacent, but there might be gaps (e.g. embedded relative clauses) <i>within</i> the clauses.</p>
+<h2>Versions</h2>
+<h3>2017</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>5628</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe5628</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=4801&amp;version=2017">localhost:8000/hebrew/query?id=4801&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=4801&amp;version=2017">shebanq.ancient-data.org/hebrew/query?id=4801&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>37</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>670</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2021-10-15 12:03:33</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2021-10-15 12:03:33</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2021-10-15 12:17:06</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>Select all objects where
+
+[clause FOCUS typ IN (WayX, Way0)]
+[clause FOCUS typ=Ptcp
+   [phrase FIRST function=Conj
+      [word lex=&quot;W&quot;]
+   ]
+   [phrase function=Subj]
+   [phrase function IN (PreC, PtcO)]
+]
+[clause FOCUS typ IN (WayX, Way0)]
+</code></pre>

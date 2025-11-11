@@ -1,0 +1,35 @@
+<a class="ctl" id="gobackn" href="#"><span id="namenn">to notes overview </span></a>
+<input type="hidden" id="notetag" value=""/>
+<div id="dbmsg_n"></div>
+<p><a href="#" title="clear diagnostic messages"><span id="trash_dbmsg_n" class="ctl ir fa fa-trash fa-lg"></span></a></p>
+{{if 'id' in noteRecord and noteRecord['id'] and noteRecord['id'] != '0':}}
+<table>
+    <tr><td><span class="notelabel">author</span></td><td><span class="nauth">{{=noteRecord['first_name']}} {{=noteRecord['last_name']}}</span></td></tr>
+    <tr><td><span class="notelabel">keyword</span></td><td><span class="t1_kw">{{=noteRecord['keywords']}}</span></td></tr>
+</table>
+{{for v in VERSION_ORDER:
+    noteInfo = noteRecord['versions'].get(v, {})
+    thisCls = 'this' if v == vr else 'other'
+    arrow = 'down' if v == vr else 'right'
+}}
+<div version="{{=v}}" class="version {{=thisCls}}">
+    <p><a class="ctlexpand moredetail fa fa-chevron-{{=arrow}}" href="#" title="more/less details"></a>
+    <a id="version_s_{{=v}}" href="#" title="switch to this version"><span class="sversion {{=thisCls}}">{{=v}}</span></a>
+    <a id="csvt_lnk_{{=v}}_n" href="#" class="ctl fa fa-list fa-lg" ftitle=" :download all notes of this set as a csv file"></a>
+    <a id="csvd_lnk_{{=v}}_n" href="#" class="ctl fa fa-list fa-lg fa-flip-horizontal" ftitle=" :download all notes of this set with clause info as a csv file"></a>
+    <a id="select_control_chart_{{=v}}_n" href="#" class="ctl fa fa-bar-chart fa-rotate-90 fa-lg" title="view occurrences in a clickable bar chart"></a>
+    </p>
+    <table>
+        <tr class="detail"><td><span class="notelabel">notes</span></td><td class="nstat">{{=noteInfo.get('n', '') or 0}}</td></tr>
+    </table>
+</div>
+{{pass}}
+{{pass}}
+<script type="text/javascript">
+var State = {
+    msgs: {{=XML(msgs)}},
+    note: {{=XML(note)}},
+}
+</script>
+
+

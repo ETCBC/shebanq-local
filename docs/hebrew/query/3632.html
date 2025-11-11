@@ -1,0 +1,114 @@
+<h1>PQD - &lt;WN &amp; &lt;L</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>3632</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3632">localhost:8000/hebrew/query?id=3632</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3632">shebanq.ancient-data.org/hebrew/query?id=3632</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Eimert Haakmeester</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.etcbc.nl">MA_Analytical_Tools_2019</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2019-10-26 23:05:24</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-10-26 23:19:50</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2019-10-28 06:57:23</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>This query searches for all the objects where the verb PQD occurs with the object &lt;WN and the preposition &lt;L</p>
+<h2>Versions</h2>
+<h3>2017</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4270</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe4270</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3632&amp;version=2017">localhost:8000/hebrew/query?id=3632&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3632&amp;version=2017">shebanq.ancient-data.org/hebrew/query?id=3632&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>41</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>41</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2019-10-26 23:20:17</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-10-26 23:20:17</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2019-10-28 06:57:23</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>Select all objects where
+
+[clause
+ [unorderedgroup
+  [phrase function IN (PreC, Pred, PreO)
+   [word FOCUS lex = &quot;PQD[&quot; AND vs = qal]]
+  [phrase function = Objc
+   [word FOCUS lex = &quot;&lt;WN/&quot;]]
+  [word FOCUS lex = &quot;&lt;L&quot; AND sp = prep]
+ ]
+]
+</code></pre>

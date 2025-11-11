@@ -1,0 +1,114 @@
+<h1>R&lt;H and Preopsitions</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>6232</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6232">localhost:8000/hebrew/query?id=6232</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6232">shebanq.ancient-data.org/hebrew/query?id=6232</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Zack B</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/text">Exegetical Papers</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="https://www.andrews.edu">Andrews University Seminary</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2023-11-08 01:10:49</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2023-11-14 21:31:27</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2023-12-14 22:44:41</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>This query exists to explore the relationship between the word R&lt;H and prepositions in order to determine if certain prepositions used in connection to R&lt;H trigger a different meaning of the word. I am searching R&lt;H as predicate, predicate compliment, predicate with subject or object suffix, and adjunct. </p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>7230</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe7230</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6232&amp;version=2021">localhost:8000/hebrew/query?id=6232&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6232&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=6232&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>161</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>161</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2023-11-14 21:13:47</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2023-11-14 21:13:47</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2023-12-14 22:44:41</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where 
+[clause
+     [UnorderedGroup
+          [phrase function=Pred OR function=PreC OR function=PreS OR function=PreO OR function=Adju
+               [word focus lex=&quot;R&lt;H[&quot;]
+          ]
+          [phrase
+               [word focus sp=prep]
+          ]
+     ]
+ ]
+</code></pre>

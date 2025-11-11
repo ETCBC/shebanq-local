@@ -1,0 +1,115 @@
+<h1>ATSB_2025_PdN_Q5</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>7104</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=7104">localhost:8000/hebrew/query?id=7104</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=7104">shebanq.ancient-data.org/hebrew/query?id=7104</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Peter dN</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://studiegids.vu.nl/en/courses/2025-2026/G_RMBS11#/">Analytical Tools 2025</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2025-09-11 09:42:36</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2025-09-11 10:49:09</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2025-09-11 10:00:14</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>Searching for verses with co-occurrence of prophet and king. Changing "verse" into "chapter" would result in all chapters where prophets and kings are mentioned together. Otherwise, changing "verse" into "clause" will limit the results to just clauses where prophets and kings occur together. </p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>8138</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe8138</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=7104&amp;version=2021">localhost:8000/hebrew/query?id=7104&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=7104&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=7104&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>90</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>155</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2025-09-11 10:54:08</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2025-09-11 10:54:08</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2025-09-11 10:54:14</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.9.0</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+[verse  
+[word FOCUS lex = &quot;MLK/&quot;]
+..
+[word FOCUS lex = &quot;NBJ&gt;/&quot; OR  lex = &quot;NBJ&gt;H/&quot;]
+]
+OR
+[verse  
+[word FOCUS lex = &quot;NBJ&gt;/&quot; OR  lex = &quot;NBJ&gt;H/&quot;]
+..
+[word FOCUS lex = &quot;MLK/&quot;]
+]
+</code></pre>

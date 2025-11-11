@@ -1,0 +1,103 @@
+{{ left_sidebar_enabled = True }}
+{{ extend 'layout.html' }}
+
+{{ block head }}
+{{
+otherLangIso = 'arc' if lan == 'hbo' else 'hbo'
+headLetter = chr(int(letter))
+rows = 12
+cols = 5
+tableSize = rows * cols
+nWords = len(words)
+nTables = int(nWords / tableSize) + (1 if nWords % tableSize != 0 else 0)
+arcCls = 'ison' if lan == 'arc' else ''
+hboCls = 'ison' if lan == 'hbo' else ''
+wordLabel = 'words' if nWords != 1 else 'word'
+}}
+{{ end }}
+
+<div id="words">
+{{
+tables = [[[None for c in range(cols)] for r in range(rows)] for t in range(nTables)] 
+curTable = 0
+curRow = 0
+curCol = 0
+for wordRecord in words:
+    if curRow == rows:
+        curRow = 0
+        curCol += 1
+    pass
+    if curCol == cols:
+        curCol = 0
+        curTable +=1
+    pass
+    tables[curTable][curRow][curCol] = wordRecord
+    curRow += 1
+pass
+
+nCells = 0
+for table in tables:
+    if nCells >= nWords: break
+}}
+<table class="dict">
+{{  for row in table:
+        if nCells >= nWords: break
+}}
+    <tr>
+{{      for wordRecord in row:
+            if wordRecord != None:
+                nCells += 1
+                (word, id, word_id, gloss) = wordRecord
+}}
+        <td class="d">
+            <a gi="{{=id}}" class="dgl" href="#">{{=gloss or '??'}}</a>
+            <a wi="{{=id}}" class="d" href="{{=URL('hebrew', 'word', vars=dict(mr='r', qw='w', id=id))}}">{{=word}}</a>
+            <a wii="{{=id}}" class="d" href="{{=URL('hebrew', 'word', vars=dict(mr='r', qw='w', id=id))}}">{{=word_id}}</a>
+        </td>
+            {{pass}}
+        {{pass}}
+    </tr>
+    {{pass}}
+</table><hr/>
+{{pass}}
+</div>
+
+{{ block left_sidebar }}
+{{ include 'hebrew/versions.html' }}
+<div id="letters">
+<table><tr>
+<td>
+<p class="dd {{=arcCls}}">Aramaic</p>
+{{ for let in letters[otherLangIso]:
+    letterCls = ' ison' if letter == let  and lan == 'arc' else ''
+}}
+    <p class="ctld d{{=letterCls}}">{{=A(chr(let), _class='dletter', _href=URL('hebrew', 'words', vars=dict(lan='arc', letter=let)))}}</p>
+{{pass}}
+</td>
+<td>
+<p class="dd {{=hboCls}}">Hebrew</p>
+{{ for let in letters[lan]:
+    letterCls = ' ison' if letter == let  and lan == 'hbo' else ''
+}}
+    <p class="ctld d{{=letterCls}}">{{=A(chr(let), _class='dletter', _href=URL('hebrew', 'words', vars=dict(lan='hbo', letter=let)))}}</p>
+{{pass}}
+</td>
+<td>
+    <h1 class="dletterh">{{=headLetter}}</h1>
+    <p id="nwords">{{=f"{nWords} {wordLabel}"}}</p>
+</td>
+</tr></table>
+</div>
+{{ end }}
+
+<script type="text/javascript">{{=XML(pageConfig)}}</script>
+<script type="text/javascript">
+var ConfigW = {
+  version: "{{=version}}",
+  lan: "{{=lan}}",
+  letter: "{{=letter}}",
+}
+</script>
+<script src="{{=URL('static', 'js/app/words.js')}}" type="module"></script>
+
+

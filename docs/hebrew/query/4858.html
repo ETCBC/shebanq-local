@@ -1,0 +1,123 @@
+<h1>Semantics of Offering/Approaching ִin Leviticus and Psalms</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4858</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=4858">localhost:8000/hebrew/query?id=4858</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=4858">shebanq.ancient-data.org/hebrew/query?id=4858</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Henk Ottema</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.vu.nl">Analytic Tools and the Study of Bible</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2021-11-04 16:03:52</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2021-11-04 16:05:38</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2021-11-04 16:05:46</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>What are the semantisc of the verb קרב in the books Leviticus and Psalms of the Hebrew Bible?
+Instead of a traditional word study we will search modifiers that companion the lexeme. In the results the adverbial elements (complements) are highlighted.</p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>5708</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe5708</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=4858&amp;version=2021">localhost:8000/hebrew/query?id=4858&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=4858&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=4858&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>25</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>61</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2021-11-04 16:05:38</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2021-11-04 16:04:48</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2021-11-04 16:05:47</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>SELECT ALL OBJECTS WHERE
+[book book = Leviticus
+  [clause
+    [phrase function in (Pred, PreO, PtcO, PreS)
+      [word pdp=verb AND lex='QRB[']
+    ]
+    [phrase FOCUS function = Cmpl]
+  ]
+]
+OR
+[book book = Psalmi
+  [clause
+    [phrase function in (Pred, PreO, PtcO, PreS)
+      [word pdp=verb AND lex='QRB[']
+    ]
+    [phrase FOCUS function = Cmpl]
+  ]
+]
+
+</code></pre>

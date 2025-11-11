@@ -1,0 +1,226 @@
+<h1>God as object of blessing</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>3545</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3545">localhost:8000/hebrew/query?id=3545</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3545">shebanq.ancient-data.org/hebrew/query?id=3545</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Meeuwis Veldhoen</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.etcbc.nl">MA_Analytical_Tools_2019</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2019-09-17 10:46:18</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-09-18 07:38:26</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2019-09-18 08:46:42</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>Usually when speaking about blessing (Hebrew: ברך) people think of an act by God towards people, but can God also be the object of this verb? Where? Compare at least two Bible translations to see how they deal with this usage.</p>
+<p>This query looks for all occurences (clauses)where God is the object of the verb ברך.
+God can be called אל יהוה ,אדני ,אלוה and אלהים.
+The predicate could be placed either before or after the object in de clause.
+The amount of possibilities is 5 x 2 = 10 search-cases.</p>
+<h2>Versions</h2>
+<h3>2017</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4171</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe4171</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3545&amp;version=2017">localhost:8000/hebrew/query?id=3545&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3545&amp;version=2017">shebanq.ancient-data.org/hebrew/query?id=3545&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>42</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>78</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2019-09-18 07:38:38</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-09-18 07:38:26</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2019-09-18 08:46:47</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>SELECT ALL OBJECTS WHERE
+
+//Case 1 JHWH as object after predicate
+[clause
+  [phrase function = Pred
+    [word FOCUS lex = &quot;BRK[&quot;]
+  ]
+  ..
+  [phrase function = Objc
+    [word FOCUS lex = &quot;JHWH/&quot;]
+  ]
+]
+
+OR
+//Case 2 JHWH as object before predicate
+[clause
+  [phrase function = Objc
+    [word FOCUS lex = &quot;JHWH/&quot;]
+  ]
+  ..
+  [phrase function = Pred
+    [word FOCUS lex = &quot;BRK[&quot;]
+  ]
+]
+
+OR
+//Case 3 ELOHIEM as object after predicate
+[clause
+  [phrase function = Pred
+    [word FOCUS lex = &quot;BRK[&quot;]
+  ]
+  ..
+  [phrase function = Objc
+    [word FOCUS lex = &quot;&gt;LHJM/&quot;]
+  ]
+]
+
+OR
+//Case 4 ELOHIEM as object before predicate
+[clause
+  [phrase function = Objc
+    [word FOCUS lex = &quot;&gt;DNJ/&quot;]
+  ]
+  ..
+  [phrase function = Pred
+    [word FOCUS lex = &quot;BRK[&quot;]
+  ]
+]
+
+OR
+//Case 5 ADONAI as object after predicate
+[clause
+  [phrase function = Pred
+    [word FOCUS lex = &quot;BRK[&quot;]
+  ]
+  ..
+  [phrase function = Objc
+    [word FOCUS lex = &quot;&gt;DNJ/&quot;]
+  ]
+]
+
+OR
+//Case 6 ADONAI as object before predicate
+[clause
+  [phrase function = Objc
+    [word FOCUS lex = &quot;&gt;DNJ/&quot;]
+  ]
+  ..
+  [phrase function = Pred
+    [word FOCUS lex = &quot;BRK[&quot;]
+  ]
+]
+
+OR
+//Case 7 EL as object after predicate
+[clause
+  [phrase function = Pred
+    [word FOCUS lex = &quot;BRK[&quot;]
+  ]
+  ..
+  [phrase function = Objc
+    [word FOCUS lex = &quot;&gt;L/&quot;]
+  ]
+]
+
+OR
+//Case 8 EL as object before predicate
+[clause
+  [phrase function = Objc
+    [word FOCUS lex = &quot;&gt;L/&quot;]
+   ] 
+  ..
+  [phrase function = Pred
+    [word FOCUS lex = &quot;BRK[&quot;]
+  ] 
+]
+OR
+//Case 9 ELOAH as object after predicate
+[clause
+  [phrase function = Pred
+    [word FOCUS lex = &quot;BRK[&quot;]
+  ]
+  ..
+  [phrase function = Objc
+    [word FOCUS lex = &quot;&gt;LWH/&quot;]
+  ]
+]
+
+OR
+//Case 10 ELOAH as object before predicate
+[clause
+  [phrase function = Objc
+    [word FOCUS lex = &quot;&gt;LWH/&quot;]
+   ] 
+  ..
+  [phrase function = Pred
+    [word FOCUS lex = &quot;BRK[&quot;]
+  ] 
+]
+</code></pre>

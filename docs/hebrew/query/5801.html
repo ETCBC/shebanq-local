@@ -1,0 +1,116 @@
+<h1>Maarten Kooiman Eindopdracht</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>5801</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=5801">localhost:8000/hebrew/query?id=5801</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=5801">shebanq.ancient-data.org/hebrew/query?id=5801</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Maarten Kooiman</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://vu.nl/">Exegese OT</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="https://www.vu.nl/nl/index.aspx">Vrije universiteit</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2023-03-16 08:55:52</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2023-03-20 11:15:23</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2023-03-20 09:03:50</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>In the query I want to have all the cases where God is the subject and PQD is the predicate. 
+The research question behind this query is: Does the statement that God visitits people occure more often in the Bible book Genesis. That is why I search for all the cases where this verb is used with the subject God or JHWH. In Genesis 21 the qal vorm is used. That is why I only want the predicate in the qal form. </p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>6731</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe6731</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=5801&amp;version=2021">localhost:8000/hebrew/query?id=5801&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=5801&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=5801&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>14</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>8</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2023-04-15 08:13:48</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2023-04-15 08:13:15</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2023-04-15 08:13:53</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>SELECT ALL OBJECTS WHERE
+
+[book book = Genesis                    //The verses need to be in the book Genesis
+[clause 
+[unorderedgroup                         //The order of the different words does not matter
+ [phrase Focus function = Pred]         //The predicate needs to be the verb PQD in the qal
+      [word focus lex = &quot;PQD[&quot;  AND vs = qal]
+   [phrase FOCUS function = Subj]        //The subject needs to be JHWH or Elohim
+    [word focus lex = &quot;JHWH/&quot; OR lex = &quot;&gt;LHJM/&quot;]
+]
+]
+]
+</code></pre>

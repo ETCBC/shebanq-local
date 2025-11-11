@@ -1,0 +1,119 @@
+<h1>'location + demonstrative' phrases in quotation in HB</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4820</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=4820">localhost:8000/hebrew/query?id=4820</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=4820">shebanq.ancient-data.org/hebrew/query?id=4820</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Rieks Hekman</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.vu.nl">Analytic Tools and the Study of Bible</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2021-10-22 16:41:10</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2021-10-22 16:48:11</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2021-10-22 17:52:03</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>This query looks in the Hebrew Bible for all locational phrases within quotation consisting of: <br>
+&#8226; a subphrase containing one of the nouns מקום 'place', ארץ 'land',<br>
+&nbsp;&nbsp;עיר 'city' and בית 'house', directly followed by<br>
+&#8226; a subphrase (daughter of the first) with a demonstrative<br>
+&nbsp;&nbsp;relation to its mother.</p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>5656</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe5656</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=4820&amp;version=2021">localhost:8000/hebrew/query?id=4820&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=4820&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=4820&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>261</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>1040</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2021-10-22 16:51:29</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2021-10-22 16:51:24</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2021-10-22 17:52:01</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>Select all objects where
+
+[clause txt~&quot;Q&quot;
+   [phrase
+      [subphrase AS s1 FOCUS
+         [word lex='MQWM/' OR lex='&gt;RY/' 
+          OR lex='&lt;JR/' OR lex='BJT/']
+      ]
+      [subphrase FOCUS rela=dem AND
+       mother HAS s1.self]
+   ]
+]
+</code></pre>

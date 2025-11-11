@@ -1,0 +1,178 @@
+<h1>MI Hierarchies. p.19n52. WXQt &lt; Way? (dis)</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1065</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1065">localhost:8000/hebrew/query?id=1065</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1065">shebanq.ancient-data.org/hebrew/query?id=1065</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Cody Kingham</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.academia.edu/20569152/The_Syntactic_Hierarchy_of_the_Mesha_Inscription_Its_Narrative_and_Biographical_Structure">The Mesha Inscription and the Hebrew Bible</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.sebts.edu">Southeastern Baptist Theological Seminary</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2016-01-13 20:29:02</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2016-01-14 21:48:12</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2016-01-14 21:48:15</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>None</p>
+<h2>Versions</h2>
+<h3>4b</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1359</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe1359</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1065&amp;version=4b">localhost:8000/hebrew/query?id=1065&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1065&amp;version=4b">shebanq.ancient-data.org/hebrew/query?id=1065&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>0</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>0</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2016-01-14 21:40:54</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2016-01-13 20:29:11</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2016-01-14 21:48:14</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>3.4.1.pre12</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>SELECT ALL OBJECTS WHERE
+
+[book
+   [clause_atom as c1
+      [clause domain = 'Q'
+         [clause FOCUS typ = WXQt
+         ]
+      ]
+   ]
+..
+ [clause_atom as c2
+      [clause domain = 'Q'
+         [clause FOCUS typ = WayX
+            [clause_atom mother = c1.self
+            ]
+         ]
+      ]
+   ]
+]
+OR
+[book
+   [clause_atom as c3
+      [clause domain = 'D'
+         [clause FOCUS typ = WXQt
+         ]
+      ]
+   ]
+..
+ [clause_atom as c4
+      [clause domain = 'D'
+         [clause FOCUS typ = WayX
+            [clause_atom mother = c3.self
+            ]
+         ]
+      ]
+   ]
+]
+
+OR
+
+[book
+   [clause_atom as c5
+      [clause domain = 'Q'
+         [clause FOCUS typ = WXQt
+         ]
+      ]
+   ]
+..
+ [clause_atom as c6
+      [clause domain = 'Q'
+         [clause FOCUS typ = Way0
+            [clause_atom mother = c5.self
+            ]
+         ]
+      ]
+   ]
+]
+OR
+[book
+   [clause_atom as c7
+      [clause domain = 'D'
+         [clause FOCUS typ = WXQt
+         ]
+      ]
+   ]
+..
+ [clause_atom as c8
+      [clause domain = 'D'
+         [clause FOCUS typ = Way0
+            [clause_atom mother = c7.self
+            ]
+         ]
+      ]
+   ]
+]
+</code></pre>

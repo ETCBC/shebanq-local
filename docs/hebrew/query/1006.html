@@ -1,0 +1,116 @@
+<h1>SBL sample #3 (finding limited phrase functions)</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1006</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1006">localhost:8000/hebrew/query?id=1006</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1006">shebanq.ancient-data.org/hebrew/query?id=1006</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Oliver Glanz</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.sbl-site.org/">SBL2015</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://andrews.edu">Henry S. Otio</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2015-11-22 22:32:13</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2015-11-22 22:32:33</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2015-11-22 22:33:05</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>None</p>
+<h2>Versions</h2>
+<h3>4b</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1295</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe1295</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1006&amp;version=4b">localhost:8000/hebrew/query?id=1006&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1006&amp;version=4b">shebanq.ancient-data.org/hebrew/query?id=1006&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>619</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>4568</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2015-11-22 22:32:33</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2015-11-22 22:32:33</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2015-11-22 22:33:05</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>3.4.1.pre12</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+//[book book = Genesis
+    [clause 
+        NOTEXIST [clause typ IN (InfC,InfA,Ptcp)] 
+        [clause FOCUS kind = VC 
+        NOTEXIST [phrase function IN (Conj, EPPr, ExsS, Exst, Frnt, IntS, Intj, Loca, ModS, Modi, NCoS, NCop, Nega, PrAd, PrcS, PreC, PtcO, Ques, Rela, Supp, Time, Unkn, Voct)]
+            [phrase function IN (Pred, Subj, Objc, Cmpl, Adju)]
+            [phrase function IN (Pred, Subj, Objc, Cmpl, Adju)]
+            [phrase function IN (Pred, Subj, Objc, Cmpl, Adju)]
+            [phrase function IN (Pred, Subj, Objc, Cmpl, Adju)]
+        ]
+    ]
+//]
+</code></pre>

@@ -1,0 +1,118 @@
+<h1>SBL test for JCoakly (moody.edu)</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1000</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1000">localhost:8000/hebrew/query?id=1000</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1000">shebanq.ancient-data.org/hebrew/query?id=1000</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Oliver Glanz</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://reinoudoosting.wordpress.com/shebanq/">Hebreeuwse Bijbel</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.godgeleerdheid.vu.nl/etcbc">ETCBC</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2015-11-20 15:41:15</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2016-12-30 03:41:38</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2015-11-20 16:32:45</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>None</p>
+<h2>Versions</h2>
+<h3>4b</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1289</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe1289</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1000&amp;version=4b">localhost:8000/hebrew/query?id=1000&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1000&amp;version=4b">shebanq.ancient-data.org/hebrew/query?id=1000&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>29</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>50</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2015-11-20 16:28:17</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2015-11-20 16:28:17</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2015-11-20 16:32:45</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>3.4.1.pre12</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+
+[book book = Genesis
+  [sentence
+    [clause typ &lt;&gt; InfC
+        NOTEXIST [word lex = &quot;HJH[&quot;]
+    ] * {1,2,3}
+    [clause typ IN (InfC, InfA)
+      [phrase FOCUS FIRST typ = VP
+         [word sp IN (prep) AND lex = &quot;B&quot;]
+         [word sp IN (verb)]
+        ]
+   ]
+  ]
+]
+</code></pre>

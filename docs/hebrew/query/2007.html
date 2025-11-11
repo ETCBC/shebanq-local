@@ -1,0 +1,117 @@
+<h1>Scriptie - deel 1 - naamwoordelijk GD naam</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>2007</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=2007">localhost:8000/hebrew/query?id=2007</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=2007">shebanq.ancient-data.org/hebrew/query?id=2007</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Yanniek van der Schans</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.vu.nl/nl/studiegids/2014-2015/index.asp">G_EXOTJB_201415</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2017-07-24 12:43:13</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2017-11-03 12:01:03</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2017-07-25 11:42:56</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>deel 1 van het vinden van het zingen over God, waarbij God het naamwoordelijk deel van het gezegde is. hierbij zijn de verschillende namen van God meegenomen in het schrijven van de query. </p>
+<p>part 1 in finding verses that say something about God. here specifically looking for cases where God, including the variouos ways of addressing, is a subject within the phrase. </p>
+<h2>Versions</h2>
+<h3>4b</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>2362</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe2362</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=2007&amp;version=4b">localhost:8000/hebrew/query?id=2007&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=2007&amp;version=4b">shebanq.ancient-data.org/hebrew/query?id=2007&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>49</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>197</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2017-07-25 11:35:52</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2017-07-25 09:41:12</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2017-07-25 11:42:56</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+
+[book book = Psalmi
+   [ clause FOCUS typ = NmCl
+     [phrase function = Subj
+            [word lex =  &quot;JHWH/&quot;
+                      OR
+                   lex = &quot;CDJ/&quot; OR
+                   lex = &quot;&gt;L/&quot; OR
+                   lex = &quot;&gt;LH/&quot; OR
+                   lex = &quot;&gt;LHJM?&quot;]]
+                               ] 
+                                    ]
+</code></pre>

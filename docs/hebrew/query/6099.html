@@ -1,0 +1,129 @@
+<h1>Assignment 0913 - יְהוָה</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>6099</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6099">localhost:8000/hebrew/query?id=6099</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6099">shebanq.ancient-data.org/hebrew/query?id=6099</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Elia Fiore</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.etcbc.nl">Analytical Tools 2023</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2023-09-13 18:52:26</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2023-09-13 18:59:21</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2023-09-13 18:59:39</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>QUESTION 1b OF ESSAY 09:13</p>
+<p>How often is the Tetragrammaton יהוה actually written with the vowels of אֲדֹנַי (ʔᵃḏōnay) and what is the first instance?</p>
+<p>The vocalized form of this word is, in this case, the right one to search for because this is an example of Qere Perpetuum.
+BUT...</p>
+<p>... If we do this search using the "voc_lex" then we get the following results:
+- 6828 words in 5790 verses.
+- First Occurrence: Genesis 2:4</p>
+<p>... On the other hand, if we use the "g_lex" feature, then we get the following results:
+- 5682 words in 4908 verses 
+- First Occurrence: Genesis 2:4</p>
+<p>This difference is due to the fact that the "voc_lex" feature includes places where the spelling is J:HOW@H (Ge 3:14; Ge 9:26) instead of J:HW@H
+As it is explained in the Shebanq notes "The values of the vocalized lexeme (voc_lex) look like the values of the g_lex feature of word occurrences, but they are not the same. The vocalized lexeme is an idealized (aka paradigmatic), pointed representation of the lexeme, which may or may not occur in the text. The g_lex is the realized lexeme in a concrete occurrence, of which it may be a part".</p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>7068</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe7068</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6099&amp;version=2021">localhost:8000/hebrew/query?id=6099&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6099&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=6099&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>6828</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>6828</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2023-09-13 18:58:13</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2023-09-13 18:58:10</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2023-09-13 18:59:39</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>Select all objects where
+
+[Verse 
+   [word FOCUS voc_lex = 'J:HW@H']
+]
+
+
+//-------------------------------------------------------
+
+
+/*
+[Verse
+   [word FOCUS g_lex = 'J:HW@H']
+]
+*/ 
+</code></pre>

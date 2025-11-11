@@ -1,0 +1,115 @@
+<h1>vineyard or vine with fruit?</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>2602</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=2602">localhost:8000/hebrew/query?id=2602</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=2602">shebanq.ancient-data.org/hebrew/query?id=2602</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Cody Kingham</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.codykingham.com">Exegetical Searches</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.codykingham.com">Cody Kingham</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2017-12-31 12:53:01</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2017-12-31 12:56:55</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2017-12-31 12:57:04</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>This query looks for examples of "fruit[fulness]" with either vineyard or vine. The search is motivated by the LXX reading of Lev 25:3 where תבואתה (usually γενηματα) is unusually translated as καρπος (see Wevers, Notes on the Greek Text of Leviticus, 402). This is significant because G is already reading a different referent for the 3fs suffix on תבואתה, αμπελος // גפן.</p>
+<p>This query shows that fruitfulness is associated with GPN/ in the HB but not with KRM/, at least at the level of the sentence.</p>
+<h2>Versions</h2>
+<h3>2017</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>3010</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe3010</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=2602&amp;version=2017">localhost:8000/hebrew/query?id=2602&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=2602&amp;version=2017">shebanq.ancient-data.org/hebrew/query?id=2602&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>2</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>4</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2017-12-31 12:56:55</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2017-12-31 12:56:40</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2017-12-31 12:57:10</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+
+[sentence
+   [word FOCUS lex=&quot;GPN/&quot;]
+   [word FOCUS lex~&quot;PRJ/|PRH\\[|PR.*|P.?R.*&quot;] 
+]
+OR
+[sentence
+   [word FOCUS lex=&quot;KRM/&quot;]
+   [word FOCUS lex~&quot;PRJ/|PRH\\[|PR.*|P.?R.*&quot;]
+]
+</code></pre>

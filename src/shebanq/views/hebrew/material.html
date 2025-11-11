@@ -1,0 +1,96 @@
+<div>
+<div id="material_message">
+{{if msg is not None:}}
+    <div class="exception">{{=msg}}</div>
+{{pass}}
+{{
+pageLabel = 'pages' if pages != 1 else 'page'
+verseLabel = 'verses' if results != 1 else 'verse'
+hitLabel = 'words' if hits != 1 else 'word'
+occurrenceLabel = 'occurrences' if hits != 1 else 'occurrence'
+}}
+{{if mr == 'm':}}
+    <p>{{=results}} verses</p>
+{{else:}}
+    {{if qw == 'q':}}
+        {{if pages == 0:}}
+    <p>No query results</p>
+        {{elif page > pages:}}
+    <p>No result page {{=page}} (only {{=pages}} result {{=pageLabel}})</p>
+        {{else:}}
+    <p>{{=hits}} {{=hitLabel}} in {{=results}} {{=verseLabel}} on {{=pages}} {{=pageLabel}}<p>
+        {{pass}}
+    {{elif qw == 'w':}}
+        {{if page == 0:}}
+    <p>No word occurrences.</p>
+        {{elif page > pages:}}
+    <p>No result page {{=page}} (only {{=pages}} result {{=pageLabel}})</p>
+        {{else:}}
+    <p>{{=hits}} {{=occurrenceLabel}} in {{=results}} {{=verseLabel}} on {{=pages}} {{=pageLabel}}<p>
+        {{pass}}
+    {{pass}}
+{{pass}}
+</div>
+
+<div id="material_select">
+{{if mr == 'r':}}
+    <span id="select_contents_page">
+        <input type="hidden" id="rp_pages" value="{{=pages}}">
+        <input type="hidden" id="rp_pagelist" value="{{=pagelist}}">
+    </span>
+{{pass}}
+</div>
+
+<div id="material_content">
+    <input type="hidden" id="theslots" value="{{=slots}}"/>
+{{ if material != None: }}
+    {{if len(material.verses) > 0: }}
+        {{tp = material.tp}}
+        {{if tp == 'txt1':}}
+        <div class="nt_main_ctl">
+            <a title="show/hide all comments" href="#" class="nt_main_ctl fa fa-comments fa-fw"></a>
+            <span class="nt_main_sav">
+                <a tp="s" class="ctli fa fa-check fa-fw" href="#" title="save"></a>
+                <a tp="r" class="ctli fa fa-close fa-fw" href="#" title="revert"></a>
+            </span>
+            <a href="#" title="clear diagnostic messages"><span id="trash_nt_main_msg" class="ctl fa fa-trash fa-lg"></span></a>
+            <span id="nt_main_msg" class="nt_main_msg"></span>
+        </div>
+        {{pass}}
+        {{for verse in material.verses:
+            (bookShown, book, chapter, vs) = verse.label()
+            verseCtl = f'<a b="{book}" c="{chapter}" v="{vs}" class="vradio" href="#">{vs}</a>'
+        }}
+            <div class="{{=tp}}" tvid="{{=vs}}">
+            {{if material.mr == 'm':
+                verseCls = 'verserefinline' if tp == 'txtp' or tp == 'txtd' else 'versereftab'
+            }}
+                <span class="{{=verseCls}}">&nbsp;{{=XML(verseCtl)}}
+            {{else:
+                verseCls = 'verserefblock' if tp == 'txtp' or tp == 'txtd' else 'versereftab'
+            }}
+                <span class="{{=verseCls}}"><a href="#" book="{{=book}}" chapter="{{=chapter}}" verse="{{=vs}}" class="cref"><span book="{{=book}}">{{=bookShown}}</span> {{=chapter}}:</a> {{=XML(verseCtl)}}
+            {{pass}}{{
+            if tp == 'txt1':
+                    }}<span class="nt_ctl">
+                        <a title="show/hide comments" href="#" class="nt_ctl fa fa-comment fa-fw"></a>
+                        <span class="nt_sav">
+                            <a tp="s" class="ctli fa fa-check fa-fw" href="#" title="save"></a>
+                            <a tp="e" class="ctli fa fa-pencil fa-fw" href="#" title="edit"></a>
+                            <a tp="r" class="ctli fa fa-close fa-fw" href="#" title="revert"></a>
+                        </span>
+                        <a href="#" title="clear diagnostic messages"><span id="trash_nt_msg_{{=book}}_{{=chapter}}_{{=vs}}" class="ctl ir fa fa-trash fa-lg"></span></a>
+                        <span id="nt_msg_{{=book}}_{{=chapter}}_{{=vs}}" class="nt_msg"></span>
+                    </span>{{
+            pass
+                }}</span>
+                <span id="{{=tp}}_{{=book}}_{{=chapter}}_{{=vs}}">{{=XML(verse.material())}}</span><span class="txtd_base" id="{{=tp}}_txtd_{{=book}}_{{=chapter}}_{{=vs}}" lf="x"></span>
+            </div>
+        {{ pass }}
+    {{ pass }}
+{{ else: }}
+    No material found.
+{{ pass }}
+</div>
+</div>
+

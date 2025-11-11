@@ -1,0 +1,141 @@
+{{
+statusMap = dict(
+    good='results up to date',
+    error='results outdated',
+    warning='never executed',
+)
+}}
+{{if 'id' not in queryRecord:}}
+    <div id="dbmsg_q"></div>
+    <p><a href="#" title="clear diagnostic messages"><span id="trash_dbmsg_q" class="ctl ir fa fa-trash fa-lg"></span></a></p>
+{{else:}}
+{{if writable:}}
+<input type="hidden" id="query_id" value="{{=queryRecord['id']}}"/>
+{{pass}}
+<input type="hidden" id="querytag" value=""/>
+<div id="bigger">
+    <h5><a class="ctl" id="gobackq" title="to query list" href="#"><span id="nameqm">{{=queryRecord['name']}}</span></a>
+    <span class="ir"><a class="ctl fullc fa fa-arrows-alt fa-lg" href="#" title="show in separate big box"></a></span></h5>
+    <input type="text" id="nameq" value="{{=queryRecord['name']}}"/>
+    <div>
+        <p>
+            <a target="_blank" href="mailto:{{=queryRecord['uemail']}}"><span>{{=f"{queryRecord['first_name']} {queryRecord['last_name']}"}}</span></a>
+            <a target="_blank" href="{{=queryRecord['org_website']}}"><span>{{=queryRecord['org_name']}}</span></a>
+            <a target="_blank" href="{{=queryRecord['project_website']}}"><span>{{=queryRecord['project_name']}}</span></a>
+        </p>
+    </div>
+    <div id="descm" class="old descm">{{=XML(queryRecord['description_md'])}}</div>
+    <textarea id="descq" class="desc">{{=queryRecord['description']}}</textarea>
+    <div version="" class="version this">
+        <table>
+            <tr><td style="padding-left: 0px;"><a class="ctlexpand moredetail fa fa-chevron-right" href="#" title="more/less details"></a>
+            <span class="fieldlabel">shared</span></td><td>{{
+            if writable: }}
+                <input query_id="{{=queryRecord['id']}}" id="is_shared_c" type="checkbox" {{='checked' if queryRecord['is_shared'] else ''}}/>
+            {{else:}}
+                <span class="fa fa-{{='check' if queryRecord['is_shared'] else 'close'}}"></span>
+            {{pass}}</td><td class="dtval"><span id="shared_on">{{=queryRecord['shared_on']}}</span></td></tr>
+            <tr class="detail"><td><span class="fieldlabel">created</span></td><td>&nbsp;</td><td class="dtval"><span>{{=queryRecord['created_on']}}</span></td></tr>
+            <tr class="detail"><td><span class="fieldlabel">modified</span></td><td>&nbsp;</td><td class="dtval"><span>{{=queryRecord['modified_on']}}</span></td></tr>
+        </table>
+    </div>
+    <div id="dbmsg_q"></div>
+    <p><a href="#" title="clear diagnostic messages"><span id="trash_dbmsg_q" class="ctl ir fa fa-trash fa-lg"></span></a></p>
+{{for v in VERSION_ORDER:
+    queryInfo = queryRecord['versions'].get(v, {})
+    status = queryInfo.get('status', '')
+    results = queryInfo.get('results', '')
+    thisCls = 'this' if v == vr else 'other'
+    is_published = queryInfo.get('is_published', '')
+    statusId = XML('id="statq" ') if v == vr else ''
+    statusMapId = XML('id="statm" ') if v == vr else ''
+    arrow = 'down' if v == vr else 'right'
+    publishedCls = 'published' if is_published else 'unpublished'
+}}
+    <div version="{{=v}}" class="version {{=thisCls}} {{=publishedCls}}">
+        <p><a class="ctlexpand moredetail fa fa-chevron-{{=arrow}}" href="#" title="more/less details"></a>
+        <a id="version_s_{{=v}}" href="#" title="switch to this version"><span class="sversion {{=thisCls}}">{{=v}}</span></a>
+    {{if v == vr:}}
+        <a id="csvt_lnk_{{=v}}_q" href="#" class="ctl fa fa-list fa-lg" ftitle=" :download all words of this query as a csv file"></a>
+        <a id="csvb_lnk_{{=v}}_q" href="#" class="ctl fa fa-list fa-lg fa-flip-horizontal" ftitle=" :download all words of this query with extra data as a csv file. The current view determines which features are added."></a>
+        <a id="csvd_lnk_{{=v}}_q" href="#" class="ctl fa fa-table fa-lg" ftitle=" :download all words of this query with extra data as a csv file. The legend determines which features are added."></a>
+        <a id="select_control_chart_{{=v}}_q" href="#" class="ctl fa fa-bar-chart fa-rotate-90 fa-lg" title="view result in a clickable bar chart"></a>
+        <a target="_blank" title="MQL documentation" class="ctli" href="https://github.com/ETCBC/shebanq/wiki/MQL-Quickref">MQL <span class="fa fa-info-circle ctli"/></a>
+        {{if writable:}}
+            <span class="ir"><a id="editq" href="#" title="edit name, description, and mql" class="ctl fa fa-pencil fa-lg"></a></span>
+            <span class="ir"><a id="cancq" href="#" title="QUIT editing WITHOUT saving recent changes" class="ctl fa fa-close fa-lg"></a></span>
+            <span class="ir"><a id="doneq" href="#" title="save changes and QUIT editing" class="ctl fa fa-check fa-lg"></a></span>
+            <span class="ir"><a id="saveq" href="#" title="SAVE changes" class="ctl fa fa-save fa-lg"></a>&nbsp;</span>
+            <span class="ir"><a id="execq" href="#" title="save changes and EXECUTE query" class="ctl fa fa-cog fa-lg"></a>&nbsp;</span>
+        {{pass}}
+        {{if writable:}}
+            {{if v in {'4b', '4'}:}}
+                <p style="background-color: orange;"><span class="fa fa-exclamation" title="obsolete version with incomplete linguistic annotations."/>
+                Obsolete data version. Consider running this query in version 2021.
+                <a target="_blank" title="4(b) - 2017 upgrade guide" class="ctli" href="https://github.com/ETCBC/shebanq/wiki/Upgrade2017">4(b)-2017 upgrade guide<span class="fa fa-info-circle ctli"/></a></p>
+            {{pass}}
+            {{if v in {'c', '2017'}:}}
+                <p style="background-color: orange;"><span class="fa fa-exclamation"/>Legacy version. For publishing, version 2021 is recommended.</p>
+            {{pass}}
+        {{pass}}
+    {{else:}}
+        <span class="qexer">{{='' if results == None else results}}</span>
+        <span class="{{=status}}">{{=statusMap[status]}}</span>
+    {{pass}}
+        </p>
+        <textarea {{=XML('id="mqlq"') if v == vr else ''}} class="mql detail" readonly>{{=XML(queryInfo.get('mql', ''))}}</textarea>
+    {{if v == vr:}}
+        <div id="dbmsg_qv"></div>
+        <p><a href="#" title="clear diagnostic messages"><span id="trash_dbmsg_qv" class="ctl ir fa fa-trash fa-lg"></span></a></p>
+        <table>
+            <tr>
+                <td><span class="fieldlabel">status</span></td>
+                <td>&nbsp;</td><td {{=statusId}} class="{{=status}}"><span {{=statusMapId}}>{{=statusMap[status]}}</span></td>
+            </tr>
+            <tr>
+                <td><span class="fieldlabel">published</span></td>
+                <td>{{
+                    if writable:
+                    }}<input query_id="{{=queryRecord['id']}}" id="is_pub_c" type="checkbox" {{='checked' if is_published else ''}}/>{{pass}}<span
+                        {{=XML('id="is_pub_ro"') if writable else ''}}
+                        class="fa fa-{{='check' if is_published else 'close'}}"
+                      ></span>
+                </td>
+                <td class="dtval"><span {{=XML('id="published_on"')}}>{{=queryInfo.get('published_on', '')}}</span></td>
+            </tr>
+            <tr>
+                <td><span class="fieldlabel">results</span></td>
+                <td>&nbsp;</td><td class="qexer"><span {{=XML('id="results"')}}>{{=results}}</span></td>
+            </tr>
+            <tr class="detail">
+                <td><span class="fieldlabel">words</span></td>
+                <td>&nbsp;</td><td class="qexer"><span {{=XML('id="qresultslots"')}}>{{=queryInfo.get('resultmonads', '')}}</span></td>
+            </tr>
+            <tr class="detail">
+                <td><span class="fieldlabel">modified</span></td>
+                <td>&nbsp;</td><td class="dtval"><span {{=XML('id="xmodified_on"')}}>{{=queryInfo.get('xmodified_on', '')}}</span></td>
+            </tr>
+            <tr class="detail">
+                <td><span class="fieldlabel">executed</span></td>
+                <td>&nbsp;</td><td class="dtval"><span {{=XML('id="executed_on"')}}>{{=queryInfo.get('executed_on', '')}}</span></td>
+            </tr>
+            <tr class="detail">
+                <td><span class="fieldlabel">engine</span></td>
+                <td>&nbsp;</td>
+                <td class="dtval {{='exeversionold' if queryInfo.get('eversion', '') in emdrosVersionsOld else ''}}"
+                    title="this is {{='not ' if queryInfo.get('eversion', '') in emdrosVersionsOld else ''}}the newest version"
+                ><span {{=XML('id="eversion"')}}>{{=queryInfo.get('eversion', '')}}</span></td>
+            </tr>
+        </table>
+    {{pass}}
+    </div>
+{{pass}}
+</div>
+{{pass}}
+<script type="text/javascript">
+var State = {
+    msgs: {{=XML(msgs)}},
+    query: {{=XML(query)}},
+}
+</script>
+

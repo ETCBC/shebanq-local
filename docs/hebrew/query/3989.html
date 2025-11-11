@@ -1,0 +1,114 @@
+<h1>CM&lt; Imperative clauses in Jeremiah</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>3989</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3989">localhost:8000/hebrew/query?id=3989</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3989">shebanq.ancient-data.org/hebrew/query?id=3989</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Rieks Hekman</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.vu.nl">DigHumCourse2017</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2020-09-09 10:35:39</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2020-09-09 13:31:18</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2020-09-09 13:38:36</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>Find all imperative clauses with the verb CM&lt; followed by an object within the book of Jeremiah.</p>
+<h2>Versions</h2>
+<h3>2017</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4702</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe4702</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3989&amp;version=2017">localhost:8000/hebrew/query?id=3989&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3989&amp;version=2017">shebanq.ancient-data.org/hebrew/query?id=3989&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>22</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>98</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2020-09-09 13:38:22</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2020-09-09 13:38:22</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2020-09-09 13:38:46</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+[book book IN (Jeremia)
+   [clause FOCUS
+      [word lex0=&quot;CM&lt;&quot; 
+            AND 
+            vt=impv
+      ]
+      ..
+      [phrase function=Objc]
+   ]
+]
+</code></pre>

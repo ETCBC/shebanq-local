@@ -1,0 +1,186 @@
+<h1>Paper: Are the nations the object of God's compassion?</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>6511</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6511">localhost:8000/hebrew/query?id=6511</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6511">shebanq.ancient-data.org/hebrew/query?id=6511</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Roman Wiens</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.andrews.edu/sem/">OTST686 Major OT Prophets</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="https://www.andrews.edu">Andrews University Seminary</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2024-03-05 16:13:54</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2024-03-05 20:12:50</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2024-03-26 00:54:45</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>In the book of Jeremiah (and additionally further parts of the OT), are the nations ever the object of God’s compassion (“שׁוב”)? Explicitly or implicitly? 
+     o  Within the immediate context, it would seem odd that God’s compassion upon “my wicked neighbors, who touch the inheritance of my people Israel” is highlighted, rather than the compassion upon his people. So, is God’s compassion upon the nations highlighted elsewhere? </p>
+<p>-&gt; Since no results show up for the nations as the object of "שׁוב" or "רחם", the query has to be modified to look for examples of nations mentioned in Jeremiah (Babylon, Edom, Egypt, etc). 
+-&gt; Further, to include (some possible) implicite references, the query has been modified to include cases of: Predicate "שׁוב" or "רחם" o + 3mp pronominal suffix + "nations" (or concrete exmple for that matter) in a clause close by
+-&gt; Final modification is to generally look at who the object of God's compassion is</p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>7524</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe7524</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6511&amp;version=2021">localhost:8000/hebrew/query?id=6511&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6511&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=6511&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>2</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>5</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2024-03-26 00:50:47</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2024-03-26 00:50:47</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2024-03-26 00:54:45</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+[clause
+   [UNORDEREDGROUP
+      [phrase FOCUS function=Objc
+         [word lex=&quot;GWJ/&quot; OR lex=&quot;BBL/&quot; OR lex=&quot;KFDJ/&quot; OR lex=&quot;&gt;DWM/&quot; OR lex=&quot;&lt;MWN/&quot; OR lex=&quot;MW&gt;B/&quot;
+         ]
+      ]
+      [phrase FOCUS function=Pred
+        [word lex=&quot;RXM[&quot;]
+      ]
+   ]
+]
+
+OR
+
+[clause
+   [UNORDEREDGROUP
+      [phrase FOCUS function=Objc
+          // NOTEXIST [word lex=&quot;JFR&gt;L/&quot; OR lex=&quot;JHWDH/&quot;]
+         [word lex=&quot;GWJ/&quot; OR lex=&quot;BBL/&quot; OR lex=&quot;KFDJ/&quot; OR lex=&quot;&gt;DWM/&quot; OR lex=&quot;&lt;MWN/&quot; OR lex=&quot;MW&gt;B/&quot;
+         ]
+      ]
+      [phrase FOCUS function=Pred
+         [word lex=&quot;CWB[&quot;]
+      ]
+   ]
+]
+
+//OR
+//
+//[clause
+//        [UNORDEREDGROUP
+//           [phrase FOCUS function=Subj
+//             [word lex=&quot;JHWH/&quot; OR lex=&quot;&gt;L/&quot; OR lex=&quot;&gt;LHJm/&quot;]
+//           ]
+//           [phrase FOCUS function=Pred
+//              [word lex=&quot;RXM[&quot;
+//              OR lex=&quot;CWB[&quot;
+//              ]
+//           ]
+//           [phrase FOCUS function=Objc]
+//        ]
+//]
+//
+//OR
+//
+//[clause
+//      [phrase FOCUS function=Objc
+//         [word lex=&quot;GWJ/&quot; OR lex=&quot;BBL/&quot; OR lex=&quot;KFDJ/&quot;
+//         ]
+//      ]
+//]
+//[clause]*{0-10}
+//[clause
+//      [phrase FOCUS function=Pred
+//         [word //lex=&quot;CWB[&quot; OR 
+//          lex=&quot;RXM[&quot; 
+//          AND prs_gn=m AND prs_nu=pl AND prs_ps=p3
+//         ]
+//      ]
+//]
+//
+//OR 
+//
+//[clause
+//      [phrase FOCUS function=Pred
+//         [word lex=&quot;CWB[&quot; OR 
+//          lex=&quot;RXM[&quot; 
+//          AND prs_gn=m AND prs_nu=pl AND prs_ps=p3
+//         ]
+//      ]
+//]
+//[clause]*{0-10}
+//[clause
+//      [phrase FOCUS function=Objc
+//         [word lex=&quot;GWJ/&quot; OR lex=&quot;BBL/&quot; OR lex=&quot;KFDJ/&quot;
+//         ]
+//      ]
+//]
+</code></pre>

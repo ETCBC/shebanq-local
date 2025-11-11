@@ -1,0 +1,155 @@
+<h1>Hebrew: ברך</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>5532</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=5532">localhost:8000/hebrew/query?id=5532</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=5532">shebanq.ancient-data.org/hebrew/query?id=5532</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Elia Fiore</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.biblicalstudies.eu">Digital Hermeneutics</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="https://www.biblicalstudies.eu">Elia Fiore</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2022-09-22 15:46:39</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2022-09-23 10:09:36</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2022-09-23 10:17:04</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<h2>Usually, when speaking about blessing (Hebrew: ברך) people think of an act by God towards people, but can God also be the object of this verb? Where? Compare at least two Bible translations to see how they deal with this usage.</h2>
+<p>In the search, I included both "God" and "YHWH".</p>
+<p>What follows is how some translations translate Psalm 103:2:</p>
+<p>American Standard Version (ASV)
+"BLESS Jehovah, O my soul; And all that is within me, bless his holy name."</p>
+<p>King James Version (KJV)
+BLESS the LORD, O my soul: and all that is within me, bless his holy name.</p>
+<p>The Good News Translation (GNB)
+PRAISE the LORD, my soul! All my being, praise his holy name</p>
+<p>New Century Version (NCV)
+All that I am, PRAISE the LORD; everything in me, praise his holy name.</p>
+<p>New Living Translation (NLT)
+Let all that I am PRAISE the LORD; with my whole heart, I will praise his holy name.</p>
+<p>Young's Literal Translation (YLT)
+ BLESS, O my soul, Jehovah, And all my inward parts—His Holy Name</p>
+<p>The Revised Standard Version (RSV)
+BLESS the LORD, O my soul; and all that is within me, bless his holy name</p>
+<p>The New King James Version (NKJV)
+BLESS the LORD, O my soul; And all that is within me, bless His holy name</p>
+<p>The New Revised Standard Version (NRSV)
+BLESS the LORD, O my soul, and all that is within me, bless his holy name.</p>
+<p>Geneva Bible
+MY soule, PRAISE yͧ the Lord, &amp; all that is within me, praise his holie Name.
+(I THINK THIS IS REMARKABLE FOR A TRANSLATION PUBLISHED IN 1560)</p>
+<p>In Italian, the verb used is "benedire" which actually means "dire" (speak) + "bene" (well)
+(To say something for the advantage of somebody else. A concept that somehow joins together the two concepts which seem to be connected with the Hebrew verb ברך)</p>
+<h2>Versions</h2>
+<h3>2017</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>6430</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe6430</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=5532&amp;version=2017">localhost:8000/hebrew/query?id=5532&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=5532&amp;version=2017">shebanq.ancient-data.org/hebrew/query?id=5532&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>42</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>120</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2022-09-22 16:11:21</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2022-09-22 16:11:20</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2022-09-23 10:16:43</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>Select all objects where
+
+[clause
+     [Phrase FOCUS typ=VP
+          [word lex = 'BRK[' ]
+     ]
+     ..
+     [Phrase FOCUS function=Objc
+          [word lex = '&gt;LHJM/' ]
+          OR
+          [word lex = 'JHWH/' ]
+     ]
+]
+
+OR
+
+[Clause
+     [Phrase FOCUS function=Objc
+          [word lex = '&gt;LHJM/' ]
+          OR
+          [word lex = 'JHWH/' ]
+     ]
+     ..
+     [Phrase FOCUS typ=VP
+          [word lex = 'BRK[' ]
+     ]
+]
+</code></pre>

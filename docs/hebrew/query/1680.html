@@ -1,0 +1,107 @@
+<h1>3BH02 Proper names 1-72 most frequent</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1680</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1680">localhost:8000/hebrew/query?id=1680</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1680">shebanq.ancient-data.org/hebrew/query?id=1680</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Nicolai Winther-Nielsen</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://bh.3bmoodle.dk/course/view.php?id=2">3BH I</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://global-learning.org/">GLI</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2017-04-08 07:24:34</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2017-08-03 07:12:49</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2017-04-08 07:35:31</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>Displays personal names occuring more than 50 times in the Law and the Former Prophest for enquiry in 3BH I 02. Prepares for practice in http://bibleol.3bmoodle.dk/text/show_quiz?quiz=GLI/3BH01-12/3BH02C_ConsonantsHebrewPersonalNames.3et&amp;count=25</p>
+<h2>Versions</h2>
+<h3>4b</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>2019</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe2019</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1680&amp;version=4b">localhost:8000/hebrew/query?id=1680&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1680&amp;version=4b">shebanq.ancient-data.org/hebrew/query?id=1680&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>12153</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>12153</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2017-04-08 07:35:09</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2017-04-08 07:35:09</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2017-04-08 07:35:31</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+[verse book in (Genesis, Exodus, Numeri, Josua, Judices, Samuel_I, Samuel_II, Reges_I, Reges_II)
+  [word focus (freq_occ&gt;=1 AND freq_occ&lt;=800) AND pdp IN (nmpr)]
+]
+</code></pre>

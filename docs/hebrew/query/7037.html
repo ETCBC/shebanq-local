@@ -1,0 +1,110 @@
+<h1>woord in status constructus met yod-uitgang</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>7037</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=7037">localhost:8000/hebrew/query?id=7037</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=7037">shebanq.ancient-data.org/hebrew/query?id=7037</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Karel-Jan Karels</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.etcbc.nl">Exegesis OT-2025</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2025-03-25 19:56:56</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2025-03-26 11:42:24</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2025-03-26 11:42:28</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>Deze query is nuttig voor een onderzoek naar het fenomeen van een 'gebroken status constructus'. Deze query zoekt naar alle gevallen van een frase met een status constructus die doorbroken wordt door een yod. De query is beperkt tot frasen die als functie het object van een zin hebben.</p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>8071</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe8071</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=7037&amp;version=2021">localhost:8000/hebrew/query?id=7037&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=7037&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=7037&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>26</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>52</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2025-03-25 20:04:31</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2025-03-25 20:04:31</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2025-03-26 11:42:26</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+[clause
+   [phrase function = Objc
+      [word FOCUS st = c AND uvf = &quot;J&quot;]
+      [word FOCUS st = a]
+   ]
+]
+</code></pre>

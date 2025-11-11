@@ -1,0 +1,160 @@
+<h1>Phrase אֱלֹהִים יְהוָה</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>5530</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=5530">localhost:8000/hebrew/query?id=5530</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=5530">shebanq.ancient-data.org/hebrew/query?id=5530</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Elia Fiore</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.biblicalstudies.eu">Digital Hermeneutics</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="https://www.biblicalstudies.eu">Elia Fiore</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2022-09-22 14:11:15</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2022-09-23 10:22:57</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2022-09-23 10:23:53</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<h2>The various designations of God/the Lord in the biblical play a crucial role in OT scholarship. Look for all occurrences of the phrase אֱלֹהִים יְהוָה in the OT. What is the first occurrence?</h2>
+<p>If we use the feature "LEX"  and we insert them just within the "verse" node, then Shebanq says they are found for the first time in Deuteronomy 6:4 (within the same phrase according to Shebanq) where we find "our God".
+Of course, using the "LEX" feature we find also occurrences of the LEXEME with eventual suffixes and/or prefixes (in this case we find "our God")
+(They appear together 8 times in 7 verses - Deuteronomy 6:4; Joshua 22:22; 1 King 18:39; Ps. 50:1; Ps. 68:27; 1 Chron. 13:6; 2 Chron. 30:19)</p>
+<p>On the other hand, If we use the feature "LEX"  but we insert them just within the "phrase" node, Shebanq says they are found for the first time in Joshua 22:22
+(They appear together 6 times in 5 verses - Deuteronomy 6:4; Joshua 22:22; 1 King 18:39; Ps. 50:1; Ps. 68:27; 1 Chron. 13:6; 2 Chron. 30:19 - Both the occurrences in Deuteronomy 6:4 and in 1 King 18:39 DO NOT appear. I honestly do not know why)</p>
+<p>If we do the same search using the "G_CONS" feature of the WORD, then Shebanq says these two words, as we see them written in the question (as far as the consonants are concerned), are found for the first time in Joshua 22:22.
+(They appear together 7 times in 6 verses - Joshua 22:22; 1 King 18:39; Ps. 50:1; Ps. 68:27; 1 Chron. 13:6; 2 Chron. 30:19)</p>
+<p>BUT If we do the same search, using the "G_CONS" feature of the WORD, the Shebanq says these two words as we see them written in the question (as far as the consonants are concerned) are found for the first time in Joshua 22:22.
+(They appear together 6 times in 5 verses - Joshua 22:22; Ps. 50:1; Ps. 68:27; 1 Chron. 13:6; 2 Chron. 30:19 - The occurrence in 1 King 18:39 DOES NOT appear) </p>
+<p>Only the last script is not commented so the Instructor can easily change the script to be executed.</p>
+<h2>Versions</h2>
+<h3>2017</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>6428</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe6428</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=5530&amp;version=2017">localhost:8000/hebrew/query?id=5530&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=5530&amp;version=2017">shebanq.ancient-data.org/hebrew/query?id=5530&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>6</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>12</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2022-09-23 10:23:17</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2022-09-23 10:22:57</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2022-09-23 10:23:49</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>Select all objects where
+
+/* 
+(They appear together 8 times in 7 verses - Deuteronomy 6:4; Joshua 22:22; 1 King 18:39; Ps. 50:1; Ps. 68:27; 1 Chron. 13:6; 2 Chron. 30:19)
+
+[Verse 
+   [word FOCUS lex = '&gt;LHJM/']
+   [word FOCUS lex = 'JHWH/'] 
+]
+*/
+
+
+//----------------------------------------
+/*
+(They appear together 6 times in 5 verses - Deuteronomy 6:4; Joshua 22:22; 1 King 18:39; Ps. 50:1; Ps. 68:27; 1 Chron. 13:6; 2 Chron. 30:19 - Both the occurrences in Deuteronomy 6:4 and in 1 King 18:39 DO NOT appear)
+
+[Verse
+     [Phrase
+          [word FOCUS lex = '&gt;LHJM/']
+          [word FOCUS lex = 'JHWH/']
+     ]
+]
+*/
+
+
+//----------------------------------------
+/*
+(They appear together 7 times in 6 verses - Joshua 22:22; 1 King 18:39; Ps. 50:1; Ps. 68:27; 1 Chron. 13:6; 2 Chron. 30:19)
+
+[Verse
+     [word FOCUS g_cons = '&gt;LHJM']
+     [word FOCUS g_cons = 'JHWH']
+]
+*/
+
+
+//----------------------------------------
+/*
+(They appear together 6 times in 5 verses - Joshua 22:22; Ps. 50:1; Ps. 68:27; 1 Chron. 13:6; 2 Chron. 30:19 - The occurrence in 1 King 18:39 DOES NOT appear. I honestly do not understand why) 
+*/
+[Verse
+     [Phrase
+          [word FOCUS g_cons = '&gt;LHJM']
+          [word FOCUS g_cons = 'JHWH']
+     ]
+]
+
+</code></pre>

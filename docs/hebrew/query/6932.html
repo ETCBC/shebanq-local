@@ -1,0 +1,181 @@
+<h1>Num. - Bileam speaks to God or God speaks to Bileam</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>6932</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6932">localhost:8000/hebrew/query?id=6932</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6932">shebanq.ancient-data.org/hebrew/query?id=6932</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>André Gerritsen</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.etcbc.nl">Exegesis OT-2025</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2025-02-12 11:32:44</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2025-02-19 07:53:43</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2025-02-12 14:43:56</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>This query marks the times God speaks to Bileam and the times Bileam speaks to God in Numbers. The times Bileam is in conversation with the angel of the Lord have not been included.
+Since the subject of the verb 'speak' is not always specified, the search also included those times when the verb 'speak' has no subject, but follows directly after Bileam or God. In this query, this gives the good results, but the second part of the query thus gives an approximate result.
+In Numbers 22 this yields four results, in addition there is one more result in Numbers 23.</p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>7960</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe7960</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6932&amp;version=2021">localhost:8000/hebrew/query?id=6932&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6932&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=6932&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>12</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>15</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2025-02-20 21:07:35</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2025-02-20 21:07:35</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2025-02-20 21:07:49</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+[book book = Numeri         //search only in Numbers.
+  // Search first on those occasions when God or Bileam is the subject of speech and the other the object.
+  [clause
+    [UnorderedGroup
+      [phrase function=Subj             //Subject must be God or Bileam.
+        [word FOCUS lex = '&gt;LHJM/'
+                 or lex = 'BL&lt;M/'
+        ]
+      ]
+      [phrase function=Pred            //word function must be predicate and must be יֹּאמֶר֩or דבר. In addition, it must be a wayyiqtol.
+        [word focus (lex = '&gt;MR['
+                  and vt = wayq
+                    )
+                 or (lex = 'DBR/'
+                  and vt = wayq
+                    )
+        ]
+      ]
+      [phrase function=Cmpl            //The object must be God or Bileam.
+        [word focus lex = '&gt;LHJM/'
+                 or lex = 'BL&lt;M/'
+        ]
+      ]
+    ]
+  ]
+  or
+  // From here also search on the verb speak, without specified subject.
+  // Note that the section below gives approximate results.  
+  [clause
+    // Search on a phrase in which God or Bileam is subject.
+    [UnorderedGroup
+      [phrase function = Subj
+        [word focus lex ='&gt;LHJM/'
+                 or lex = 'BL&lt;M/'
+        ]
+      ]
+      // Followed by a phrase in which God or Bileam is complement.
+      [phrase function = Cmpl
+        [word focus lex = '&gt;LHJM/'
+                 or lex = 'BL&lt;M/'
+        ]
+      ]
+    ]
+  ]
+  // The phrases should be immediately followed by the verb 'Speaking', which should be a wayyiqtol.
+  [clause typ = Way0
+    // First search on a phrase without a complement.
+    [phrase function = Pred
+      [word focus (lex = '&gt;MR['
+                and vt = wayq
+                  )
+               or (lex = 'DBR/'
+                and vt = wayq
+                  )
+      ]
+    ]
+    or
+    // Then also search on the phrases followed by God or Bileam as a complement.
+    [phrase function = Pred
+      [word focus (lex = '&gt;MR['
+                and vt = wayq
+                  )
+               or (lex = 'DBR/'
+                and vt = wayq
+                  )
+      ]
+    ]
+    [phrase function=Cmpl
+      [word focus lex = 'BL&lt;M/'
+               or lex = '&gt;LHJM/'
+      ]
+    ]
+  ]
+]
+
+</code></pre>

@@ -1,0 +1,128 @@
+<h1>MI Hierarchies. p.20n58. Causus Pendens + Way</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1058</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1058">localhost:8000/hebrew/query?id=1058</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1058">shebanq.ancient-data.org/hebrew/query?id=1058</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Cody Kingham</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.academia.edu/20569152/The_Syntactic_Hierarchy_of_the_Mesha_Inscription_Its_Narrative_and_Biographical_Structure">The Mesha Inscription and the Hebrew Bible</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.sebts.edu">Southeastern Baptist Theological Seminary</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2016-01-07 03:14:16</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2016-01-14 21:54:27</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2016-01-14 21:54:33</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>Are there any instances in the HB where the subject precedes a wayyiqtol within the same clause? </p>
+<h2>Versions</h2>
+<h3>4b</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1353</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe1353</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1058&amp;version=4b">localhost:8000/hebrew/query?id=1058&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1058&amp;version=4b">shebanq.ancient-data.org/hebrew/query?id=1058&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>10</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>10</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2016-01-07 03:29:34</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2016-01-07 03:29:32</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2016-01-14 21:54:30</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>3.4.1.pre12</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>SELECT ALL OBJECTS WHERE
+
+[book
+   [clause
+      [phrase function = Subj]
+      [phrase function = Pred
+         [word FOCUS sp=verb
+            [word vt=wayq
+            ] 
+         ]
+      ]
+   ]
+]
+OR
+[book
+   [sentence
+      [clause_atom typ = CPen]
+      [clause_atom typ = Way0
+         [phrase function = Pred
+            [word FOCUS sp=verb
+            ]
+         ]
+      ]
+   ]
+]
+</code></pre>

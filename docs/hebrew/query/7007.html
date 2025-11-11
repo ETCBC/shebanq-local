@@ -1,0 +1,110 @@
+<h1>SHEBANQ tutorials</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>7007</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=7007">localhost:8000/hebrew/query?id=7007</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=7007">shebanq.ancient-data.org/hebrew/query?id=7007</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Jonas Asante</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://vu.nl/en/">SHEBANQ queries</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="https://vu.nl/en/">Grad School projects</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2025-03-13 06:37:06</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2025-03-13 08:05:48</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2025-03-13 06:58:51</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>Query 3: Find all clauses that have a verbal predicate and an object. As predicate we want JYR[ (יצר). As object we want anything (e.g. object-suffix [phrase function = PreO] or separate object phrase [phrase function = Objc]). Search the entire OT. You should find 13 verses (due to an outdated WIVU database Logos has only 10 results). The motivation for the query is Jer 1:5. Take a screenshot of your query and upload it to the Learninghub.</p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>8037</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe8037</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=7007&amp;version=2021">localhost:8000/hebrew/query?id=7007&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=7007&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=7007&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>0</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>0</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2025-03-13 07:16:34</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2025-03-13 06:53:43</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2025-03-13 07:17:13</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>Select all objects where
+[clause
+     [Word FOCUS lex =&quot;W&quot;]
+     [Word FOCUS lex =&quot;HJH [&quot;AND vt=wayq]
+     [Word FOCUS lex =&quot;DBR/&quot; AND st=c]
+     [Word FOCUS lex =&quot;JHWH/&quot; AND st=a]
+]
+</code></pre>

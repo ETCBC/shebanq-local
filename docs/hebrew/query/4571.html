@@ -1,0 +1,115 @@
+<h1>Blessing God</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4571</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=4571">localhost:8000/hebrew/query?id=4571</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=4571">shebanq.ancient-data.org/hebrew/query?id=4571</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Johan Ljungberg</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.lingfil.uu.se/research/semitic-languages/">Various</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="https://www.lingfil.uu.se/research/semitic-languages/">Uppsala Universitet, Semitic Languages</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2021-05-10 11:45:54</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2021-05-10 13:52:33</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2021-05-11 11:34:32</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>Looking for instances where God/LORD is the object of blessing.</p>
+<h2>Versions</h2>
+<h3>2017</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>5373</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe5373</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=4571&amp;version=2017">localhost:8000/hebrew/query?id=4571&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=4571&amp;version=2017">shebanq.ancient-data.org/hebrew/query?id=4571&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>78</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>166</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2021-05-11 11:24:58</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2021-05-10 13:11:25</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2021-05-11 11:34:32</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+
+[clause focus
+       [UNORDEREDGROUP                                       //any order of phrases is match
+            [phrase typ = VP 
+                [word FOCUS lex = 'BRK[']
+            ]
+            [phrase FOCUS function = Objc
+                 [word FOCUS lex = '&gt;LHJM/' OR lex = 'JHWH/' OR lex = '&gt;DNJ/']
+             ]
+        ] 
+]
+</code></pre>

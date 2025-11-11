@@ -1,0 +1,122 @@
+<h1>Ass_5.3</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>3525</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3525">localhost:8000/hebrew/query?id=3525</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3525">shebanq.ancient-data.org/hebrew/query?id=3525</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Eimert Haakmeester</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.etcbc.nl">MA_Analytical_Tools_2019</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2019-09-12 16:04:11</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-09-18 18:23:30</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2019-09-18 19:35:34</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>In 1 Sam 16:14 we read about “an evil spirit from God”. Is this reference unique, or are there other references of an evil spirit of God/the Lord”?</p>
+<p>ANSWER:
+An other way to search for words in a different order is by the use of UNORDEREDGROUP (instead of the use of OR and the different variations of order). Because UNORDEREDGROUP does not work with OR in it, it is needed to search for the Names of God in a 'new' phrase. Because this clause is 'within' the first written phrase, the boundaries result to be the same.
+When the phrases are changed into clauses, also Judges 9:23 will be found. Only in this case it is not clear if the evil spirit is from God, the evil spirit in Judges 9:23 is only sent by God.</p>
+<h2>Versions</h2>
+<h3>2017</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4168</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe4168</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3525&amp;version=2017">localhost:8000/hebrew/query?id=3525&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3525&amp;version=2017">shebanq.ancient-data.org/hebrew/query?id=3525&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>15</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>15</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2019-09-18 18:16:11</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-09-18 18:16:11</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2019-09-18 19:35:34</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>Select all objects where
+[phrase
+ [unorderedgroup
+  [word FOCUS lex = &quot;RWX/&quot;]
+  [word FOCUS lex = &quot;R&lt;/&quot;]
+
+  [phrase
+   [word FOCUS lex = &quot;JHWH/&quot;]
+    OR
+   [word FOCUS lex = &quot;&gt;LHJM/&quot;]
+    OR
+   [word FOCUS lex = &quot;&gt;DNJ/&quot;]
+  ]
+ ]
+]
+
+</code></pre>

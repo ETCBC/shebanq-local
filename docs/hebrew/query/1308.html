@@ -1,0 +1,142 @@
+<h1>Subject YHWH/god lexemes wayq</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1308</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1308">localhost:8000/hebrew/query?id=1308</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1308">shebanq.ancient-data.org/hebrew/query?id=1308</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Christiaan Erwich</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://nbviewer.ipython.org/github/ETCBC/laf-fabric-nbs/blob/master/participants/Verba_Dicendi_Addressees.ipynb">Participants in Psalms</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.godgeleerdheid.vu.nl/etcbc">ETCBC</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2016-07-11 10:16:34</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2016-08-23 09:15:15</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2016-08-23 09:12:40</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>Where is YHWH/other god lexemes a subject in a N(arrative) domain in the Psalms, with the wayyiqtol as predicate? </p>
+<h2>Versions</h2>
+<h3>4</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1612</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe1612</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1308&amp;version=4">localhost:8000/hebrew/query?id=1308&amp;version=4</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1308&amp;version=4">shebanq.ancient-data.org/hebrew/query?id=1308&amp;version=4</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>64709</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>1877</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2016-07-11 10:51:42</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2016-07-11 10:51:38</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2016-08-23 09:12:46</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>3.4.1.pre12</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+
+[book book = Psalmi
+  [clause FOCUS txt ~ &quot;N$&quot; OR typ in (WayX, Way0)
+   [phrase function in (Pred, PreO, PreS)
+      // [word vt = wayq]
+    ]
+  ]
+   ..
+   [phrase function in (Subj, ExsS, IntS, ModS, NCoS, PrcS, PreS)
+      [word
+         lex = &quot;JHWH/&quot; OR
+         lex = &quot;CDJ/&quot; OR
+         lex = &quot;&gt;L/&quot; OR
+         lex = &quot;&gt;LH/&quot; OR
+         lex = &quot;&gt;LHJM/&quot;
+        ]
+    ]
+ ]
+
+OR
+
+[book book = Psalmi
+ [clause FOCUS txt ~ &quot;N$&quot; OR typ in (WayX, Way0)
+    [phrase function in (Subj, ExsS, IntS, ModS, NCoS, PrcS, PreS)
+     [word
+        lex = &quot;JHWH/&quot; OR
+        lex = &quot;CDJ/&quot; OR
+        lex = &quot;&gt;L/&quot; OR
+        lex = &quot;&gt;LH/&quot; OR
+        lex = &quot;&gt;LHJM/&quot;
+        ]
+    ]
+    ..
+     [phrase function in (Pred, PreO, PreS)
+        // [word vt = wayq]
+      ]
+    ]
+ ]
+</code></pre>

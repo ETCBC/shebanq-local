@@ -1,0 +1,35 @@
+{{ left_sidebar_enabled = False }}
+{{ right_sidebar_enabled = False }}
+{{extend 'layout.html'}}
+
+<h3>Language for bible book names</h3>
+<p>The languages below represent more than 50% of the world population, in terms of native speakers.</p>
+<table id="books">
+</table>
+
+<script type="text/javascript">
+{{=XML(jsinit)}}
+
+jQuery(function(){
+    let html = '<tr class="books">\n'
+    const langs = Object.keys(bookLangs).sort()
+    for (const lang of langs) {
+        const langInfo = bookLangs[lang]
+        const nameEN = langInfo[0]
+        const nameOwn = langInfo[1] 
+        const nameMd = nameOwn.replace(/ /g, '<br/>')
+        html += `<th class="booklang" title="${lang}=${nameEN}">${nameMd}</th>\n`
+        for (const b in bookLatin) {
+            const book = bookLatin[b]
+            const bookT = bookTrans[lang][book].replace(/_/g, ' ')
+            html += `<td class="book">${bookT}</td>\n`
+            if (book == 'Reges_II' || book == 'Maleachi') {
+                html += `<th class="booklang" title="${lang}=${nameEN}">${nameMd}</th>\n`
+            }
+        }
+        html += `<th class="booklang" title="${lang}=${nameEN}">${nameOwn}</th>\n`
+        html += '</tr>\n' 
+    }
+    $('#books').html(html)
+})
+</script>

@@ -1,0 +1,116 @@
+<h1>Valley of Ben-Hinnom</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1431</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1431">localhost:8000/hebrew/query?id=1431</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1431">shebanq.ancient-data.org/hebrew/query?id=1431</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Reinoud Oosting</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.nbv.nl">Revision Nieuwe Bijbelvertaling NBV</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.bijbelgenootschap.nl">Nederlands Bijbelgenootschap</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2016-10-07 10:30:16</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2016-10-07 14:02:38</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2016-10-07 12:23:24</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>In the ETCBC database one encouters both the phrase 'the valley of the son of Hinnom" (2 Kgs 23:10), and the phrase 'the valley of Ben-Hinnom" (Josh 15:8, 18:6; Jer 7:31, 32; 19:2, 6; 32:25; 2 Chr 28:3; 33:6).</p>
+<h2>Versions</h2>
+<h3>4b</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1753</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe1753</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1431&amp;version=4b">localhost:8000/hebrew/query?id=1431&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1431&amp;version=4b">shebanq.ancient-data.org/hebrew/query?id=1431&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>10</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>21</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2016-10-07 12:22:40</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2016-10-07 12:19:00</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2016-10-07 12:23:24</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>3.4.1.pre12</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>Select all objects where
+
+[phrase
+[word FOCUS lex = &quot;GJ&gt;/&quot;]
+[word FOCUS lex = &quot;BN/&quot;]
+[word FOCUS sp = nmpr AND lex = &quot;HNM/&quot;]
+]
+OR
+[phrase
+[word FOCUS lex = &quot;GJ&gt;/&quot;]
+[word FOCUS sp = nmpr AND lex = &quot;BN_HNM/&quot;]
+]
+
+</code></pre>

@@ -1,0 +1,113 @@
+<h1>Justin Practical exercise 1</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4009</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=4009">localhost:8000/hebrew/query?id=4009</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=4009">shebanq.ancient-data.org/hebrew/query?id=4009</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Justin Lim</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.vu.nl">DigHumCourse2017</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2020-09-14 17:23:43</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2020-09-16 02:41:44</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2020-09-14 21:17:03</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>The various designations of God/the Lord in the biblical play a crucial role in OT scholarship. Look for all occurrences of the phrase אֱלֹהִים יְהוָה in the OT. What is the first occurrence?</p>
+<p>Answer) The first occurrence is Joshua 22:22</p>
+<h2>Versions</h2>
+<h3>2017</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4723</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe4723</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=4009&amp;version=2017">localhost:8000/hebrew/query?id=4009&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=4009&amp;version=2017">shebanq.ancient-data.org/hebrew/query?id=4009&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>6</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>12</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2020-09-14 21:20:21</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2020-09-14 21:17:22</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2020-09-14 21:20:26</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+[sentence
+  [phrase
+    [word FOCUS g_cons_utf8 = &quot;אלהים&quot;]
+    [word FOCUS g_cons_utf8 = &quot;יהוה&quot;]
+  ]
+]
+
+// The first occurrence is Joshua 22:22
+</code></pre>

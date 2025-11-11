@@ -1,0 +1,276 @@
+<h1>DHQ article: discourse pattern deviation</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>491</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=491">localhost:8000/hebrew/query?id=491</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=491">shebanq.ancient-data.org/hebrew/query?id=491</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Oliver Glanz</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.digitalhumanities.org/dhq/">DHQ special edition</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://andrews.edu">Henry S. Otio</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2015-01-04 14:11:50</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2016-01-15 04:28:07</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2015-01-04 15:28:19</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>This query finds all cases in which the same direct speech introduction (same subject [e.g. Abraham] speaks to the same complement [e.g. to Abimelech]) is repeated after the initial direct speech has been heard. The pattern we are looking for looks like this:
+X speaks to Y: "bla bla bla"
+X speaks to Y: "bla bla bla"</p>
+<p>One would expect after the initial
+X speaks to Y: "bla bla bla"
+the construction 
+Y speaks/answers to X: "bla bla bla"
+is following.</p>
+<p>We are therefore searching for a rather uncommon pattern.
+The query was inspired by Genesis 20:9-10 where Abimelech initiated a direct speech twice without Abraham responding after Abimelech’s first speech.</p>
+<h2>Versions</h2>
+<h3>4</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>638</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe638</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=491&amp;version=4">localhost:8000/hebrew/query?id=491&amp;version=4</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=491&amp;version=4">shebanq.ancient-data.org/hebrew/query?id=491&amp;version=4</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>310</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>311</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2015-01-04 15:28:19</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2015-01-04 15:28:19</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2015-04-16 06:19:11</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.4.0</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+    [[clause domain = &quot;N&quot;
+        [phrase function = Pred
+            [word
+                [word lex = &quot;DBR[&quot;]
+                OR
+                [word lex = &quot;&gt;MR[&quot;]
+                OR
+                [word lex = &quot;QR&gt;[&quot;]
+            ]
+        ]
+        ..
+        [phrase FOCUS function = Subj
+            [word AS samesubject]
+        ]
+        ..
+        [phrase FOCUS function = Cmpl
+            [word AS samecomplement]
+        ]
+    ]
+    [clause domain = &quot;N&quot;]* {0-1}
+    [clause domain = &quot;Q&quot;]* {1-50}
+    [clause domain = &quot;N&quot;
+        [phrase function = Pred
+            [word
+                [word lex = &quot;DBR[&quot;]
+                OR
+                [word lex = &quot;&gt;MR[&quot;]
+                OR
+                [word lex = &quot;QR&gt;[&quot;]
+            ]
+        ]
+        ..
+        [phrase FOCUS function = Subj
+            [word lex = samesubject.lex]
+        ]
+        ..
+        [phrase FOCUS function = Cmpl
+            [word lex = samecomplement.lex]
+        ]
+    ]]
+OR
+    [[clause domain = &quot;N&quot;
+        [phrase function = Pred
+            [word
+                [word lex = &quot;DBR[&quot;]
+                OR
+                [word lex = &quot;&gt;MR[&quot;]
+                OR
+                [word lex = &quot;QR&gt;[&quot;]
+            ]
+        ]
+        ..
+        [phrase FOCUS function = Cmpl
+            [word AS samecomplement2]
+        ]
+        ..
+        [phrase FOCUS function = Subj
+            [word AS samesubject2]
+        ]
+    ]
+    [clause domain = &quot;N&quot;]* {0-1}
+    [clause domain = &quot;Q&quot;]* {1-50}
+    [clause domain = &quot;N&quot;
+        [phrase function = Pred
+            [word
+                [word lex = &quot;DBR[&quot;]
+                OR
+                [word lex = &quot;&gt;MR[&quot;]
+                OR
+                [word lex = &quot;QR&gt;[&quot;]
+            ]
+        ]
+        ..
+        [phrase FOCUS function = Cmpl
+            [word lex = samecomplement2.lex]
+        ]
+        ..
+        [phrase FOCUS function = Subj
+            [word lex = samesubject2.lex]
+        ]
+    ]]
+    OR
+    [[clause domain = &quot;N&quot;
+        [phrase function = Pred
+            [word
+                [word lex = &quot;DBR[&quot;]
+                OR
+                [word lex = &quot;&gt;MR[&quot;]
+                OR
+                [word lex = &quot;QR&gt;[&quot;]
+            ]
+        ]
+        ..
+        [phrase FOCUS function = Subj
+            [word AS samesubject3]
+        ]
+        ..
+        [phrase FOCUS function = Cmpl
+            [word AS samecomplement3]
+        ]
+    ]
+    [clause domain = &quot;N&quot;]* {0-1}
+    [clause domain = &quot;Q&quot;]* {1-50}
+    [clause domain = &quot;N&quot;
+        [phrase function = Pred
+            [word
+                [word lex = &quot;DBR[&quot;]
+                OR
+                [word lex = &quot;&gt;MR[&quot;]
+                OR
+                [word lex = &quot;QR&gt;[&quot;]
+            ]
+        ]
+        ..
+        [phrase FOCUS function = Cmpl
+            [word lex = samecomplement3.lex]
+        ]
+        ..
+        [phrase FOCUS function = Subj
+            [word lex = samesubject3.lex]
+        ]
+    ]]
+    OR
+    [[clause domain = &quot;N&quot;
+        [phrase function = Pred
+            [word
+                [word lex = &quot;DBR[&quot;]
+                OR
+                [word lex = &quot;&gt;MR[&quot;]
+                OR
+                [word lex = &quot;QR&gt;[&quot;]
+            ]
+        ]
+        ..
+        [phrase FOCUS function = Cmpl
+            [word AS samecomplement4]
+        ]
+        ..
+        [phrase FOCUS function = Subj
+            [word AS samesubject4]
+        ]
+    ]
+    [clause domain = &quot;N&quot;]* {0-1}
+    [clause domain = &quot;Q&quot;]* {1-50}
+    [clause domain = &quot;N&quot;
+        [phrase function = Pred
+            [word
+                [word lex = &quot;DBR[&quot;]
+                OR
+                [word lex = &quot;&gt;MR[&quot;]
+                OR
+                [word lex = &quot;QR&gt;[&quot;]
+            ]
+        ]
+        ..
+        [phrase FOCUS function = Subj
+            [word lex = samesubject4.lex]
+        ]
+        ..
+        [phrase FOCUS function = Cmpl
+            [word lex = samecomplement4.lex]
+        ]
+    ]]
+</code></pre>

@@ -1,0 +1,135 @@
+<h1>Assignment 0913 - 1 Sam 16:14</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>6101</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6101">localhost:8000/hebrew/query?id=6101</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6101">shebanq.ancient-data.org/hebrew/query?id=6101</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Elia Fiore</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.etcbc.nl">Analytical Tools 2023</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2023-09-13 19:26:40</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2023-09-13 19:28:15</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2023-09-13 19:28:56</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>QUESTION 3 ESSAY 0913</p>
+<p>In 1 Sam 16:14, we read about “an evil spirit from God”. Is this reference unique, or are there other references to an evil spirit of God/the Lord”?</p>
+<p>A few simple notes on the query:</p>
+<ol>
+<li>
+<p>Since the adjective can be placed before or after the noun and within the "UNORDEREDGROUP" operator,  only ‘bare’ object blocks can be used (no ‘..’ or OR operators), I did not use this operator.</p>
+</li>
+<li>
+<p>Since between the noun and the corresponding Adjective, there can potentially be (independently of who comes first) one or more words,  I inserted the ".." operator in both cases.</p>
+</li>
+<li>
+<p>Since between "spirit" and "God"/"YHWH", there can potentially be one or more words,  I inserted the ".." operator.</p>
+</li>
+</ol>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>7070</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe7070</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6101&amp;version=2021">localhost:8000/hebrew/query?id=6101&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6101&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=6101&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>1</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>3</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2023-09-13 19:28:19</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2023-09-13 19:28:15</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2023-09-13 19:28:56</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>Select all objects where
+
+[verse
+   [clause
+      [word FOCUS lex = &quot;RWX/&quot;]
+      ..
+      [word FOCUS lex = &quot;R&lt;/&quot; AND sp = adjv]
+      ..
+      [word FOCUS lex = &quot;JHWH/&quot; OR lex =&quot;&gt;LHJM/&quot;]
+   ]
+   OR
+   [clause
+      [word FOCUS lex = &quot;R&lt;/&quot; AND sp = adjv]
+      ..
+      [word FOCUS lex = &quot;RWX/&quot;]
+      ..
+      [word FOCUS lex = &quot;JHWH/&quot; OR lex =&quot;&gt;LHJM/&quot;]
+   ]
+]
+</code></pre>

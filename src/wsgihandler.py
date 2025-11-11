@@ -1,0 +1,51 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""
+This file is part of the Web2py Web Framework
+Copyrighted by Massimo Di Pierro <mdipierro@cs.depaul.edu>
+License: [LGPLv3](http://www.gnu.org/licenses/lgpl.html)
+
+
+This is a WSGI handler
+"""
+
+import sys
+import traceback
+import os
+
+# change these parameters as required
+
+try:
+    LOGGING = False
+    SOFTCRON = False
+
+    path = os.path.dirname(os.path.abspath(__file__))
+    os.chdir(path)
+
+    if not os.path.isdir("applications"):
+        raise RuntimeError("Running from the wrong folder")
+
+    sys.path = [path] + [p for p in sys.path if not p == path]
+
+    from gluon.settings import global_settings  # noqa e402
+
+    global_settings.web2py_runtime_handler = True
+    global_settings.trusted_lan_prefix = '1'
+
+    import gluon.main  # noqa e402
+
+    if LOGGING:
+        application = gluon.main.appfactory(
+            wsgiapp=gluon.main.wsgibase, logfilename="httpserver.log", profiler_dir=None
+        )
+    else:
+        application = gluon.main.wsgibase
+
+    if SOFTCRON:
+        global_settings.web2py_crontype = "soft"
+
+except Exception as e:
+    sys.stderr.write(f"{traceback.print_exception(e)}\n")
+    sys.stderr.flush()
+    raise e

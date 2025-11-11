@@ -1,0 +1,119 @@
+<h1>David says</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1495</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1495">localhost:8000/hebrew/query?id=1495</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1495">shebanq.ancient-data.org/hebrew/query?id=1495</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Christiaan Erwich</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://example.com">Father in Ps</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="https://noster.org">NOSTER</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2017-01-12 08:29:05</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2017-01-12 10:37:56</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2017-01-12 10:43:23</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>This query searches for clauses in which David (subject) says (&gt;MR[).</p>
+<h2>Versions</h2>
+<h3>4b</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1826</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe1826</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1495&amp;version=4b">localhost:8000/hebrew/query?id=1495&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1495&amp;version=4b">shebanq.ancient-data.org/hebrew/query?id=1495&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>97</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>211</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2017-01-12 10:41:38</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2017-01-12 10:41:38</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2017-01-12 10:44:07</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>3.4.1.pre12</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+
+[clause 
+  [phrase function = Subj
+    [word focus lex = 'DWD==/']
+  ]
+  ..
+  [word focus lex = '&gt;MR[']
+
+or 
+[word focus lex = '&gt;MR[']
+..
+[phrase focus function = Subj
+    [word lex = 'DWD==/']
+  ]
+]
+</code></pre>

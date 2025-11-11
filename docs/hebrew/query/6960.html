@@ -1,0 +1,117 @@
+<h1>nummeri 22 non wayyiqtol</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>6960</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6960">localhost:8000/hebrew/query?id=6960</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6960">shebanq.ancient-data.org/hebrew/query?id=6960</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>lubbert bakker</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.etcbc.nl">Exegesis OT-2025</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2025-02-19 12:07:26</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2025-02-19 12:09:44</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2025-02-19 12:10:08</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>None</p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>7991</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe7991</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6960&amp;version=2021">localhost:8000/hebrew/query?id=6960&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6960&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=6960&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>20</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>20</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2025-02-19 12:09:58</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2025-02-19 12:09:58</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2025-02-19 12:10:19</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>Select all objects where
+[book book IN(Numeri)
+  [chapter chapter = 20
+    [verse verse &lt;= 14
+      [word FOCUS sp = verb 
+          and not vt = wayq // wayyiqtol
+          and not vt = infa // infinitivus absolutus
+          and not vt = infc // infinitivus constructus
+          and not vt = ptca // actief participium
+          and not vt = ptcp // passief participium
+      ]
+    ]
+  ]
+]
+</code></pre>

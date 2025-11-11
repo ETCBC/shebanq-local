@@ -1,0 +1,133 @@
+<h1>Dienaar of Slaaf?</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>3214</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3214">localhost:8000/hebrew/query?id=3214</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3214">shebanq.ancient-data.org/hebrew/query?id=3214</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Sam Jansen</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.etcbc.nl">G_EXOTJB 2018-2019</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2019-04-22 20:02:40</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-04-23 09:52:23</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2019-04-24 13:13:34</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>In I Samuel 17:8 noemt Saul het Israëlische leger de "dienaren van Saul" en hemzelf  "De Filistijn". De NBV heeft ervoor gekozen om dit te vertalen met 'vrije Filistijn' en 'slaven van Saul'. Nu wil ik aan de hand van deze query kijken of dienaren van een koning inderdaad te vergelijken waren met slaven. 
+Ik heb in de query een duidelijke scheiding gemaakt tussen de dienaren en de 'koning'. Ik liep tegen het probleem aan dat ik deze formule van 'een dienaar van X' zowel in één phrase tegenkwam, als verdeeld over twee phrases. Ik heb ervoor gekozen om me te beperken tot de instanties waarbij het in één phrase voorbij kwam, maar men zou de optie dat het over twee phrases verdeeld staat nog toe kunnen voegen. 
+Ook heb ik geprobeerd de woordvolgordes om te draaien zodat MQL meer resultaten zou vinden. De twee punten tussen de twee zoekopdrachten zijn ervoor om te zorgen dat MQL ruimte laat voor mogelijke woorden tussen de twee delen (zoals bijvoorbeeld een lidwoord). Wel heb ik "L" bij het onderwerp "koning gehouden. Deze zullen namelijk in de formule altijd bij elkaar staan. In de resultaten kwam ik echter wat problemen tegen.
+1. "L" kan op verschillende manieren gebruikt worden, en ik heb niet toe kunnen spitsen op één soort gebruik. Als er dus iets gezegd wordt tegen David door zomaar een dienaar is dat ook een resultaat geworden. Ook kan iemand een dienaar van iemand zijn zonder het gebruik van "L", zoals te zien is in Psalm 36:1. 
+Al met al kan deze query nog aardig wat werk gebruiken om bepaalde resultaten uit te sluiten (zoals wanneer er gesproken wordt tegen iemand) en kunnen sommige resultaten nog worden inbegrepen (zoals wanneer de formule verdeeld over meerdere phrases staat). Dit zou misschien opgelost kunnen worden door te kijken naar de functies van de phrases, maar ik mis nog de kennis om hier productief iets aan toe te voegen.</p>
+<h2>Versions</h2>
+<h3>4</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>3760</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe3760</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3214&amp;version=4">localhost:8000/hebrew/query?id=3214&amp;version=4</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3214&amp;version=4">shebanq.ancient-data.org/hebrew/query?id=3214&amp;version=4</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>3</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>9</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2019-04-24 13:13:11</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-04-24 12:17:22</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2019-04-24 13:13:45</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+
+[clause
+ [phrase function = PreC
+  [word FOCUS lex = &quot;&lt;BD/&quot;]
+ ]
+ ..
+ [phrase function = Cmpl
+  [word FOCUS lex = &quot;L&quot;]
+  [word FOCUS lex = &quot;MLK/&quot; OR lex = &quot;C&gt;WL=/&quot; OR lex = &quot;DWD==/&quot; OR lex = &quot;JHWH/&quot;]
+ ]
+
+OR 
+
+ [phrase function = Cmpl
+  [word FOCUS lex = &quot;L&quot;]
+  [word FOCUS lex = &quot;MLK/&quot; OR lex = &quot;C&gt;WL=/&quot; OR lex = &quot;DWD==/&quot; OR lex = &quot;JHWH/&quot;]
+ ]
+..
+ [phrase function = PreC
+  [word FOCUS lex = &quot;&lt;BD/&quot;]
+ ]
+]
+
+
+
+</code></pre>

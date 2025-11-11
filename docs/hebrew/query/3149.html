@@ -1,0 +1,124 @@
+<h1>Hoevaak komt de woord combinatie ik weet voor in het OT</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>3149</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3149">localhost:8000/hebrew/query?id=3149</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3149">shebanq.ancient-data.org/hebrew/query?id=3149</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Gerard de Bruin</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.etcbc.nl">G_EXOTJB 2018-2019</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2019-04-16 16:06:33</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-04-16 17:05:57</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2019-04-24 09:18:43</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>In deze querie zoeken we naar het aantal keer dat ''ik weet'' samen voor komt. 
+Dit na aanleiding van deze combinatie in 1 Samuel 16 en 17. </p>
+<h2>Versions</h2>
+<h3>4</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>3690</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe3690</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3149&amp;version=4">localhost:8000/hebrew/query?id=3149&amp;version=4</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3149&amp;version=4">shebanq.ancient-data.org/hebrew/query?id=3149&amp;version=4</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>99597</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>171</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2019-04-17 08:03:51</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-04-17 08:03:51</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2019-04-24 09:18:43</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>Select all objects where
+[clause
+ [
+  [word FOCUS lex = &quot;&gt;NJ&quot;]
+   OR
+  [word FOCUS lex = &quot;&gt;NKJ&quot;]
+ ]
+..
+  [word FOCUS lex = &quot;JD&lt;[&quot; AND ps = p1 AND nu = sg]
+]
+OR
+[clause
+ [word lex = &quot;&gt;NJ&quot;]
+  OR
+  [word lex = &quot;&gt;NKJ&quot;]
+  ]
+..
+ [
+  [word FOCUS lex = &quot;JD&lt;[&quot; AND ps = p1 AND nu = sg]
+]
+</code></pre>

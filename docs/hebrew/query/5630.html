@@ -1,0 +1,110 @@
+<h1>Shared Lexemes 1 Sam. 24 and 26</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>5630</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=5630">localhost:8000/hebrew/query?id=5630</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=5630">shebanq.ancient-data.org/hebrew/query?id=5630</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Raymond Van Rijn</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://shebanq.ancient-data.org">shebanq examples</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.godgeleerdheid.vu.nl/etcbc">ETCBC</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2022-12-14 13:30:46</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2022-12-24 11:06:48</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2022-12-21 09:14:03</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>In this query, I want to find all the instances where 1 Samuel chapter 24 and chapter 26 share the same lexeme.</p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>6547</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe6547</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=5630&amp;version=2021">localhost:8000/hebrew/query?id=5630&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=5630&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=5630&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>84</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>19</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2022-12-21 08:55:10</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2022-12-21 08:47:57</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2022-12-21 09:14:03</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+[verse book IN (Samuel_I) AND chapter IN (24) AND verse IN (3)
+[word AS samelex FOCUS sp=subs OR sp=verb ]]
+..
+[verse book IN (Samuel_I) AND chapter IN (26) AND verse IN (2)
+[word FOCUS lex=samelex.lex AND sp=subs OR sp=verb ]
+]
+</code></pre>

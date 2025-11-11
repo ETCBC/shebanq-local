@@ -1,0 +1,149 @@
+<h1>Testquery for number 17</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>6938</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6938">localhost:8000/hebrew/query?id=6938</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6938">shebanq.ancient-data.org/hebrew/query?id=6938</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>André Gerritsen</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://canvas.vu.nl/courses/81845">EXOT202</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2025-02-13 12:21:28</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2025-03-10 18:43:07</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2025-02-13 13:32:02</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>This query lists all the times there is mention of 'approaching the tabernacle' or 'approaching the tent of meeting' or 'approaching the tent of testimony'.
+First, we searched for the times when there is mention of the noun 'draw near' in relation to the tent/tabernacle. Then a search was made on the times when there is mention of the verb 'approach' in relation to the tent/tabernacle.
+This query aims to investigate whether one can also approach the tent without fear of dying. The query returns 18 results in seven verses.</p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>7967</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe7967</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6938&amp;version=2021">localhost:8000/hebrew/query?id=6938&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6938&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=6938&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>7</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>18</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2025-02-19 07:44:21</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2025-02-19 07:44:21</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2025-02-19 07:44:33</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+[book book in (Genesis, Exodus, Leviticus, Numeri, Deuteronomium)
+//First search on the nouns approach and tabernacle/tent of meeting/tent of testimony.
+  [Clause
+    [phrase function = PreC
+      [word FOCUS lex = 'QRB=/']
+    ]
+    ..
+    [phrase function = Cmpl
+      // Tabernacle
+      [word FOCUS lex = 'MCKN/']
+      or
+      // Tent of Meeting
+      [word FOCUS lex = '&gt;HL/']
+      [word FOCUS lex = 'MW&lt;D/']
+      or
+      // Tent of Testimony
+      [word FOCUS lex = '&gt;HL/']
+      [word FOCUS lex = '&lt;DWT/']
+    ]
+  ]
+  //Then search on the verb approach in combination with tabernacle/tent of meeting/tent of testimony.
+  or
+  [clause
+    [phrase
+      [word FOCUS pdp = verb
+              and lex = 'QRB['
+      ]
+    ]
+    ..
+    [phrase function = Cmpl
+      // Tabernacle
+      [word FOCUS lex = 'MCKN/']
+      or
+      // Tent of Meeting
+      [word FOCUS lex = '&gt;HL/']
+      [word FOCUS lex = 'MW&lt;D/']
+      or
+      // Tent of Testimony
+      [word FOCUS lex = '&gt;HL/']
+      [word FOCUS lex = '&lt;DWT/']
+    ]
+  ]
+]
+</code></pre>

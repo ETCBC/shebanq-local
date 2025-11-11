@@ -1,0 +1,114 @@
+<h1>JLD Pu/Ni</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>6110</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6110">localhost:8000/hebrew/query?id=6110</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6110">shebanq.ancient-data.org/hebrew/query?id=6110</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Martijn Bongiovanni</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.tua.nl">Geneaology</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.tua.nl">Theological University Apeldoorn</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2023-09-16 11:07:40</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2023-09-16 11:25:11</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2023-09-16 11:27:03</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>In summary, this query is designed to find all verses in the Hebrew Bible where a single clause contains the verbal stem in the Nifal or Pual for "give birth" (JLD[), followed at some point later in the clause by the preposition "L" (L).</p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>7080</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe7080</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6110&amp;version=2021">localhost:8000/hebrew/query?id=6110&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6110&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=6110&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>48</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>70</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2023-09-16 11:26:52</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2023-09-16 11:26:52</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2023-09-16 11:27:03</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+[verse
+  [clause
+   [word focus lex = 'JLD[' AND vs = pual] 
+  OR
+   [word FOCUS lex = 'JLD[' AND vs = nif] 
+  ..
+  [word focus lex = &quot;L&quot;]
+  ]
+]
+
+</code></pre>

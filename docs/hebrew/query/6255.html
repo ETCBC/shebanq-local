@@ -1,0 +1,126 @@
+<h1>DBR + &lt;L + Pronominal Suffix</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>6255</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6255">localhost:8000/hebrew/query?id=6255</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6255">shebanq.ancient-data.org/hebrew/query?id=6255</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Scott Linton</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.andrews.edu/">SHEBANQ Tutorials</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="https://andrews.edu">Andrews Unversity</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2023-12-03 19:53:54</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2023-12-05 19:49:02</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2023-12-05 16:07:11</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>This query is to demonstrate that the majority of occurrences of the construction DBR + &lt;L are with a pronominal suffix. Compare this with occurrences of DBR + &lt;L</p>
+<p>Dr. Glanz query - </p>
+<p>select all objects where
+[clause
+ [UnorderedGroup
+  [phrase function IN (Pred, PreO, PreS)
+    [word FOCUS lex='DBR[']
+  ]
+  [phrase function IN (Cmpl)
+    [word FOCUS lex='&lt;L' AND prs_ps IN (p1, p2, p3)]
+  ]
+ ]
+]</p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>7254</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe7254</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6255&amp;version=2021">localhost:8000/hebrew/query?id=6255&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6255&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=6255&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>52</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>52</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2023-12-05 19:48:11</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2023-12-05 19:48:11</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2023-12-10 18:44:59</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+[clause
+[unorderedgroup
+[phrase function=Pred
+[word FOCUS lex_utf8=&quot;דבר&quot;]
+]
+[phrase function=Cmpl
+[word FOCUS lex_utf8=&quot;על&quot; and prs_ps IN (p1, p2, p3)]
+]
+]
+]
+</code></pre>

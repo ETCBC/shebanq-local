@@ -1,0 +1,110 @@
+<h1>finding God the Lord and some other combinations</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4007</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=4007">localhost:8000/hebrew/query?id=4007</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=4007">shebanq.ancient-data.org/hebrew/query?id=4007</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Rieks Hekman</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.vu.nl">DigHumCourse2017</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2020-09-14 11:56:52</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2020-09-14 18:04:43</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2020-09-14 18:04:53</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>Find all instances of the phrase '&gt;LHJM JHWH'</p>
+<p>The search is problematical as you also find Josh 22:22 and Ps 50:1, where '&gt;LHJM' is actually nomen rectum in the construction '&gt;L &gt;LHJM' (God of gods). The first real occurence is in Ps. 68:27.
+This could be solved by adjusting the query writing 'word FIRST FOCUS' for the first word and 'word LAST FOCUS' for the second, to only find examples of the exact phrase '&gt;LHJM JHWH'. However, this means also losing the results from I and II chronicles (13:6 and 30:19 respectively) where the construction is introduced by the definite article (and preceded or followed by a few other words in the same phrase). I'm still thinking about how to solve this (in a more general way than just eliminating results with the word '&gt;L' :-) )</p>
+<h2>Versions</h2>
+<h3>2017</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4721</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe4721</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=4007&amp;version=2017">localhost:8000/hebrew/query?id=4007&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=4007&amp;version=2017">shebanq.ancient-data.org/hebrew/query?id=4007&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>6</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>12</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2020-09-14 18:02:29</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2020-09-14 18:02:29</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2020-09-14 18:04:58</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>Select all objects where
+[phrase                           //find and put in FOCUS all phrases with:
+   [word FOCUS g_cons = &quot;&gt;LHJM&quot;]     //word '&gt;LHJM'
+   [word FOCUS g_cons = &quot;JHWH&quot;]      //directly followed by word 'JHWH'
+]
+</code></pre>

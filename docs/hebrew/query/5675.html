@@ -1,0 +1,111 @@
+<h1>H locale / locative H with word-final vowels</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>5675</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=5675">localhost:8000/hebrew/query?id=5675</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=5675">shebanq.ancient-data.org/hebrew/query?id=5675</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Jorik Groen</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://etcbc.nl">Motion verbs</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.godgeleerdheid.vu.nl/etcbc">ETCBC</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2023-01-04 11:20:46</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2023-01-04 12:02:10</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2023-01-09 09:02:34</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>Can a he locale / locative he occur with a word that (regularly) ends in a vowel?</p>
+<p>Assuming that words ending in a vowel end in a mater lectionis -&gt;, -W, -J, or -H, we find only 26 words that have the locative uvf 'H' added to it. 
+All instances are words ending in -H, which becomes -T@H. 
+23 of them are classified as pdp=nmpr; at least 1 other is used as a geographical name, too: Jos 18:18 הָעֲרָבָֽתָה (the plain/part of the Jordan Valley north of the Dead Sea); possibly also 1Sa 9:13 הַבָּמָ֜תָה (LXX takes as place name Βαμα). 
+What about 1Sa 9:22 לִשְׁכָּ֑תָה?</p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>6592</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe6592</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=5675&amp;version=2021">localhost:8000/hebrew/query?id=5675&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=5675&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=5675&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>3</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>3</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2023-08-03 08:10:24</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2023-08-03 08:09:58</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2023-08-03 08:10:33</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+[phrase
+ [word FOCUS lex ~ '.*[&gt;WJH]\\/\\=*' AND uvf = 'H' AND NOT pdp = nmpr]
+]
+</code></pre>

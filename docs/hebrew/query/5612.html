@@ -1,0 +1,114 @@
+<h1>BTDH 2.2 Shebanq C</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>5612</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=5612">localhost:8000/hebrew/query?id=5612</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=5612">shebanq.ancient-data.org/hebrew/query?id=5612</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Mattie Kieviet</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://shebanq.ancient-data.org">shebanq examples</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.godgeleerdheid.vu.nl/etcbc">ETCBC</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2022-11-23 03:02:35</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2022-11-23 05:08:21</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2022-11-23 05:09:30</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>Occurrences of כָּסָה without an object</p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>6519</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe6519</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=5612&amp;version=2021">localhost:8000/hebrew/query?id=5612&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=5612&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=5612&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>19</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>19</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2022-11-23 05:08:25</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2022-11-23 05:08:21</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2022-11-23 05:09:28</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+
+[clause
+   NOTEXIST [phrase function=Objc]
+   NOTEXIST [word lex = &quot;&gt;T&quot;]
+   [phrase focus function=Pred
+      [word sp = verb AND vs &lt;&gt; pual AND vs &lt;&gt; hof AND vs &lt;&gt; nif AND lex = &quot;KSH[&quot;]
+   ]
+   NOTEXIST [phrase function=Objc]
+   NOTEXIST [word lex = &quot;&gt;T&quot;]
+]
+</code></pre>

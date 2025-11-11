@@ -1,0 +1,186 @@
+<h1>BOL-import-sample_04</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>989</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=989">localhost:8000/hebrew/query?id=989</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=989">shebanq.ancient-data.org/hebrew/query?id=989</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Oliver Glanz</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.sbl-site.org/">SBL2015</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://andrews.edu">Henry S. Otio</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2015-11-12 17:29:15</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2015-11-12 17:29:33</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2015-11-12 17:30:41</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>None</p>
+<h2>Versions</h2>
+<h3>4b</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1276</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe1276</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=989&amp;version=4b">localhost:8000/hebrew/query?id=989&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=989&amp;version=4b">shebanq.ancient-data.org/hebrew/query?id=989&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>3609</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>3609</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2015-11-12 17:29:33</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2015-11-12 17:29:33</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2015-11-12 17:30:41</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>3.4.1.pre12</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>//searches for &quot;pure&quot; regular verbs in selected book and chapters
+//this is the alphabetic order: &gt;BGDHWZXVJKLMNS&lt;PYQRFCT
+select all objects
+where
+    [word
+        //excluding P&quot;Alef verbs
+        NOTEXIST [word FOCUS sp IN (verb) AND lex =&quot;&gt;MR[&quot;]
+        NOTEXIST [word FOCUS sp IN (verb) AND lex =&quot;&gt;KL[&quot;]
+        NOTEXIST [word FOCUS sp IN (verb) AND lex =&quot;&gt;BD[&quot;]
+        NOTEXIST [word FOCUS sp IN (verb) AND lex =&quot;&gt;BH[&quot;]
+        NOTEXIST [word FOCUS sp IN (verb) AND lex =&quot;&gt;PH[&quot;]
+
+        //excluding P&quot;Nun verbs
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~ '[N][&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][&gt;BGDHWZXVJKLMNS&lt;PYQRFCT]']
+        NOTEXIST [word sp IN (verb) AND lex =&quot;LQX[&quot;] //analog P&quot;Nun verbs
+
+        //excluding P&quot;Jod verbs
+        NOTEXIST [word FOCUS sp IN (verb) AND lex =&quot;JVB[&quot;]
+        NOTEXIST [word FOCUS sp IN (verb) AND lex =&quot;JLL[&quot;]
+        NOTEXIST [word FOCUS sp IN (verb) AND lex =&quot;JMN[&quot;]
+        NOTEXIST [word FOCUS sp IN (verb) AND lex =&quot;JNQ[&quot;]
+        NOTEXIST [word FOCUS sp IN (verb) AND lex =&quot;JQY[&quot;]
+        NOTEXIST [word FOCUS sp IN (verb) AND lex =&quot;JCN[&quot;]
+
+        //excluding P&quot;Waw verbs
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~ '[J][&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][&gt;BGDHWZXVJKLMNS&lt;PYQRFCT]']
+        NOTEXIST [word sp IN (verb) AND lex =&quot;HLK[&quot;] //analog P&quot;Waw vebs
+
+        //excluding Ayin&quot;Waw-Yod verbs
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~ '[&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][WJ][&gt;BGDHWZXVJKLMNS&lt;PYQRFCT]']
+
+        //excluding Ayin&quot;Ayin verbs
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~'[&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][&gt;][&gt;]']
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~'[&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][B][B]']
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~'[&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][G][G]']
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~'[&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][D][D]']
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~'[&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][H][H]']
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~'[&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][W][W]']
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~'[&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][Z][Z]']
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~'[&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][X][X]']
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~'[&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][V][V]']
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~'[&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][J][J]']
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~'[&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][K][K]']
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~'[&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][L][L]']
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~'[&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][M][M]']
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~'[&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][N][N]']
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~'[&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][S][S]']
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~'[&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][&lt;][&lt;]']
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~'[&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][P][P]']
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~'[&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][Y][Y]']
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~'[&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][Q][Q]']
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~'[&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][R][R]']
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~'[&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][F][F]']
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~'[&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][C][C]']
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~'[&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][T][T]']
+
+        //excluding L&quot;Alef verbs
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~ '[&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][&gt;]']
+
+        //excluding L&quot;Hey verbs
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~ '[&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][H]']
+
+        //excluding OTHER unwanted verbs
+        NOTEXIST [word FOCUS sp IN (verb) AND lex =&quot;HJH[&quot;]
+        NOTEXIST [word FOCUS sp IN (verb) AND lex =&quot;XJH[&quot;]
+
+        //excluding Primae Guturalis
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~ '[&gt;&lt;RHX][&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][&gt;BGDHWZXVJKLMNS&lt;PYQRFCT]']    //searches for Primae Gutturalis
+
+        //excluding Mediae Guturalis
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~ '[&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][&lt;&gt;RHX][&gt;BGDHWZXVJKLMNS&lt;PYQRFCT]']    //searches for Mediae Gutturalis
+
+        //excluding Tertiae Guturalis
+        NOTEXIST [word FOCUS sp IN (verb) AND lex ~ '[&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][&lt;RX]']      //searches for Tertiae Gutturalis
+
+        [
+        [word FOCUS sp IN (verb) AND lex ~ '[&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][&gt;BGDHWZXVJKLMNS&lt;PYQRFCT][&gt;BGDHWZXVJKLMNS&lt;PYQRFCT]'
+            AND vs IN (qal,nif,piel,pual,hit,hif) //excluding hsht
+            AND vt IN (perf,impf,wayq,impv) //excluding infc,infa,ptca,ptcp,weyq
+        ]   //searches for all verbs
+        ]
+    ]
+
+</code></pre>

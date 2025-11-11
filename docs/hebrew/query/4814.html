@@ -1,0 +1,120 @@
+<h1>phrases like המקום הזה NOT in quotation, in Jeremiah</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4814</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=4814">localhost:8000/hebrew/query?id=4814</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=4814">shebanq.ancient-data.org/hebrew/query?id=4814</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Rieks Hekman</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.vu.nl">Analytic Tools and the Study of Bible</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2021-10-22 13:00:35</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2021-10-22 13:05:45</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2021-10-22 13:06:00</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>This query looks in Jeremiah for all locational phrases consisting of: <br>
+&#8226; a subphrase containing one of the nouns מקום 'place', ארץ 'land',<br>
+&nbsp;&nbsp;עיר 'city' and בית 'house', directly followed by<br>
+&#8226; a subphrase with a demonstrative relation to its mother.<br>
+which are NOT in clauses marked as quotation.</p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>5649</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe5649</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=4814&amp;version=2021">localhost:8000/hebrew/query?id=4814&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=4814&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=4814&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>2</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>8</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2021-10-22 13:01:35</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2021-10-22 13:01:35</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2021-10-22 13:05:57</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>Select all objects where
+
+[book book IN (Jeremia)
+   [clause txt!~&quot;Q&quot;
+      [phrase
+         [subphrase FOCUS
+            [word lex='MQWM/' OR lex='&gt;RY/' 
+             OR lex='&lt;JR/' OR lex='BJT/']
+         ]
+         [subphrase FOCUS rela=dem]
+      ]
+   ]
+]
+</code></pre>

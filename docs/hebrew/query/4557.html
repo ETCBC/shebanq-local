@@ -1,0 +1,117 @@
+<h1>so that X will not be ... from Y</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4557</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=4557">localhost:8000/hebrew/query?id=4557</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=4557">shebanq.ancient-data.org/hebrew/query?id=4557</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Reinoud Oosting</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.nbv.nl">Revision Nieuwe Bijbelvertaling NBV</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.bijbelgenootschap.nl">Nederlands Bijbelgenootschap</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2021-05-07 20:00:28</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2021-10-21 09:58:23</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2021-05-11 09:18:17</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>The parsing of שֵׁם־הַמֵּ֛ת as an object [objc] in Ruth 4:10 seems to be incorrect. After reporting, this mistake has been corrected. In the current version of the ETCBC-database this phrase is parsed as a subject [subj], as the query on the 2021 version shows. </p>
+<h2>Versions</h2>
+<h3>2017</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>5358</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe5358</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=4557&amp;version=2017">localhost:8000/hebrew/query?id=4557&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=4557&amp;version=2017">shebanq.ancient-data.org/hebrew/query?id=4557&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>6</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>30</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2021-05-07 20:58:28</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2021-05-07 20:53:16</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2021-05-11 09:18:17</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>SELECT ALL OBJECTS WHERE
+
+[clause_atom
+  [phrase function = Conj
+    [word FOCUS FIRST lex = 'W' ]]
+  [phrase function = Nega 
+    [word FOCUS lex = 'L&gt;' ]]
+  [phrase function = Pred 
+    [word FOCUS sp = verb AND vs = nif AND vt = impf ] ]
+   [phrase FOCUS function IN(Subj,Objc) ] // Ruth 4:10 Objc &gt;&gt; Subj
+   [phrase function = Cmpl
+     [word FOCUS sp = prep AND lex = 'MN' ]]
+]
+
+</code></pre>

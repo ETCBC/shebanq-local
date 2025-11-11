@@ -1,0 +1,117 @@
+<h1>God subject of הלך</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>7099</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=7099">localhost:8000/hebrew/query?id=7099</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=7099">shebanq.ancient-data.org/hebrew/query?id=7099</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Janick Fortier</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.vu.nl">Analytic Tools and the Study of Bible</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2025-09-10 02:33:32</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2025-09-15 16:02:01</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2025-09-26 13:32:36</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>This query searches for cases in which God (or YHWH) is the subject of the verb הלך ‘to go, walk’. </p>
+<p>We see in 2 Samuel 7:23 (and I Chr 17:21), that "God went" in Egypt to redeem for himself a people. A similar idea is found in Isaiah 52:12. God goes with his people in protection and redemption. A similar, but different use of HLK is found in Exodus with the spliting of the Reed Sea. God HLK the sea open for them to pass (thus saving and delivering them from the Egyptians). </p>
+<p>This query does not catch Gen 3:8, which I thought it should. It tells me that this is a complex query. The database cannot retrieve all instances, and might bring up some that are not exactely related. For instance, one of the result is I Kings 13:12 where the subject is not God, but the man of God. Results need to be carefully investigated. </p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>8132</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe8132</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=7099&amp;version=2021">localhost:8000/hebrew/query?id=7099&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=7099&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=7099&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>23</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>65</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2025-09-15 15:48:57</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2025-09-15 15:48:57</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2025-09-26 13:32:37</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.9.0</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+[Clause FOCUS
+  [UnorderedGroup
+    [phrase function=Subj
+      [word lex=&quot;JHWH/&quot; OR lex=&quot;&gt;LHJM/&quot;]
+    ]
+    [phrase function IN (Pred, PreC)
+      [word sp=verb AND lex = &quot;HLK[&quot;]
+    ]
+  ]
+]
+
+</code></pre>

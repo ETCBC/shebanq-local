@@ -1,0 +1,112 @@
+<h1>KJ + Subj + PC</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1093</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1093">localhost:8000/hebrew/query?id=1093</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1093">shebanq.ancient-data.org/hebrew/query?id=1093</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Martijn Naaijer</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.godgeleerdheid.vu.nl/en/news-agenda/news-archive/2013/three-new-researchers-appointed-to-biblical-hebrew-research.asp">SynVar</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2016-01-20 21:54:05</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2016-02-05 20:36:12</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2016-02-08 10:07:23</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>This query finds all the verbless clauses starting with KJ or &gt;CR, followed by a subject personal pronoun, followed by a predicate complement. Some of these are object clauses.</p>
+<h2>Versions</h2>
+<h3>4b</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1385</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe1385</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1093&amp;version=4b">localhost:8000/hebrew/query?id=1093&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1093&amp;version=4b">shebanq.ancient-data.org/hebrew/query?id=1093&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>204</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>848</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2016-02-05 20:38:25</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2016-02-05 20:38:25</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2016-02-08 10:07:23</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>3.4.1.pre12</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+
+[clause focus kind = NC
+   [word lex = '&gt;CR' or lex = 'KJ']
+   [phrase function = Subj
+      [word sp = prps]
+    ]
+   [phrase function = PreC]
+] 
+</code></pre>

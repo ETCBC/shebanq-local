@@ -1,0 +1,117 @@
+<h1>Bouwen (BNH) en Planten (NV&lt;) in een hoofdstuk</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>2684</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=2684">localhost:8000/hebrew/query?id=2684</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=2684">shebanq.ancient-data.org/hebrew/query?id=2684</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Joost van den Bogert</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.vu.nl/nl/studiegids/2014-2015/index.asp">G_EXOTJB_201415</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2018-04-16 07:34:20</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2018-04-16 07:35:43</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2018-04-16 13:32:47</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>In deze query zoek ik in hele hoofdstukken naar het gezamenlijk voorkomen van de werkwoorden BNH en NV&lt;. Dit om de betekeniscontext van dit werkwoordenpaar te onderzoeken ten behoeve van een woordstudie naar deze twee woorden in Ezechiël 36:36.</p>
+<h2>Versions</h2>
+<h3>4</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>3139</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe3139</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=2684&amp;version=4">localhost:8000/hebrew/query?id=2684&amp;version=4</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=2684&amp;version=4">shebanq.ancient-data.org/hebrew/query?id=2684&amp;version=4</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>92</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>63</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2018-04-16 07:35:55</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2018-04-16 07:35:55</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2018-04-16 13:32:31</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>Select all objects where
+
+[chapter
+    [word FOCUS lex = 'BNH[' ]
+..
+    [word FOCUS lex = 'NV&lt;[' ]
+]
+OR
+[chapter
+     [word FOCUS lex = 'BNH[' ]
+..
+     [word FOCUS lex = 'NV&lt;[' ]
+]
+
+</code></pre>

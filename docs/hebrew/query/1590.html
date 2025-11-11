@@ -1,0 +1,112 @@
+<h1>Yahweh With Thee</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1590</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1590">localhost:8000/hebrew/query?id=1590</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1590">shebanq.ancient-data.org/hebrew/query?id=1590</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Wol Wol</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.andrews.edu/">Exegesis_Paper</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/text">Andrews_MOEX</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2017-02-06 03:08:09</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2017-05-31 07:10:23</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2017-04-06 14:58:08</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>"Yahweh (shall)be with you" searches for a pred, Yahweh as subject, and prepositional phrase with pronominal suffix.
+PS: Shebanq does not return results from 1 Chronicles. Emdros has 7 verses' results for the same query.</p>
+<h2>Versions</h2>
+<h3>4b</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1924</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe1924</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1590&amp;version=4b">localhost:8000/hebrew/query?id=1590&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1590&amp;version=4b">shebanq.ancient-data.org/hebrew/query?id=1590&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>6</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>12</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2017-04-06 14:56:23</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2017-04-06 14:56:09</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2017-04-06 14:58:08</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+[verse book IN (Jeremia) AND chapter in (51)
+  [clause
+    [word FOCUS lex=&quot;JHWH/&quot; OR lex=&quot;&gt;LHJM/&quot; OR lex=&quot;&gt;L/&quot;]
+    [word FOCUS lex=&quot;YB&gt;/&quot;]
+  ]
+]
+
+</code></pre>

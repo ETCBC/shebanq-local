@@ -1,0 +1,119 @@
+<h1>The Word of the Lord Happened...</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>5201</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=5201">localhost:8000/hebrew/query?id=5201</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=5201">shebanq.ancient-data.org/hebrew/query?id=5201</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Timothy Baze</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.andrews.edu/">SHEBANQ Tutorials</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="https://andrews.edu">Andrews Unversity</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2022-04-11 15:41:39</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2022-04-11 16:00:59</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2022-04-11 15:46:10</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>A search to determine whether the phrase "The word of which it is to say it happened..." consistently denotes the beginning of a new unit.
+The section query looks at a similar phrase, "It happened the word of YHWH to Jeremiah," which only sometimes functions as the beginning of a new unit.</p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>6095</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe6095</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=5201&amp;version=2021">localhost:8000/hebrew/query?id=5201&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=5201&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=5201&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>12</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>48</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2022-04-11 16:00:59</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2022-04-11 16:00:59</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2022-04-12 02:42:09</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+[book book IN (Jeremia)
+ [word FOCUS lex = &quot;H&quot;]
+ [word FOCUS lex = &quot;DBR/&quot;]
+ [word FOCUS lex = &quot;&gt;CR&quot;]
+ [word FOCUS lex = &quot;HJH[&quot;]
+]
+
+//[book book IN (Jeremia)
+// [word FOCUS lex = &quot;HJH[&quot;]
+// [word FOCUS lex = &quot;DBR/&quot;]
+// [word FOCUS lex = &quot;JHWH/&quot;]
+// [word FOCUS lex = &quot;&gt;L&quot;]
+// [word FOCUS lex = &quot;JRMJHW/&quot; OR lex = &quot;JRMJH/&quot;]
+//]
+</code></pre>

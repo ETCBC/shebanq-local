@@ -1,0 +1,114 @@
+<h1>blessing God</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4006</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=4006">localhost:8000/hebrew/query?id=4006</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=4006">shebanq.ancient-data.org/hebrew/query?id=4006</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Rieks Hekman</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.vu.nl">DigHumCourse2017</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2020-09-14 10:42:24</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2020-09-14 18:10:13</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2020-09-14 18:07:10</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>Find all instances of '&gt;LHJM' as the exact and explicit object of the verb BRK.</p>
+<p>Jos 22:33 NIV: they praised God;
+Jos 22:33 KJV: they blessed God</p>
+<h2>Versions</h2>
+<h3>2017</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4719</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe4719</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=4006&amp;version=2017">localhost:8000/hebrew/query?id=4006&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=4006&amp;version=2017">shebanq.ancient-data.org/hebrew/query?id=4006&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>6</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>12</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2020-09-14 18:07:02</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2020-09-14 13:21:59</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2020-09-14 18:10:33</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>Select all objects where
+[clause FOCUS                             //find all clauses with:
+   [UnorderedGroup                           //in no specific order or grouping:
+      [word lex0='BRK' AND sp=verb]             //the verb 'BRK' and
+      [phrase function=Objc                     //an object phrase with:
+         [word FIRST AND LAST g_cons='&gt;LHJM']      //only the exact word '&gt;LHJM'
+      ]                                         //end of phrase block
+   ]                                         //end of UnorderedGroup block
+]                                         //end of clause block
+</code></pre>

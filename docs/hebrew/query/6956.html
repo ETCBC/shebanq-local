@@ -1,0 +1,112 @@
+<h1>Count Wayq - Num. 21:1-20</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>6956</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6956">localhost:8000/hebrew/query?id=6956</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6956">shebanq.ancient-data.org/hebrew/query?id=6956</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Jouke Brouwer</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.etcbc.nl">Exegesis OT-2025</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2025-02-18 11:27:21</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2025-02-18 11:28:04</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2025-02-18 11:28:22</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>Het vinden van alle wayyiqtol-vormen in Numeri 21:1-20.</p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>7987</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe7987</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6956&amp;version=2021">localhost:8000/hebrew/query?id=6956&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6956&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=6956&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>27</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>27</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2025-02-18 11:28:13</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2025-02-18 11:28:13</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2025-02-18 11:28:22</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+[book book IN (Numeri)
+   [chapter chapter = 21
+     [verse verse &gt;=1 AND verse &lt;=20
+      [word FOCUS vt = wayq]
+     ]
+   ]
+]
+
+</code></pre>

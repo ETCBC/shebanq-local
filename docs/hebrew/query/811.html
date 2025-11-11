@@ -1,0 +1,114 @@
+<h1>Comparatives 2</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>811</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=811">localhost:8000/hebrew/query?id=811</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=811">shebanq.ancient-data.org/hebrew/query?id=811</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Dirk Bakker</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.godgeleerdheid.vu.nl/en/news-agenda/news-archive/2013/three-new-researchers-appointed-to-biblical-hebrew-research.asp">SynVar</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2015-05-18 11:11:09</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2015-05-18 11:47:15</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2015-05-18 11:58:24</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>A more advanced version of 'Comparatives': looks for comparative constructions (both attributive and predicative) by collecting phrase atoms, the first lexeme of which has pdp 'adjv', and which is specified by a phrase that starts with the lexeme MN.</p>
+<p>Note that this query needs refining: On the one hand, its results also include non-comparative constructions (e.g. 1Kgs 11:26), while on the other hand it misses cases which are comparative, but which have been parsed differently.</p>
+<h2>Versions</h2>
+<h3>4</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1056</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe1056</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=811&amp;version=4">localhost:8000/hebrew/query?id=811&amp;version=4</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=811&amp;version=4">shebanq.ancient-data.org/hebrew/query?id=811&amp;version=4</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>14</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>54</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2015-05-18 11:16:55</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2015-05-18 11:16:55</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2015-05-18 11:58:24</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.4.0</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+[phrase FOCUS
+   [phrase_atom as S
+      [word first pdp = adjv]
+   ]
+   ..
+   [phrase_atom mother = S.self
+      [word first lex = &quot;MN&quot;]
+   ]
+]
+</code></pre>

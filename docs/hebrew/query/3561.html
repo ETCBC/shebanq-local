@@ -1,0 +1,122 @@
+<h1>Assignment 5.2</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>3561</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3561">localhost:8000/hebrew/query?id=3561</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3561">shebanq.ancient-data.org/hebrew/query?id=3561</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Mark Klooster</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.etcbc.nl">MA_Analytical_Tools_2019</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2019-09-18 17:47:56</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-09-18 18:18:43</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2019-09-18 18:07:20</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>This query intends to find all occasions where God/YHWH/Adonai is the object of the verb 'to bless' (Hebrew: ברך) rather than the subject. </p>
+<p>This query searches for any clause that contains the verb 'to bless' and an object phrase containing 'God/YHWH/Adonai'. Since the order of the object and the predicate within the clause is irrelevant, I used [UnorderedGroup. </p>
+<p>The "NOTEXIST" condition filters is optional. Without it, the query gives two unwanted results: 2 Samuel 21:3 ("the inheritance of YHWH") and Psalm 115:13 ("the 'fearers' of  YHWH"). In both cases, YHWH is not the object, but the nomen rectum part of the genitive construction that constitutes the object. </p>
+<p>Run with the "NOTEXIST" condition, the query leaves out those two problematic verses, by filtering out those clauses that contain object phrases with God/YHWH/Adonai as the nomen rectum part of a genitive construction. Unfortunately, this leaves out Genesis 24:48 as well, because its object phrase (YHWH, the God of my Lord Abraham) contains both YHWH as the object of the verb 'to bless' and, in an apposition, God and Adonai as the nomen rectum (which the NONEXIST condition filters out). </p>
+<p>To see how English Bible Translations have dealt with those cases where God is the object of blessing, I have compared the NIV (New International Version) and the KJV (King James Version). Interestingly, the KJV translates ‘bless the LORD’, while the NIV translates ‘praise the LORD’. In some cases, for example, in  Job, both the KJV and the NIV translate ‘curse God’.</p>
+<h2>Versions</h2>
+<h3>2017</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4189</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe4189</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3561&amp;version=2017">localhost:8000/hebrew/query?id=3561&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3561&amp;version=2017">shebanq.ancient-data.org/hebrew/query?id=3561&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>71</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>71</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2019-09-18 18:07:13</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-09-18 17:58:09</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2019-09-18 18:07:36</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+   [clause
+      [UnorderedGroup
+         [word FOCUS sp = verb AND lex = &quot;BRK[&quot;
+         ]
+         [phrase function = Objc
+//The NOTEXIST condition is optional (see note)
+            NOTEXIST [subphrase rela = rec
+            ]
+            [word FOCUS lex = &quot;&gt;LHJM/&quot; OR lex = &quot;JHWH/&quot; OR lex = &quot;&gt;DNJ/&quot;
+            ]
+         ]
+      ]
+   ]
+
+</code></pre>

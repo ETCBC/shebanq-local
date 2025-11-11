@@ -1,0 +1,124 @@
+<h1>2.1.1 Intransitieve perfecta + wayyiqtol</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>3624</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3624">localhost:8000/hebrew/query?id=3624</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3624">shebanq.ancient-data.org/hebrew/query?id=3624</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Meeuwis Veldhoen</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.tua.nl/ATSB">Keuzevak ATSB</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="https://www.tua.nl">Theologische Universiteit Apeldoorn</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2019-10-23 09:25:26</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-10-24 12:06:09</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2019-10-24 12:21:44</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>Deze query zoekt naar alle zinnen in de Psalmen waarin een wayyiqtol voorafgegaan wordt door een clause met een perfectum. Deze clause mag echter geen lijdend voorwerp of complement bevatten, zodat perfecti met intransitieve betekenis boven water komen.</p>
+<h2>Versions</h2>
+<h3>2017</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4263</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe4263</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3624&amp;version=2017">localhost:8000/hebrew/query?id=3624&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3624&amp;version=2017">shebanq.ancient-data.org/hebrew/query?id=3624&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>62</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>24</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2019-10-24 12:06:09</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-10-24 10:44:23</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2019-10-24 12:22:56</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>SELECT ALL OBJECTS WHERE
+[book book in (Psalmi)
+  [verse
+    [clause
+      NOTEXIST [phrase function = Objc]
+      ..
+      NOTEXIST [phrase function = Cmpl]
+      ..
+      [phrase function = Pred OR function = PreO OR function = PreS
+        [word FOCUS vt=perf]
+      ]
+      ..
+      NOTEXIST [phrase function = Objc]
+      ..
+      NOTEXIST[phrase function = Cmpl]
+    ]
+    ..
+    [word lex = 'W']
+    [word FOCUS vt = wayq]
+ ]
+]
+</code></pre>

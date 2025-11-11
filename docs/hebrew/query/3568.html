@@ -1,0 +1,108 @@
+<h1>Imperatives outside direct speech</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>3568</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3568">localhost:8000/hebrew/query?id=3568</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3568">shebanq.ancient-data.org/hebrew/query?id=3568</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Jorik Groen</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.leidenuniv.nl">PhD on HLK</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.leidenuniv.nl">Leiden</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2019-09-25 08:50:50</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-10-08 12:46:13</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2023-08-07 09:46:47</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>This query searches for imperatives in clauses that are not marked as direct speech. Direct speech is selected by txt=Q.</p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>6976</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe6976</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3568&amp;version=2021">localhost:8000/hebrew/query?id=3568&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3568&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=3568&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>5</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>5</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2023-08-07 09:46:42</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2023-08-07 09:46:42</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2023-08-07 09:46:56</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+[clause NOT txt~'.*Q.*'
+    [word focus sp=verb AND vt=impv]
+]
+
+</code></pre>

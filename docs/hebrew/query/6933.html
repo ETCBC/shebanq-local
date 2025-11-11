@@ -1,0 +1,171 @@
+<h1>Speaking donkeys</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>6933</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6933">localhost:8000/hebrew/query?id=6933</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6933">shebanq.ancient-data.org/hebrew/query?id=6933</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>André Gerritsen</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.etcbc.nl">Exegesis OT-2025</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2025-02-12 14:55:14</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2025-02-19 07:55:13</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2025-02-12 15:35:41</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>This query returns all results in which a donkey/ezelin speaks. First, the results in which the donkey/ezelin is the subject of speaking were searched. This yields two results (Numbers 22).
+Then a search was made for those times when speaking is associated with the donkey/ezelin. This yields 3 (false) results (1 Samuel 10:14 and 2 Kings 4:22 and 24).</p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>7961</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe7961</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6933&amp;version=2021">localhost:8000/hebrew/query?id=6933&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6933&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=6933&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>6</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>10</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2025-02-19 07:58:22</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2025-02-19 07:58:16</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2025-02-19 07:58:30</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+// First look for those times when the donkey/ezelin is the subject of speech and the other person is the object.
+[clause
+  [UnorderedGroup
+    [phrase function=Subj            //Subject must be the donkey.
+      [word FOCUS lex = '&gt;TWN/']
+    ]
+    [phrase function=Pred            //word function must be predicate and must be יֹּאמֶר֩or דבר. In addition, it must be a wayyiqtol.
+      [word focus (lex = '&gt;MR['
+                and vt = wayq
+                  )
+               or (lex = ' DBR/'
+                and vt = wayq
+                  )
+      ]
+    ]
+  ]
+]
+
+or
+// From here also search on the verb speak, without specified subject.
+// Note that the section below gives approximate results.  
+[clause
+  // Search on a phrase in which the donkey/ezelin is subject.
+  [UnorderedGroup
+    [phrase function = Objc
+      [word focus lex = '&gt;TWN/']
+    ]
+  ]
+]
+// The phrases should be immediately followed by the verb 'Speaking', which should be a wayyiqtol.
+[clause typ = Way0
+  // Search on a phrase without a complement.
+  [phrase function = Pred
+    [word focus (lex = '&gt;MR['
+              and vt = wayq
+                )
+             or (lex = 'DBR/'
+              and vt = wayq
+                )
+    ]
+  ]
+]
+
+or
+// From here also search on the verb speak, without specified subject. In different order from above.
+// Note: the section below gives approximate results.  
+[clause typ = Way0
+  // First search on a phrase without a complement.
+  [phrase function = Pred
+    [word focus (lex = '&gt;MR['
+              and vt = wayq
+                )
+             or (lex = 'DBR/'
+              and vt = wayq
+                )
+    ]
+  ]
+]
+[clause
+  // Search on a phrase in which the donkey/ezelin is subject.
+  [UnorderedGroup
+    [phrase function = Objc
+      [word focus lex = '&gt;TWN/']
+    ]
+  ]
+]
+</code></pre>

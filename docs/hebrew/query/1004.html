@@ -1,0 +1,117 @@
+<h1>SBL query sample #2 (finding limited phrase functions)</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1004</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1004">localhost:8000/hebrew/query?id=1004</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1004">shebanq.ancient-data.org/hebrew/query?id=1004</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Oliver Glanz</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.sbl-site.org/">SBL2015</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://andrews.edu">Henry S. Otio</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2015-11-22 17:34:27</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2015-11-22 17:49:14</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2015-11-22 17:49:25</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>This query finds all verbal clauses that have a finite verb as a predicate and contain only one or more of the following phrases:
+- predicate
+- subject
+- object
+- complement
+- adjunct
+Any other phrase function is excluded.</p>
+<h2>Versions</h2>
+<h3>4b</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1293</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe1293</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1004&amp;version=4b">localhost:8000/hebrew/query?id=1004&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1004&amp;version=4b">shebanq.ancient-data.org/hebrew/query?id=1004&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>10358</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>37689</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2015-11-22 17:49:14</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2015-11-22 17:45:36</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2015-11-22 17:49:25</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>3.4.1.pre12</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+
+[clause 
+        NOTEXIST [clause typ IN (InfC,InfA,Ptcp)] 
+        [clause FOCUS kind = VC 
+        NOTEXIST [phrase function IN (Conj, EPPr, ExsS, Exst, Frnt, IntS, Intj, Loca, ModS, Modi, NCoS, NCop, Nega, PrAd, PrcS, PreC, PtcO, Ques, Rela, Supp, Time, Unkn, Voct)]
+        ]
+]
+</code></pre>

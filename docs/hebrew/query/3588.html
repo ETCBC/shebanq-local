@@ -1,0 +1,113 @@
+<h1>2. Predicaat + wayyiqtol</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>3588</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3588">localhost:8000/hebrew/query?id=3588</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3588">shebanq.ancient-data.org/hebrew/query?id=3588</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Meeuwis Veldhoen</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.tua.nl/ATSB">Keuzevak ATSB</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="https://www.tua.nl">Theologische Universiteit Apeldoorn</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2019-10-16 07:43:27</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-10-23 08:10:11</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2019-10-23 08:12:41</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>Deze query zoekt naar zinnen in de Psalmen waar een wayyiqtol-vorm voorafgegaan wordt door een predicaat (in dit geval is het predicaat een phrase). Het voorafgaande predicaat is namelijk bepalend voor de betekenis van de wayyiqtol.
+De query zoekt op 'verse' en niet op 'sentence' om een zo groot mogelijk bereik te hebben. Soms staat het eerste predicaat namelijk wel in hetzelfde vers, maar in de voorafgaande 'sentence'. Deze query prentendeert niet de volledigheid van alle wayyiqtols die op een predicaat-phrase volgen te bevatten. Het eerste predicaat zou namelijk ook in één of twee voorafgaande zinnen kunnen staan, en zodoende buiten de query-resultaten vallen. Deze qeuery biedt wel voldoende resultaten om verder te analyseren. </p>
+<h2>Versions</h2>
+<h3>2017</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4224</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe4224</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3588&amp;version=2017">localhost:8000/hebrew/query?id=3588&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3588&amp;version=2017">shebanq.ancient-data.org/hebrew/query?id=3588&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>236</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>559</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2019-10-23 08:12:38</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-10-23 08:06:56</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2019-10-23 08:12:45</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>SELECT ALL OBJECTS WHERE
+[book book in (Psalmi)
+  [verse
+    [phrase FOCUS function = Pred OR function = PreO OR function = PreS]
+    ..
+    [word FOCUS lex = 'W']
+    [word FOCUS vt = wayq]
+ ]
+]
+</code></pre>

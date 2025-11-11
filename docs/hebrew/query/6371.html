@@ -1,0 +1,126 @@
+<h1>Engel van de Heer</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>6371</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6371">localhost:8000/hebrew/query?id=6371</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6371">shebanq.ancient-data.org/hebrew/query?id=6371</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Henri Pool</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://vu.nl/">Exegese OT</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="https://www.vu.nl/nl/index.aspx">Vrije universiteit</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2024-02-09 14:09:26</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2024-03-19 21:35:48</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2024-03-19 21:35:51</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>Waar komt in de Pentateuch voor dat de engel van de Heer een vrouw vindt en/of tegen haar spreekt? </p>
+<p>Om dit te onderzoeken moeten zowel de engel van de Heer als de vrouw waar hij iets aan doet of tegen zegt in een enkelvoudige zin te vinden zijn binnen een narratieve zin. Omdat ik breed wil zoeken wat de engel doet of zegt, laat ik vrij wat het werkwoord is.</p>
+<p>Engel van de Heer is: ML&gt;K/ JHWH/  of ML&gt;K/ &gt;LHJM/.
+Vrouw moet voorkomen in de suffix van het werkwoord of in het complement van de zin.</p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>7379</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe7379</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6371&amp;version=2021">localhost:8000/hebrew/query?id=6371&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6371&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=6371&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>5</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>5</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2024-03-19 21:49:56</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2024-03-19 21:49:55</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2024-03-19 21:50:02</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+
+[verse book IN (Genesis, Exodus, Leviticus, Numeri, Deuteronomium)
+    [clause domain = 'N'
+        [word FOCUS prs_gn = f]
+        ..
+        [word lex = 'ML&gt;K/']
+        [word lex = 'JHWH/' OR lex = '&gt;LHJM/']
+    ]
+OR
+    [clause domain = 'N'
+        [word lex = 'ML&gt;K/']
+        [word lex = '&gt;LHJM/' OR lex = 'JHWH/']
+        ..
+        [phrase function = Cmpl
+            [word FOCUS gn = f]
+        ]
+    ]
+]
+
+</code></pre>

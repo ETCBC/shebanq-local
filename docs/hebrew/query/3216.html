@@ -1,0 +1,123 @@
+<h1>De Onbesneden Filistijn</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>3216</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3216">localhost:8000/hebrew/query?id=3216</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3216">shebanq.ancient-data.org/hebrew/query?id=3216</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Sam Jansen</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.etcbc.nl">G_EXOTJB 2018-2019</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2019-04-22 20:54:35</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-04-23 09:24:08</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2019-04-24 13:16:42</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>In I Samuel 17 noemt David Saul een 'Onbesneden Filistijn. Bij mij rees de vraag op tijdens het lezen van deze bespotting of dit een formule zou zijn die specifiek was weggelegd voor de Filistijnen, of dat andere volken ook zo genoemd zouden worden. Vandaar deze query.
+Met de hulp van prof. van Peursen ben ik tot deze query gekomen.
+In het eerste deel focus ik de twee woorden van belang. Omdat ik echter wil weten of ook andere volken 'onbesneden' genoemd worden zal ik moeten zoeken naar woorden die volken aanduiden, oftewel de 'gentilic' part-of-speech. 
+Omdat er ook woorden tussen mijn twee zoektermen zouden kunnen staan (zoals een lidwoord) heb ik de twee punten tussen de regels toegevoegd. Dit geeft MQL de ruimte om woorden tussen de zoektermen te laten, zolang het nog binnen dezelfde 'phrase' zit. 
+Als laatste moet ik ook op de optie dat de twee woorden in een andere woordvolgorde staan rekenen. Dat is snel gedaan met een OR functie waarbij ik de twee regels van plaats verwissel. 
+Nu krijgen we in de resultaten te zien dat deze uitdrukking niet vaak gebruikt word. Twee van de drie resultaten zijn in hetzelfde hoofdstuk, uitgesproken door dezelfde persoon (David). Het eerste resultaat uit Richteren is ook in de directe rede, waarin Simsons ouders aan Simson vragen waarom hij zijn vrouw bij 'de onbesneden Filistijnen' vandaan haalt. 
+Alhoewel het naar mijn inziens dus niet vaak genoeg gebruikt wordt om het een formule te noemen, wordt deze uitdrukking slechts en alleen gebruikt wanneer er gesproken wordt over de Filistijnen en niet over bijvoorbeeld de Amelekieten. </p>
+<h2>Versions</h2>
+<h3>4</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>3770</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe3770</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3216&amp;version=4">localhost:8000/hebrew/query?id=3216&amp;version=4</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3216&amp;version=4">shebanq.ancient-data.org/hebrew/query?id=3216&amp;version=4</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>3</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>6</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2019-04-23 09:11:15</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-04-23 09:11:15</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2019-04-24 13:16:45</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>Select all objects where
+
+[phrase
+ [word FOCUS lex = '&lt;RL/']
+ ..
+ [word FOCUS ls = gntl]
+
+ OR
+
+ [word FOCUS ls = gntl] 
+ ..
+ [word FOCUS lex = '&lt;RL/']
+]
+
+</code></pre>

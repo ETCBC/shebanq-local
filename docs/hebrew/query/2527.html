@@ -1,0 +1,119 @@
+<h1>Final Paper SV</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>2527</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=2527">localhost:8000/hebrew/query?id=2527</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=2527">shebanq.ancient-data.org/hebrew/query?id=2527</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Wouter Kroese</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.vu.nl">DigHumCourse2017</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2017-10-23 15:03:29</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2017-10-23 15:05:19</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2017-10-25 20:42:33</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>None</p>
+<h2>Versions</h2>
+<h3>4b</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>2909</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe2909</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=2527&amp;version=4b">localhost:8000/hebrew/query?id=2527&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=2527&amp;version=4b">shebanq.ancient-data.org/hebrew/query?id=2527&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>2328</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>4656</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2017-10-24 11:59:47</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2017-10-24 11:59:47</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2017-10-25 20:42:52</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+
+[book book in (Genesis, Exodus, Leviticus, Numeri, Deuteronomium, Josua, Judices, Samuel_I, Samuel_II, Reges_I, Reges_II, Esther, Daniel, Esra, Nehemia, Chronica_I, Chronica_II)
+
+  [word language = Hebrew]
+
+       [clause
+          [phrase function = Subj
+              [word focus first]
+          ] 
+..
+           [phrase function in (Pred, PreO)
+               [word focus sp = verb]
+           ]
+    ]
+]
+</code></pre>

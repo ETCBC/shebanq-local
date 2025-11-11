@@ -1,0 +1,113 @@
+<h1>עַל־פִּ֥י (Absolute)</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>6200</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6200">localhost:8000/hebrew/query?id=6200</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6200">shebanq.ancient-data.org/hebrew/query?id=6200</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Elia Fiore</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.biblicalstudies.eu">ATSB</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="https://www.biblicalstudies.eu">Elia Fiore</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2023-10-19 10:00:12</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2023-10-19 13:54:30</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2023-10-19 10:04:50</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>This query searches the whole Hebrew Bible to identify places where the words עַל־פִּ֥י occur together, the word פֶּה being in the absolute state</p>
+<p>We discover that in 15 cases (out of 17) this word is actually in the construct state but is considered, by the ETCBC database, to be in the absolute state.</p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>7199</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe7199</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6200&amp;version=2021">localhost:8000/hebrew/query?id=6200&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6200&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=6200&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>17</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>17</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2023-10-19 10:03:04</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2023-10-19 10:03:02</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2023-10-19 10:04:52</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>Select ALL OBJECTS WHERE 
+[CLAUSE 
+   [PHRASE
+      [WORD lex='&lt;L' AND sp=prep
+      ]  
+      [WORD FOCUS lex='PH/' AND sp=subs AND gn=m AND nu=sg AND st=a
+      ]
+   ]
+]
+</code></pre>

@@ -1,0 +1,118 @@
+<h1>Justin Practical exercise 2</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4026</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=4026">localhost:8000/hebrew/query?id=4026</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=4026">shebanq.ancient-data.org/hebrew/query?id=4026</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Justin Lim</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.vu.nl">DigHumCourse2017</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2020-09-16 02:25:40</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2020-09-16 03:50:57</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2020-09-16 03:50:46</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<ol>
+<li>Usually when speaking about blessing (Hebrew: ברך) people think of an act by God towards people, but can God also be the object of this verb? Where? Compare at least two Bible translations to see how they deal with this usage.</li>
+</ol>
+<p>[Answer]
+NIV and NASB are consistent in their renderings. NIV translates the verb as "praise" when God is the object of it, while NASB does not avoid to use "bless."</p>
+<p>There are some exceptions in the search result.
+Psalms 34:2 NIV renders the verb "extol," which is similar to "praise."
+In 2 Samuel 21:3 and Psalms 115:13, the object is not God.
+In 1 Kings 21:10, Job 1:5, and Job 2:9 the verb is rendered "curse."</p>
+<h2>Versions</h2>
+<h3>2017</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4738</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe4738</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=4026&amp;version=2017">localhost:8000/hebrew/query?id=4026&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=4026&amp;version=2017">shebanq.ancient-data.org/hebrew/query?id=4026&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>30</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>56</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2020-09-16 03:27:01</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2020-09-16 03:27:01</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2020-09-16 03:51:06</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+[sentence
+  [word FOCUS sp=verb and lex_utf8 = &quot;ברך&quot;]
+  [phrase function=Objc
+    [word FOCUS g_cons_utf8 = &quot;יהוה&quot; or lex_utf8 = &quot;אלהים&quot;]
+  ]
+]
+</code></pre>

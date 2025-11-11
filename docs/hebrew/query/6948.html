@@ -1,0 +1,117 @@
+<h1>Num. 17,16-28 - non Wayyiqtols</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>6948</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6948">localhost:8000/hebrew/query?id=6948</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6948">shebanq.ancient-data.org/hebrew/query?id=6948</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>André Gerritsen</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://canvas.vu.nl/courses/81845">EXOT202</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2025-02-15 21:46:34</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2025-02-19 07:45:55</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2025-02-15 21:48:06</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>This query lists all the non wayyiqtol verbs in Numbers 17 verse 16-28. This excludes infinitivi and participia. The query returns 21 results.</p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>7975</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe7975</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6948&amp;version=2021">localhost:8000/hebrew/query?id=6948&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6948&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=6948&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>21</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>21</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2025-02-19 12:51:04</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2025-02-19 12:51:04</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2025-02-19 12:51:08</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>Select all objects where
+[book book IN(Numeri)
+  [chapter chapter = 17
+    [verse verse &gt;= 16 and verse &lt;= 28
+      [word FOCUS sp = verb 
+          and not vt = wayq // wayyiqtol
+          and not vt = infa // infinitivus absolute
+          and not vt = infc // infinitivus constructus
+          and not vt = ptca // active participium
+          and not vt = ptcp // passive participium
+      ]
+    ]
+  ]
+]
+</code></pre>

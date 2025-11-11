@@ -1,0 +1,176 @@
+<h1>MI Hierarchy. 18n48. All Verbs in Discourse</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1046</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1046">localhost:8000/hebrew/query?id=1046</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1046">shebanq.ancient-data.org/hebrew/query?id=1046</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Cody Kingham</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.academia.edu/20569152/The_Syntactic_Hierarchy_of_the_Mesha_Inscription_Its_Narrative_and_Biographical_Structure">The Mesha Inscription and the Hebrew Bible</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.sebts.edu">Southeastern Baptist Theological Seminary</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2015-12-25 19:03:49</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2016-01-14 21:28:07</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2016-01-14 21:28:13</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>This search counts every verb used in discursive texts in order to compare with the number of discursive verbs that are only 1st person. </p>
+<h2>Versions</h2>
+<h3>4b</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1339</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe1339</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1046&amp;version=4b">localhost:8000/hebrew/query?id=1046&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1046&amp;version=4b">shebanq.ancient-data.org/hebrew/query?id=1046&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>35170</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>35170</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2016-01-06 23:36:13</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2016-01-06 23:36:12</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2016-01-14 21:28:11</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>3.4.1.pre12</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>SELECT ALL OBJECTS WHERE
+
+[book
+   [clause domain = 'Q'
+      [word FOCUS sp = verb
+         [word vt= perf     
+         ]
+      ]
+   ]
+]
+OR
+[book
+   [clause domain = 'Q'
+      [word FOCUS sp = verb
+         [word vt= impf      
+         ]
+      ]
+   ]
+]
+OR
+[book
+   [clause domain = 'Q'
+      [word FOCUS sp = verb
+         [word vt= wayq      
+         ]
+      ]
+   ]
+]
+OR
+[book
+   [clause domain = 'Q'
+      [word FOCUS sp = verb
+         [word vt= impv      
+         ]
+      ]
+   ]
+]
+OR
+[book
+   [clause domain = 'D'
+      [word FOCUS sp = verb
+         [word vt= perf      
+         ]
+      ]
+   ]
+]
+OR
+[book
+   [clause domain = 'D'
+      [word FOCUS sp = verb
+         [word vt= impf      
+         ]
+      ]
+   ]
+]
+OR
+[book
+   [clause domain = 'D'
+      [word FOCUS sp = verb
+         [word vt= wayq      
+         ]
+      ]
+   ]
+]
+OR
+[book
+   [clause domain = 'D'
+      [word FOCUS sp = verb
+         [word vt= impv      
+         ]
+      ]
+   ]
+]
+</code></pre>

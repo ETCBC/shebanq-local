@@ -1,0 +1,112 @@
+<h1>scriptie - searching for quotation in Psalms</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1996</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1996">localhost:8000/hebrew/query?id=1996</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1996">shebanq.ancient-data.org/hebrew/query?id=1996</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Yanniek van der Schans</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.vu.nl/nl/studiegids/2014-2015/index.asp">G_EXOTJB_201415</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2017-06-27 12:40:15</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2017-09-14 12:24:20</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2017-07-25 11:34:38</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>This query is written in order to find the verses within the book of the Psalms that have a quotation in them.
+Looking for clauses of which the text type is longer than 1.
+This query is used to filter out the direct Divine speech of God. </p>
+<h2>Versions</h2>
+<h3>4b</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>2345</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe2345</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1996&amp;version=4b">localhost:8000/hebrew/query?id=1996&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1996&amp;version=4b">shebanq.ancient-data.org/hebrew/query?id=1996&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>597</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>2015</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2017-07-25 11:38:35</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2017-07-24 12:30:12</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2017-07-25 11:38:38</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>Select all objects where
+
+[book book = Psalmi
+  [clause focus txt ~ &quot;.Q$&quot;
+                            ]
+                   ]
+
+</code></pre>

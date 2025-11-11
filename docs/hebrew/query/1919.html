@@ -1,0 +1,110 @@
+<h1>Thus the LORD said to me...</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1919</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1919">localhost:8000/hebrew/query?id=1919</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1919">shebanq.ancient-data.org/hebrew/query?id=1919</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Max Gordienko</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://andrews.edu">Jeremiah 17:14-18</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="https://www.andrews.edu">Andrews University Seminary</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2017-06-04 15:57:25</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2017-06-11 12:11:09</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2017-06-04 15:58:53</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>This query detects where the phrase “Thus the LORD said to me” כֹּה־אָמַ֨ר יְהוָ֜ה אֵלַ֗י is used.</p>
+<h2>Versions</h2>
+<h3>4b</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>2262</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe2262</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1919&amp;version=4b">localhost:8000/hebrew/query?id=1919&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1919&amp;version=4b">shebanq.ancient-data.org/hebrew/query?id=1919&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>6</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>18</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2017-06-04 15:59:54</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2017-06-04 15:58:16</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2017-06-04 16:00:01</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+[clause 
+            [word FOCUS lex='KH']
+            [word FOCUS lex='&gt;MR[']
+            [word FOCUS lex='JHWH/']
+            [word sp=prep AND prs='J']
+        ]
+</code></pre>

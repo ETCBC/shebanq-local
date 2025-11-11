@@ -1,0 +1,198 @@
+<h1>VS_FA</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>3450</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3450">localhost:8000/hebrew/query?id=3450</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3450">shebanq.ancient-data.org/hebrew/query?id=3450</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Marianne Kaajan</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.godgeleerdheid.vu.nl/en/news-agenda/news-archive/2013/three-new-researchers-appointed-to-biblical-hebrew-research.asp">SynVar</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2019-06-07 14:55:18</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-06-07 14:57:48</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2019-06-07 15:44:57</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>This query looks for clauses in which a plural verb form is followed by a conjoined subject of which the first conjunct is singular, i.e., a clause with Verb-Subject order and Full Agreement.</p>
+<h2>Versions</h2>
+<h3>4b</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4040</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe4040</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3450&amp;version=4b">localhost:8000/hebrew/query?id=3450&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3450&amp;version=4b">shebanq.ancient-data.org/hebrew/query?id=3450&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>109</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>100</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2019-06-13 11:23:52</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-06-13 11:23:52</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2019-06-13 12:46:04</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+
+[clause
+   [phrase`HIT focus typ = VP
+      [word language = Hebrew AND pdp = verb AND nu = pl]
+   ]
+   ..
+   [phrase function = Subj get self
+      [subphrase as S FIRST
+          [
+          [word FIRST lex = &quot;H&quot; OR lex = &quot;&gt;T&quot; OR lex = &quot;GM&quot;]
+          [word lex = &quot;H&quot;]*
+          [word pdp IN (subs, nmpr, prps, prde, adjv) AND nu = sg]
+          ]
+          OR
+          [word FIRST pdp IN (subs, nmpr, prps, prde, adjv) AND nu = sg]
+      ]
+      ..
+      [subphrase mother = S.self AND rela = par]
+   ]
+]
+</code></pre>
+<h3>2017</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4028</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe4028</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3450&amp;version=2017">localhost:8000/hebrew/query?id=3450&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="http://shebanq.ancient-data.org/hebrew/query?version=4b&amp;id=1780&amp;version=2017">shebanq.ancient-data.org/hebrew/query?id=3450&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>111</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>102</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2019-06-17 13:22:02</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-06-17 11:25:16</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2019-06-17 13:22:23</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+
+[clause
+   [phrase`HIT focus typ = VP
+      [word language = Hebrew AND pdp = verb AND nu = pl]
+   ]
+   ..
+   [phrase function = Subj get self
+      [subphrase as S FIRST
+          [
+          [word FIRST lex = &quot;H&quot; OR lex = &quot;&gt;T&quot; OR lex = &quot;GM&quot;]
+          [word lex = &quot;H&quot;]*
+          [word pdp IN (subs, nmpr, prps, prde, adjv) AND nu = sg]
+          ]
+          OR
+          [word FIRST pdp IN (subs, nmpr, prps, prde, adjv) AND nu = sg]
+      ]
+      ..
+      [subphrase mother HAS S.self AND rela = par]
+   ]
+]
+</code></pre>

@@ -1,0 +1,110 @@
+<h1>Tripartite construct chain with participle</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4670</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=4670">localhost:8000/hebrew/query?id=4670</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=4670">shebanq.ancient-data.org/hebrew/query?id=4670</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Gegham Bdoyan</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://vu.nl/en/">SHEBANQ queries</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="https://vu.nl/en/">Grad School projects</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2021-09-13 22:29:02</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2021-09-13 23:09:31</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2021-09-13 22:43:32</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>This query searches all the tripartite construct chains where the word in construct form is participle.</p>
+<h2>Versions</h2>
+<h3>4b</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>5484</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe5484</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=4670&amp;version=4b">localhost:8000/hebrew/query?id=4670&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=4670&amp;version=4b">shebanq.ancient-data.org/hebrew/query?id=4670&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>17</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>51</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2021-09-13 22:42:37</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2021-09-13 22:42:37</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2021-09-13 23:09:40</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+[clause
+   [word FOCUS sp=verb AND vt=ptca AND st=c]
+   [word FOCUS sp=subs AND st=c]
+   [word FOCUS sp=subs AND st=a]
+]
+
+</code></pre>

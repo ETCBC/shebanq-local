@@ -1,0 +1,136 @@
+<h1>BRK with God as object</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4663</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=4663">localhost:8000/hebrew/query?id=4663</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=4663">shebanq.ancient-data.org/hebrew/query?id=4663</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Rieks Hekman</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.vu.nl">Analytic Tools and the Study of Bible</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2021-09-13 15:51:27</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2021-09-15 19:43:52</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2021-09-15 19:55:55</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>Search for instances of the verb BRK with &gt;LHJM as object.
+I forced &gt;LHIM either to be at the front of the phrase or to have a direct object marker in front of it, to exclude things like "YHWH, (the) god of our fathers" (since then Elohim is perhaps not the name 'Elohim' but indicates a member of the class 'gods'), or even "people of Elohim".
+I also added a search for Elohim being the <em>subject</em> of BRK in the nifal or pual or as passive participle (since then Elohim is still the object of the blessing).
+Translations of Joshua 22:33 (the first result found this way): 
+NIV: "They [...] praised God" 
+(N)KJV: "the children of Israel blessed God"
+Statenvertaling: "de kinderen Israëls loofden God"
+Petrus Canisius: "de Israelieten [...] loofden God"
+NBG51: "zodat de Israëlieten God loofden"
+NBV: "ze prezen God"
+--&gt; the NKJV is the only translation I found with a quick search translating BRK as 'to bless' in this case.
+If one wanted to search for all possible instances of God under any designation (YHWH, El, Adonai, Elyon, our/your/my/their god, the god of ..., etc.) being the object of BRK, the easiest way is probably to just select all object function phrases of BRK and see for yourself which of them designate God... Otherwise, there is always the risk of forgetting a possible way of designating God. (And even with this procedure, one does not 'catch' the cases in which God is referred to by for instance a pronominal suffix attached to the verb ("Bless Him")...)</p>
+<h2>Versions</h2>
+<h3>2017</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>5477</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe5477</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=4663&amp;version=2017">localhost:8000/hebrew/query?id=4663&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=4663&amp;version=2017">shebanq.ancient-data.org/hebrew/query?id=4663&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>16</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>33</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2021-09-15 19:43:52</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2021-09-15 19:43:52</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2021-09-15 19:55:55</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>Select all objects where
+
+[clause FOCUS
+   [UnorderedGroup
+      [word lex='BRK[']
+      [phrase function=Objc
+         [word FIRST g_cons='&gt;LHJM']
+         OR
+         [word lex0=&quot;&gt;T&quot;]
+         [word g_cons='&gt;LHJM']
+      ]
+   ]
+]
+OR
+[clause FOCUS
+   [UnorderedGroup
+      [word lex='BRK[' AND (vs IN (nif, pual)) OR (vs=qal AND vt=ptcp)]
+      [phrase function=Subj
+         [word FIRST g_cons='&gt;LHJM']
+      ]
+   ]
+]
+</code></pre>

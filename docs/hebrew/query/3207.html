@@ -1,0 +1,118 @@
+<h1>Ben ik een hond?</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>3207</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3207">localhost:8000/hebrew/query?id=3207</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3207">shebanq.ancient-data.org/hebrew/query?id=3207</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>M.D.J. van Spronsen</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.etcbc.nl">G_EXOTJB 2018-2019</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2019-04-22 12:35:33</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-04-24 13:55:39</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2019-04-22 18:48:22</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>Goliath vraagt voorafgaand aan de strijd aan David of hij soms een hond is, omdat David zonder goede wapenrusting naar hem komt. Ligt dat alleen aan Davids wapens of is het een meer gebruikelijke uiting van spot? </p>
+<h2>Versions</h2>
+<h3>2017</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>3800</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe3800</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3207&amp;version=2017">localhost:8000/hebrew/query?id=3207&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3207&amp;version=2017">shebanq.ancient-data.org/hebrew/query?id=3207&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>6</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>10</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2019-04-24 14:10:46</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-04-24 14:10:46</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2019-04-24 14:12:38</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>Select all objects where
+
+[verse
+  [phrase function = PreC OR function = Cmpl
+    [word focus lex = &quot;KLB/&quot;]
+  ]
+  ..
+  [phrase function = Subj OR function = PreC
+    [word focus sp = prps]
+OR
+    [word FOCUS prs_ps = p1 OR prs_ps = p2 OR prs_ps = p3]
+OR
+   [word FOCUS sp =nmpr]
+  ]
+]
+</code></pre>

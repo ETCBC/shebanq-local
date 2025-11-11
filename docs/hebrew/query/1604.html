@@ -1,0 +1,261 @@
+<h1>Q 2.3-4</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1604</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1604">localhost:8000/hebrew/query?id=1604</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1604">shebanq.ancient-data.org/hebrew/query?id=1604</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Jonny Moor</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.andrews.edu/sem/">OTST686 Major OT Prophets</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="https://www.andrews.edu">Andrews University Seminary</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2017-02-09 01:55:39</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2017-02-09 02:19:33</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2017-02-09 15:37:35</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>None</p>
+<h2>Versions</h2>
+<h3>4b</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>1931</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe1931</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=1604&amp;version=4b">localhost:8000/hebrew/query?id=1604&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=1604&amp;version=4b">shebanq.ancient-data.org/hebrew/query?id=1604&amp;version=4b</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>0</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>0</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2017-02-09 02:53:39</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2017-02-09 02:53:39</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2017-02-09 15:38:35</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>3.4.1.pre12</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+[book book = Jeremia
+    [clause
+        [phrase function = Subj
+            [word FOCUS lex_utf8 = &quot;ירמיה/&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;ירמיהו/&quot;]
+        ]
+        ..
+        [phrase function = Pred
+            [word FOCUS lex_utf8 = &quot;אמר[&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;דבר[&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;קרא[&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;ענה[&quot;]
+        ]
+        ..
+        [phrase function = Cmpl
+            [word FOCUS lex_utf8 = &quot;אל/&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;אלהים/&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;יהוה/&quot;]
+        ]
+    ]
+    OR
+    [clause
+        [phrase function = Subj
+            [word FOCUS lex_utf8 = &quot;ירמיה/&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;ירמיהו/&quot;]
+        ]
+        ..
+        [phrase function = Cmpl
+            [word FOCUS lex_utf8 = &quot;אל/&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;אלהים/&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;יהוה/&quot;]
+        ]
+        ..
+        [phrase function = Pred
+            [word FOCUS lex_utf8 = &quot;אמר[&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;דבר[&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;קרא[&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;ענה[&quot;]
+        ]
+    ]
+    OR
+    [clause
+        [phrase function = Pred
+            [word FOCUS lex_utf8 = &quot;אמר[&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;דבר[&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;קרא[&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;ענה[&quot;]
+        ]
+        ..
+        [phrase function = Subj
+            [word FOCUS lex_utf8 = &quot;ירמיה/&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;ירמיהו/&quot;]
+        ]
+        ..
+        [phrase function = Cmpl
+            [word FOCUS lex_utf8 = &quot;אל/&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;אלהים/&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;יהוה/&quot;]
+        ]
+    ]
+    OR
+    [clause
+        [phrase function = Pred
+            [word FOCUS lex_utf8 = &quot;אמר[&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;דבר[&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;קרא[&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;ענה[&quot;]
+        ]
+        ..
+        [phrase function = Cmpl
+            [word FOCUS lex_utf8 = &quot;אל/&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;אלהים/&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;יהוה/&quot;]
+        ]
+        ..
+        [phrase function = Subj
+            [word FOCUS lex_utf8 = &quot;ירמיה/&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;ירמיהו/&quot;]
+        ]
+    ]
+    OR
+    [clause
+        [phrase function = Cmpl
+            [word FOCUS lex_utf8 = &quot;אל/&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;אלהים/&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;יהוה/&quot;]
+        ]
+        ..
+        [phrase function = Subj
+            [word FOCUS lex_utf8 = &quot;ירמיה/&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;ירמיהו/&quot;]
+        ]
+        ..
+        [phrase function = Pred
+            [word FOCUS lex_utf8 = &quot;אמר[&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;דבר[&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;קרא[&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;ענה[&quot;]
+        ]
+    ]
+    OR
+    [clause
+        [phrase function = Cmpl
+            [word FOCUS lex_utf8 = &quot;אל/&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;אלהים/&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;יהוה/&quot;]
+        ]
+        ..
+        [phrase function = Pred
+            [word FOCUS lex_utf8 = &quot;אמר[&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;דבר[&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;קרא[&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;ענה[&quot;]
+        ]
+        ..
+        [phrase function = Subj
+            [word FOCUS lex_utf8 = &quot;ירמיה/&quot;]
+            OR
+            [word FOCUS lex_utf8 = &quot;ירמיהו/&quot;]
+        ]
+    ]
+]
+</code></pre>

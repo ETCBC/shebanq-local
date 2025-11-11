@@ -1,0 +1,134 @@
+<h1>evil spirits of God</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4666</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=4666">localhost:8000/hebrew/query?id=4666</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=4666">shebanq.ancient-data.org/hebrew/query?id=4666</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Rieks Hekman</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.vu.nl">Analytic Tools and the Study of Bible</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2021-09-13 17:35:47</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2021-09-15 19:54:55</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2021-09-15 19:56:30</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>Search for evil spirits of God: I did this by searching for:
+1. phrases with:
+1a. RWX R<H followed later in the phrase by >LHJM, JHWH or &gt;L (this can conceivably also give results of phrases where the spirit is not 'of' or 'coming from' God, but they have to be picked out by hand - better this than missing relevant results by forcing 'evil spirit' and 'God' to be strictly adjacent), or
+1b. RWX &gt;LHJM R<H, since the adjective can also come after the whole construction 'spirit of God';
+2. clauses in which "Evil spirit" is object and God is subject (to find things like 'God sent an evil spirit') and vice versa (to cover passive formulations of the same). Of course this can also render results like "God punished the evil spirit", but they can be sorted out by hand again.
+Almost all results are within Samuel I, most within direct surroundings of 16:14: 16:14.15.16, 18.10 and 19.9. The inclusion of option 2. also gave Jud 9:23 as a result ("God sent an evil spirit").
+I have to admit that I thought of option 2. only after a preliminary search for all instances of "RWX R>H". So if you really want to make sure you have all of them, it might be better to just find all phrases with RWX .. R&gt;H and then manually sort them out based on whether God is involved...
+And of course one could insert additional possible designations of 'God' if desired.</p>
+<h2>Versions</h2>
+<h3>2017</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>5480</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe5480</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=4666&amp;version=2017">localhost:8000/hebrew/query?id=4666&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=4666&amp;version=2017">shebanq.ancient-data.org/hebrew/query?id=4666&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>7</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>28</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2021-09-13 18:56:38</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2021-09-13 18:56:38</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2021-09-15 19:56:30</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+
+[phrase FOCUS
+   [word lex=&quot;RWX/&quot;]
+   [word lex0=&quot;R&lt;&quot;]
+   ..
+   [word (lex=&quot;&gt;LHJM/&quot; OR lex=&quot;JHWH/&quot; OR lex=&quot;&gt;L/&quot;)]
+   OR
+   [word lex=&quot;RWX/&quot;]
+   [word (lex=&quot;&gt;LHJM/&quot; OR lex=&quot;JHWH/&quot; OR lex=&quot;&gt;L/&quot;)]
+   [word lex0=&quot;R&lt;&quot;]
+]
+OR
+[clause FOCUS
+   [UnorderedGroup
+      [phrase function IN (Subj,Objc)
+         [word FIRST lex=&quot;&gt;LHJM/&quot; OR lex=&quot;JHWH/&quot; OR lex=&quot;&gt;L/&quot;]
+      ]
+      [phrase function IN (Objc, Subj)
+         [word lex=&quot;RWX/&quot;]
+         [word lex0=&quot;R&lt;&quot;]
+      ]
+   ]
+]
+</code></pre>

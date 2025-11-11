@@ -1,0 +1,109 @@
+<h1>De tent van de getuigenis</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>6939</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6939">localhost:8000/hebrew/query?id=6939</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6939">shebanq.ancient-data.org/hebrew/query?id=6939</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>André Gerritsen</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://canvas.vu.nl/courses/81845">EXOT202</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2025-02-13 12:21:54</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2025-02-13 13:36:00</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2025-02-13 13:45:55</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>Deze query geeft weer waar er in het OT sprake is van 'de tent van de getuigenis'. Het doel van deze query is om te kijken of er een verband bestaat tussen de versen waarbij deze uitdrukking gebruikt wordt. </p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>7968</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe7968</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6939&amp;version=2021">localhost:8000/hebrew/query?id=6939&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6939&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=6939&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>5</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>15</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2025-02-13 13:45:51</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2025-02-13 13:45:51</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2025-02-13 13:45:58</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+[clause
+  [word FOCUS lex = '&gt;HL/'] // tent
+  [word FOCUS lex = 'H'] // getuigenis moet bepaald zijn. Tent niet, daar kan ook het voorvoegsel לְ of בְּ bij gebruikt worden.
+  [word FOCUS lex = '&lt;DWT/'] // getuigenis
+]
+</code></pre>

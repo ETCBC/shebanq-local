@@ -1,0 +1,114 @@
+<h1>Proper Nouns in 1 Sam16-17</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>3088</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3088">localhost:8000/hebrew/query?id=3088</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3088">shebanq.ancient-data.org/hebrew/query?id=3088</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Willem van Peursen</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.etcbc.nl">G_EXOTJB 2018-2019</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2019-03-29 08:19:22</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-03-29 08:21:14</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2019-03-29 14:12:29</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>Searching for all proper nouns in 1 Samuel 16-17</p>
+<h2>Versions</h2>
+<h3>4</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>3628</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe3628</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3088&amp;version=4">localhost:8000/hebrew/query?id=3088&amp;version=4</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3088&amp;version=4">shebanq.ancient-data.org/hebrew/query?id=3088&amp;version=4</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>171</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>171</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2019-03-29 08:28:26</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-03-29 08:28:25</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2019-03-29 14:12:29</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>// Two slashes indicate a comment that are not part of the query
+
+select all objects where // Ths an obligatory part of any query
+
+[book book = Samuel_I // &quot;book&quot; functions here both als &quot;object&quot; and as &quot;feature&quot;. As a feature it can have various values, that can be found in the feature documentation https://etcbc.github.io/bhsa/ See in the 
+   [chapter chapter = 16 OR chapter = 17
+   [word focus sp = nmpr]
+   ]
+]
+
+/* Dit is comment */
+</code></pre>

@@ -1,0 +1,126 @@
+<h1>Count people of Israel speak to God (V.2)</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>6919</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6919">localhost:8000/hebrew/query?id=6919</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6919">shebanq.ancient-data.org/hebrew/query?id=6919</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Jouke Brouwer</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.etcbc.nl">Exegesis OT-2025</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2025-02-12 10:08:00</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2025-02-13 07:38:11</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2025-02-13 07:40:12</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>In Numbers 21:5, the people speak directly to God. This query checks whether it happens more often (in the book of Numbers)
+1) that it occurs in a clause that the verb speak/complain performed against God (children of Israel is plural)
+OR
+2) for the people (singular)  to speak/complain directly to the Lord/God.</p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>7946</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe7946</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6919&amp;version=2021">localhost:8000/hebrew/query?id=6919&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6919&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=6919&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>8</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>55</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2025-02-13 18:46:38</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2025-02-13 18:46:38</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2025-02-13 18:48:14</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>Select all objects where
+//[book book IN (Numeri)
+     [clause FOCUS 
+          [word lex = 'LWN[' and nu = pl OR lex = 'DBR[' and nu = pl OR lex = '&gt;MR[' and nu = pl]
+          ..
+          [phrase function IN (Cmpl)
+               [word lex = 'JHWH/' OR lex = '&gt;LHJM/']
+          ]
+OR
+          [word lex = 'LWN[' OR lex = 'DBR[']
+          ..
+          [phrase function = Subj
+               [word lex = '&lt;M/' OR lex = 'BN/' AND lex ='JFR&gt;L/']
+          ]
+          ..
+          [phrase function IN (Cmpl)
+               [word lex = 'JHWH/' OR lex = '&gt;LHJM/']
+          ]
+     ]
+//]
+</code></pre>

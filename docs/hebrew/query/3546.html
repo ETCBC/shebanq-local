@@ -1,0 +1,121 @@
+<h1>Assingment 05_02</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>3546</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3546">localhost:8000/hebrew/query?id=3546</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3546">shebanq.ancient-data.org/hebrew/query?id=3546</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Adrianus van Manen</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://www.etcbc.nl">MA_Analytical_Tools_2019</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2019-09-17 12:10:30</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-09-17 16:38:58</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2019-09-19 07:29:39</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>Usually when speaking about blessing (Hebrew: ברך) people think of an act by God towards people, but can God also be the object of this verb?</p>
+<p>Note 1: Because SHEBANQ is searching in the 'chronological order' of a query you can use the OR operator and manually add the different word orders. I used 'UnorderedGroup' so that the order of the words in the clause does not matter.</p>
+<p>Note 2: I have searched for three designations of God but you can add more designations of God. </p>
+<p>Note 3: In the case of Genesis 24.48 the Christian Standard Bible translates ברך with blessing and the International Standard Version is using the word praising as translation. In, for instance, Judges 5.9 both translations are using the word blessing.</p>
+<h2>Versions</h2>
+<h3>2017</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>4174</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe4174</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=3546&amp;version=2017">localhost:8000/hebrew/query?id=3546&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=3546&amp;version=2017">shebanq.ancient-data.org/hebrew/query?id=3546&amp;version=2017</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>78</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>78</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2019-09-19 07:29:27</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2019-09-19 07:29:27</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2019-09-19 07:29:38</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.5.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>Select all objects where
+[clause
+    [UnorderedGroup
+        [phrase function = Pred
+            [word FOCUS lex = &quot;BRK[&quot;]
+        ]
+        [phrase function = Objc
+            [word FOCUS lex = &quot;JHWH/&quot;
+            OR
+        lex = &quot;&gt;LHJM/&quot;
+        OR
+        lex = &quot;&gt;L/&quot;]
+    ]   
+    ]
+]
+</code></pre>

@@ -1,0 +1,115 @@
+<h1>'who brought them out of Egypt'</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>6957</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6957">localhost:8000/hebrew/query?id=6957</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6957">shebanq.ancient-data.org/hebrew/query?id=6957</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Karel-Jan Karels</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://www.etcbc.nl">Exegesis OT-2025</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2025-02-18 18:53:17</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2025-02-20 19:05:52</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2025-02-18 19:55:53</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>To which divine name is the property ascribed of ‘having brought the people out of Egypt’ in the Hebrew Bible? 
+To answer this question, I made a query that sought for all such occurrences in the Hebrew Bible. The query had the following criteria: (1) it should search for several divine names; (2) it should search for a verb that indicates the activity of bringing / leading the people out of Egypt; (3) it should search for the word Egypt.
+Scope of the query: The query searches for three divine names and three verbs for ‘leading’. The three ‘objects’ of the query may appear in any random order.
+Limit of the query: Other divine names and verbs are excluded. And the three ‘objects’ of the query need occur in one clause.</p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>7988</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe7988</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6957&amp;version=2021">localhost:8000/hebrew/query?id=6957&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6957&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=6957&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>46</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>129</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2025-02-18 19:50:05</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2025-02-18 19:50:05</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2025-02-18 19:56:02</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>Select all objects where
+
+[clause focus
+   [UNORDEREDGROUP
+      [word lex_utf8 = 'אל' AND Gn = m OR lex_utf8 = 'יהוה' OR lex_utf8 = 'אלהים' OR lex_utf8 = 'אדון'] // Gn = m is added to exclude the preposition with the same consonants
+      [word lex_utf8 = 'יצא' OR lex_utf8 = 'עלה' OR lex_utf8 = 'נחה']
+      [word lex_utf8 = 'מצרים']
+   ]
+]
+</code></pre>

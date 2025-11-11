@@ -1,0 +1,135 @@
+<h1>אחר usage</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>7078</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=7078">localhost:8000/hebrew/query?id=7078</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=7078">shebanq.ancient-data.org/hebrew/query?id=7078</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Justin Lim</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://pastorjustin.net">test project justin</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://pastorjustin.net">Justin Lim</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2025-07-23 13:24:41</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2025-07-23 13:29:11</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2025-07-23 13:29:12</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>This query identifies instances of the preposition אחר where the main verb lacks a direct object. 
+Motion verbs and verbs that may imply a directional nuance are excluded.</p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>8112</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe8112</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=7078&amp;version=2021">localhost:8000/hebrew/query?id=7078&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=7078&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=7078&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>47</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>140</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2025-07-23 13:25:55</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2025-07-23 13:25:55</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2025-07-23 13:29:12</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.9.0</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects
+where
+[clause
+  NOTEXIST [phrase function = Objc]
+  [phrase FOCUS function = Pred or function = PreS or function = PreC
+    NOTEXIST [word lex = 'HLK[']
+    NOTEXIST [word lex = 'RDP[']
+    NOTEXIST [word lex = '&lt;LH[']
+    NOTEXIST [word lex = 'BW&gt;[']
+    NOTEXIST [word lex = 'CWB[']
+    NOTEXIST [word lex = 'JY&gt;[']
+    NOTEXIST [word lex = 'JRD[']
+    NOTEXIST [word lex = 'HJH[']
+    NOTEXIST [word lex = 'HWH[']
+    NOTEXIST [word lex = 'RWY[']
+    NOTEXIST [word lex = 'CLX[']
+    NOTEXIST [word lex = 'NBV[']
+    NOTEXIST [word lex = 'YMX[']
+    NOTEXIST [word lex = 'NS&lt;[']
+    NOTEXIST [word lex = 'PNH[']
+    NOTEXIST [word lex = 'BRX[']
+    [word sp = verb And vs &lt;&gt; nif]
+  ]
+  [phrase FOCUS function IN (Cmpl, Adju, PreC, Loca)
+    NOTEXIST [word lex = 'MN']
+    NOTEXIST [word lex = '&gt;L']
+    NOTEXIST [word lex = 'ZR&lt;/']
+    NOTEXIST [word lex = 'BN/']
+    [word lex = '&gt;XR/']
+  ]
+]
+</code></pre>

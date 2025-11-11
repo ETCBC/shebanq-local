@@ -1,0 +1,42 @@
+{{ left_sidebar_enabled = False }}
+{{ right_sidebar_enabled = True }}
+{{ extend 'layout.html' }}
+
+{{if 'message' in globals():}}
+<h3>{{=message}}</h3>
+{{pass}}
+
+<h4>What is SHEBANQ?</h4>
+<p><b>System for HEBrew Text: ANnotations for Queries and Markup</b></p>
+<p>SHEBANQ is an online environment for studying the Hebrew Bible.</p>
+<p>Scholarly editions of the Bible usually dedicate space to a critical apparatus and various kinds of annotations.</p>
+<p>We introduce the idea of annotating the text with <i>queries</i>.
+They show up next to the chapters where the results are.</p>
+<p>Of course you can also share your hand-written annotations!</p>
+<p>Through SHEBANQ you can fire queries at the morphological and syntactical
+<a href="https://etcbc.github.io/bhsa">BHSA database</a>.</p>
+<p>You can share and publish those queries here and send the links around.</p>
+<p><b>By sharing your queries with others, you may find what you did not search for.</b></p>
+<p>Read all about SHEBANQ on the wiki
+<a title="SHEBANQ Wiki" class="ctli fa fa-info-circle fa-2x" href="https://github.com/ETCBC/shebanq/wiki"></a>.</p>
+
+{{block right_sidebar}}
+{{end}}
+
+<script type="text/javascript">
+$(function () {
+    const subtract = 250
+    const standardHeight = window.innerHeight - subtract
+    const canvasMiddle = $('.span9')
+    const canvasSide = $('.span3')
+    canvasMiddle.css('overflow', 'auto')
+    canvasMiddle.css('webkit-overflow-scrolling', 'touch')
+    canvasMiddle.css('height', standardHeight+'px')
+    canvasSide.css('overflow', 'auto')
+    canvasSide.css('webkit-overflow-scrolling', 'touch')
+    canvasSide.css('height', standardHeight+'px')
+    canvasSide.css('width', '40%')
+    canvasMiddle.css('width', '55%')
+})
+</script>
+

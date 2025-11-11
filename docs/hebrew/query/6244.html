@@ -1,0 +1,116 @@
+<h1>&gt;MR[ wayq.1cs – word stress</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>6244</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6244">localhost:8000/hebrew/query?id=6244</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6244">shebanq.ancient-data.org/hebrew/query?id=6244</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Jorik Groen</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="http://etcbc.nl">Motion verbs</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.godgeleerdheid.vu.nl/etcbc">ETCBC</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2023-11-21 11:12:14</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2023-11-21 12:40:56</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2023-11-21 12:40:52</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>The wayq.1cs form of <code>&gt;MR[</code> in <a href="Reges_I 21:6">1Kgs 12:6</a> unexpectedly has a milʕel stress (on the penultimate syllable). Do we find this elsewhere? 
+— Yes, but not often: once in <a href="Jesaia 41:9">Isa 41:9</a> and twice in <a href="Ezechiel 16:6">Ezek 16:6</a> (vs. 86 cases with milraʕ/word-final accent). The reason for these cases is probably in the following word: in all four cases the form is followed by the preposition <code>L</code> with a <a href="feature:prs">personal suffix</a>, 3× <code>-K</code>, 1× <code>-W</code>. It would be understandable if the stress were retracted due to a following stressed syllable  (<em>nsiḡå</em>); that explains most cases (incl. וָאֹמַ֫ר לָהֶם/לָכֶם in <a href="Exodus 32:24">Exod 32:24</a>; <a href="Leviticus 20:24">Lev 20:24</a>; <a href="Nehemia 2:20">Neh 2:20</a>), but <em>not</em> וָאֹמַ֫ר לָהּ (<a href="Genesis 20:13">Gen 20:13</a>) and וָאֹ֫מַר לְךָ (<a href="Jesaia 41:9">Isa 41:9</a>). </p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>7242</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>qe7242</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=6244&amp;version=2021">localhost:8000/hebrew/query?id=6244&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=6244&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=6244&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>4</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>4</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2023-11-21 12:40:56</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2023-11-21 12:40:56</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2023-11-21 12:41:18</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+[word FOCUS lex='&gt;MR[' AND vs=qal AND vt=wayq AND ps=p1 AND nu=sg AND vbe&lt;&gt;'H=' 
+  AND g_word~'^&gt;O[0-9]{2}'
+]
+
+// We also wanted to find all cases (no matter the stress) where the form
+// is followed by L with personal prefix:
+// 
+// [word FOCUS lex='&gt;MR[' AND vs=qal AND vt=wayq AND ps=p1 AND nu=sg AND vbe&lt;&gt;'H=' 
+//   AND g_word~'^&gt;O([0-9]{2})?'
+// ]
+// [word lex='L' AND prs&lt;&gt;'absent']
+</code></pre>
