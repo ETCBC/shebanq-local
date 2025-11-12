@@ -2,7 +2,7 @@ from textwrap import dedent
 from markdown import markdown
 
 from tf.core.helpers import console, run
-from tf.core.files import dirContents, initTree, fileExists, writeJson, expanduser as ex
+from tf.core.files import dirContents, initTree, fileExists, fileCopy, expanduser as ex
 from tf.lib import writeSets
 from tf.app import use
 
@@ -24,6 +24,7 @@ def getLocations(obj, BASEDIR):
     obj.bhsaDir = f"{baseDir}/ETCBC/bhsa"
     obj.backupDir = f"{obj.shebanqDir}/backup"
     obj.contentDir = f"{obj.shebanqDir}/content"
+    obj.curationDir = f"{obj.shebanqDir}/curation"
     obj.tempDir = f"{obj.shebanqDir}/_temp"
     obj.docsDir = f"{obj.shebanqDir}/docs"
     obj.queryDir = f"{obj.docsDir}/hebrew/query"
@@ -223,12 +224,21 @@ class SQL:
         def unesc(x):
             return x.replace("\\n", "\n").replace("\\t", "\t")
 
+        def norm(x):
+            return x.replace("'", "").replace('"', "").strip()
+
         ORIG = "shebanq.ancient-data.org/hebrew/query"
         LOCAL = "localhost:8000/hebrew/query"
 
         data = self.data
-        docsDir = self.docsDir
         queryDir = self.queryDir
+        curationDir = self.curationDir
+        templateFile = f"{curationDir}/template.html"
+        indexFile = f"{queryDir}/index.html"
+        jsFileSrc = f"{curationDir}/helpers.js"
+        jsFileDst = f"{queryDir}/helpers.js"
+        cssFileSrc = f"{curationDir}/design.css"
+        cssFileDst = f"{queryDir}/design.css"
 
         console("Cleaning previous results ... ")
         initTree(queryDir, fresh=True, gentle=True)
@@ -325,10 +335,63 @@ class SQL:
 
         console("Generating pages ... ")
 
+        fields = (
+            ("query id", True, False),
+            ("text version", True, True),
+            ("TF set", True, True),
+            ("title", True, True),
+            ("creator", True, True),
+            ("project", True, True),
+            ("organization", True, True),
+            ("local shebanq", False, True),
+        )
+
+        with open(templateFile) as fh:
+            template = fh.read()
+
         nq = 0
         nqe = 0
 
-        tocData = []
+        queryTable = []
+        queryTable.append("<thead>\n\t<tr>")
+
+        for c, field in enumerate(fields):
+            name, sortable, asString = field
+            typeRep = "true" if asString else "false"
+            sortControls = []
+
+            if sortable:
+                for asc in True, False:
+                    dRep = "true" if asc else "false"
+                    dIcon = "↑" if asc else "↓"
+                    sortControls.append(
+                        """<a class="button" """
+                        f"""onclick="sortTable({c}, {dRep}, {typeRep})">{dIcon}</a>"""
+                    )
+
+            queryTable.append(
+                f"""<th>{sortControls[0]}{name}{sortControls[1]}</th>\n"""
+                if sortable
+                else f"""<th>{name}</th>"""
+            )
+
+        queryTable.append("</tr>\n<tr>\n")
+
+        for c, field in enumerate(fields):
+            name, sortable, asString = field
+            filterControl = (
+                (
+                    """<input class="filter" type="text" """
+                    """onkeyup="filterTable()" placeholder="filter ..">"""
+                )
+                if sortable
+                else (
+                    """<input class="filter" type="hidden">"""
+                )
+            )
+            queryTable.append(f"""<th>{filterControl}</th>\n""")
+
+        queryTable.append("</tr>\n</thead>\n<tbody>" "")
 
         for qId in sorted(queries):
             qInfo = queries[qId]
@@ -347,6 +410,7 @@ class SQL:
             pRep = f"[{project}]({pUrl})" if pUrl else project
             oRep = f"[{organization}]({oUrl})" if oUrl else organization
 
+            metaUrl = f"q{qId}.html"
             origShort = f"{ORIG}?id={qId}"
             origFull = f"https://{origShort}"
             localShort = f"{LOCAL}?id={qId}"
@@ -409,21 +473,19 @@ class SQL:
                     "http://shebanq.ancient-data.org/hebrew/query?version=4b&id=1780"
                 )
 
-                tocData.append(
-                    (
-                        qId,
-                        version,
-                        name,
-                        createdBy,
-                        project,
-                        organization,
-                        datePublished,
-                        pUrl,
-                        oUrl,
-                        tfSet,
-                        localVFull,
-                        origVFull,
-                    )
+                queryTable.append(
+                    f"""
+                    <tr>
+                        <td key="{qId}"><a href="{metaUrl}">{qId}</a></td>
+                        <td key="{version}">{version}</td>
+                        <td key="{tfSet}">{tfSet}</td>
+                        <td key="{norm(name.lower())}">{name}</td>
+                        <td key="{createdBy.lower()}">{createdBy}</td>
+                        <td key="{project.lower()}"><a href="{pUrl}">{project}</a></td>
+                        <td key="{organization.lower()}"><a href="{oUrl}">{organization}</a></td>
+                        <td><a href="{localVFull}">url</a></td>
+                    </tr>
+                    """
                 )
 
                 nqe += 1
@@ -458,40 +520,16 @@ class SQL:
                     """
                 )
 
-            with open(f"{queryDir}/{qId}.html", "w") as fh:
+            with open(f"{queryDir}/q{qId}.html", "w") as fh:
                 fh.write(markdown(md, extensions=["tables", "fenced_code"]))
 
-        with open(f"{docsDir}/index.html", "w") as fh:
-            fh.write(
-                dedent(
-                    """\
-                    <!DOCTYPE html>
-                    <html>
-                      <head>
-                        <meta charset="utf-8" />
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                        <title>SHEBANQ Published Queries</title>
-                      </head>
-                      <body>
-                      <h1>SHEBANQ Published Queries - Overview</h1>
-                      <div id="table">
-                      </div>
-                      <script>
-                      var tocData =
-                    """
-                )
-            )
-            fh.write(writeJson(tocData))
-            fh.write(
-                dedent(
-                    """\
+        queryTable.append("</tbody>\n")
 
-                      </script>
-                      </body>
-                    </html>
-                    """
-                )
-            )
+        with open(indexFile, "w") as fh:
+            fh.write(template.replace("{{queryTable}}", "".join(queryTable)))
+
+        fileCopy(jsFileSrc, jsFileDst)
+        fileCopy(cssFileSrc, cssFileDst)
 
         console(f"Generated {nqe} pages for {nq} queries")
 

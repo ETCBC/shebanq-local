@@ -1,0 +1,12 @@
+.button {
+  cursor: pointer;
+  color: navy;
+}
+
+.filter {
+  width: min-content;
+}
+
+.active {
+  background-color: yellow;
+}
