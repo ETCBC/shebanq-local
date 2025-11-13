@@ -19,10 +19,10 @@ and this repo makes it available to you.**
 with the latest data loaded.**
 
 **You can find here the metadata of all
-[published queries](https://etcbc.github.io/shebanq-local/index.html)**
+[published queries](https://etcbc.github.io/shebanq-local/hebrew/query/index.html).**
 
 **Finally, you can download the
-[results of all published queries](content/qresults.tfx)
+[results of all published queries](https://github.com/ETCBC/shebanq-local/raw/refs/heads/master/content/qresults.tfx)
 and view them in the Text-Fabric browser.**
 
 ## About
@@ -99,33 +99,25 @@ These are the steps to do that:
 
 1.  Install [Python](https://www.python.org)
 
-1.  Start a bash shell and verify that it can do the `git` command
-
-    ```
-    git --version
-    ```
-
-1.  Clone this repository:
-
-    ```
-    cd to/your/directory/of/choice
-    git clone https://github.com/ETCBC/shebanq-local.git
-    cd shebanq-local
-
-
 1.  Install [Text-Fabric](https://github.com/annotation/text-fabric) by
     
     ```
     pip install 'text-fabric[all]'
     ```
 
+1.  Download the
+    [results of the public queries in Text-Fabric format](https://github.com/ETCBC/shebanq-local/raw/refs/heads/master/content/qresults.tfx).
+    This will end up in your Downloads folder (assuming `~/Downloads`)
+
 1.  Start the TF browser and load the query results:
 
     ```
-    tf ETCBC/bhsa sets=content/qresults.tfx
+    tf ETCBC/bhsa --sets=~/Downloads/qresults.tfx
     ```
 
 1.  In the search box, enter the id and version of a query.
+
+    ![queries in tf](images/queriesintf.png)
 
 # Author
 
