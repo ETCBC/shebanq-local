@@ -25,6 +25,15 @@ with the latest data loaded.**
 [results of all published queries](https://github.com/ETCBC/shebanq-local/raw/refs/heads/master/content/qresults.tfx)
 and view them in the Text-Fabric browser.**
 
+### Caution
+
+**Do not deploy this version of SHEBANQ on a server.**
+
+Some security features are switched off (email verification) and the admin password
+for the web framework, Wep2Py, is in plain sight in the `.env` file.
+
+This deployment is meant for personal computers, where SHEBANQ will run on `localhost`.
+
 ## About
 
 *System for HEBrew Text: ANnotations for Queries and Markup*
