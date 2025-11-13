@@ -22,7 +22,7 @@ pull            - pull all missing images for shebanq
 push            - push the shebanq docker image (for developers)
 "
 
-dockerlocation=droorda/shebanq
+dockerlocation=etcbc/shebanq
 
 function appup {
     # start shebanq, including its services
@@ -81,7 +81,7 @@ function appbuild {
     # build the shebanq image
     source .env
     echo "building shebanq docker images from local folder; tagging as docker shebanq:${dockertag}...."
-    docker build -f Dockerfile -t shebanq:${dockertag} .
+    docker buildx build --platform linux/amd64,linux/arm64 -f Dockerfile -t shebanq:${dockertag} .
 
     if [ "$?" == "0" ]; then
       echo "docker images completed ...."

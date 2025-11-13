@@ -59,9 +59,8 @@ of curation.
 
 These are the steps to **get your own shebanq**:
 
-1.  Install a docker engine (we recommend [Rancher Desktop](https://rancherdesktop.io)
-    but [Docker Desktop](https://www.docker.com/products/docker-desktop/) is also an
-    excellent choice.
+1.  Install a docker engine that is capable of multi-platform builds,
+    we recommend [Docker Desktop](https://www.docker.com/products/docker-desktop/).
 
 1.  Start a bash shell and verify that it can do the `git` command
 

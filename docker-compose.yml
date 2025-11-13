@@ -1,6 +1,6 @@
 services:
   shebanq:
-    image: droorda/shebanq:${dockertag}
+    image: etcbc/shebanq:${dockertag}
     container_name: shebanq
     hostname: shebanq
     environment:
