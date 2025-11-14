@@ -27,6 +27,7 @@ dockerlocation=etcbc/shebanq
 function appup {
     # start shebanq, including its services
     export runmode=production
+    docker compose pull --policy missing
     docker compose up -d "$@"
     docker compose logs -f
     docker compose down
@@ -80,12 +81,12 @@ function appsql {
 function appbuild {
     # build the shebanq image
     source .env
-    echo "building shebanq docker images from local folder; tagging as docker shebanq:${dockertag}...."
-    docker buildx build --platform linux/amd64,linux/arm64 -f Dockerfile -t shebanq:${dockertag} .
+    echo "building shebanq docker images from local folder; tagging as docker ${dockerlocation}:${dockertag}...."
+    docker buildx build --platform linux/amd64,linux/arm64 -f Dockerfile -t ${dockerlocation}:${dockertag} .
 
     if [ "$?" == "0" ]; then
       echo "docker images completed ...."
-      docker images | grep shebanq:${dockertag}
+      docker images | grep ${dockerlocation}:${dockertag}
     else
       echo "docker image building failed!"
       exit 1
@@ -96,7 +97,7 @@ function apppull {
     # pull mariadb image if not yet locally present
     source .env
     echo "pull missing images"
-    docker compose pull --policy missing db
+    docker compose pull --policy missing
 }
 
 function apppush {
@@ -106,7 +107,6 @@ function apppush {
     echo "Tip: to see the image online do ./shebanq.sh browse image"
 
     docker login
-    docker tag shebanq:${dockertag} $dockerlocation:${dockertag}
     docker push $dockerlocation:${dockertag}
 }
 
