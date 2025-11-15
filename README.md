@@ -66,7 +66,8 @@ of curation.
 
 ## Local deployment
 
-These are the steps to **get your own shebanq**:
+These are the steps to **get your own shebanq**.
+If something goes wrong, consult the [FAQ](FAQ.md).
 
 1.  Install a docker engine that is capable of multi-platform builds,
     we recommend [Docker Desktop](https://www.docker.com/products/docker-desktop/).
