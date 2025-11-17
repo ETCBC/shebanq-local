@@ -34,7 +34,6 @@ _docker/*
 *.iso
 *.jar
 *.rar
-*.zip
 
 # Logs and databases #
 ######################

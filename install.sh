@@ -69,6 +69,9 @@ chown www-data:www-data $logdir
 # Web2Py
 #----------------------------------------------------------------------------------
 
+if [[ ! -f $web2pydir ]]; then
+    rm -rf $web2pydir
+fi
 if [[ ! -e $web2pydir ]]; then
     web2pyfile=web2py-shb.zip
     web2pyappdir=$web2pydir/applications
