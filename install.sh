@@ -70,7 +70,7 @@ chown www-data:www-data $logdir
 #----------------------------------------------------------------------------------
 
 if [[ ! -e $web2pydir ]]; then
-    web2pyfile=web2py_src-3.0.11-patched.zip
+    web2pyfile=web2py-shb.zip
     web2pyappdir=$web2pydir/applications
     adminappdir=$web2pyappdir/admin
 
@@ -78,8 +78,8 @@ if [[ ! -e $web2pydir ]]; then
     cd $rundir
     unzip web2py.zip > /dev/null
     rm web2py.zip
-    chown -R www-data:www-data web2py
-    chmod -R go+r web2py
+    # chown -R www-data:www-data web2py
+    # chmod -R go+r web2py
     if [[ ! -d $web2pydir ]]; then
         mv web2py* web2py
     fi
