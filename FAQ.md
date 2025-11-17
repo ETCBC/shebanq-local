@@ -196,3 +196,68 @@ cd src/scripts
 ./import.sh
 exit
 ```
+
+## How can I look directly into the mysql tables of shebanq?
+
+Make sure your `shebanq-local` deployment is up (`./shebanq.sh up`).
+
+If you have a mysqlclient installed on your system, you can open a terminal, go to
+the directory of your `shebanq-local` clone, and give this command:
+
+```
+./shebanq.sh sql
+```
+
+Now you are in a mysql command prompt.
+
+If you do not have a mysqlclient and do not want to install one, you can open
+a shell in the shebanqdb container:
+
+```
+./shebanq.sh sh db
+mysql -u root -p"${MYSQL_ROOT_PASSWORD}"
+```
+
+And now you are also in a mysql command prompt.
+
+In that prompt you can, for example, count the number of queries:
+
+```
+MariaDB [(none)]> use shebanq_web;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [shebanq_web]> select count(*) from query;
++----------+
+| count(*) |
++----------+
+|     1130 |
++----------+
+1 row in set (0.010 sec)
+
+MariaDB [shebanq_web]>exit 
+Bye
+```
+
+## How can I easily navigate to the relevant SHEBANQ resources?
+
+In your `shebanq-local` directory do
+
+*   `./shebanq.sh browse` to go to your local shebanq website
+*   `./shebanq.sh browse admin` to go to the admin interface of the shebanq website
+*   `./shebanq.sh browse code` to go to the github repository of `shebanq-local`
+*   `./shebanq.sh browse image` to go to the docker hub where the image of
+    `shebanq-local` resides
+
+## How can I build a new shebanq image and distribute this?
+
+Obviously, this is relevant for developers only.
+
+After you have made changes to shebanq that imply that a new image must be built,
+do the following:
+
+*   increase the dockertag in the `.env` file
+*   `./shebanq.sh build` to build a new image locally
+*   `./shebanq.sh push` to push the image to docker hub so that it is available to
+    others.
