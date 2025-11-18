@@ -69,10 +69,17 @@ chown www-data:www-data $logdir
 # Web2Py
 #----------------------------------------------------------------------------------
 
-if [[ ! -f $web2pydir ]]; then
+if [[ -f $web2pydir ]]; then
     rm -rf $web2pydir
 fi
-if [[ ! -e $web2pydir ]]; then
+if [[ -d $web2pydir ]]; then
+    existweb2py="v"
+    action="updated"
+else
+    existweb2py="x"
+    action="installed"
+fi
+if [[ "$doupdate" == "update" || $existweb2py == "x" ]]; then
     web2pyfile=web2py-shb.zip
     web2pyappdir=$web2pydir/applications
     adminappdir=$web2pyappdir/admin
@@ -81,11 +88,6 @@ if [[ ! -e $web2pydir ]]; then
     cd $rundir
     unzip web2py.zip > /dev/null
     rm web2py.zip
-    # chown -R www-data:www-data web2py
-    # chmod -R go+r web2py
-    if [[ ! -d $web2pydir ]]; then
-        mv web2py* web2py
-    fi
 
     # put custom files in place
 
@@ -147,7 +149,10 @@ if [[ ! -e $web2pydir ]]; then
     # chown -R www-data:www-data $generatedDir
     cd $appdir
 
-    echo "web2py installed"
+    echo "web2py $action"
+else
+    echo "using existing web2py without updating"
+    printf "do\n    ./shebanq.sh up update\nto update web2py.\n"
 fi
 
 # set the admin password (always, env var may have changed)
@@ -160,82 +165,92 @@ cd $appdir
 
 #----------------------------------------------------------------------------------
 # Install SHEBANQ
+#
+# Changes in shebanq will be copied from src/shebanq to run/shebanq
+# But the dynamic directories in run/shebanq will not be overwritten
 #----------------------------------------------------------------------------------
 
 compileneeded=v
-changed=x
 
-if [[ ! -d $shebanqdir ]]; then
+if [[ -f $shebanqdir ]]; then
+    rm -rf $shebanqdir
+fi
+if [[ -d $shebanqdir ]]; then
+    existshebanq="v"
+    action="updated"
+else
+    existshebanq="x"
+    action="installed"
+fi
+if [[ "$doupdate" == "update" || $existshebanq == "x" ]]; then
     mkdir -p $shebanqdir
     compileneeded=v
-fi
 
-shebanqsrcdir=$srcdir/shebanq
+    shebanqsrcdir=$srcdir/shebanq
 
-# copy over the missing subdirectories
+    # copy over the missing subdirectories
 
-for subdir in $shebanqsrcdir/*
-do
-    subname=`basename $subdir`
-    rsync -av --delete --exclude '__pycache__' $subdir $shebanqdir/
-    compileneeded=v
-done
-
-# make certain dirs in the shebanq app writable
-
-for wd in log cache errors sessions private uploads databases languages
-do
-    for basedir in $shebanqdir $adminappdir
+    for subdir in $shebanqsrcdir/*
     do
-        subdest=$basedir/$wd
-        if [[ ! -d $subdest ]]; then
-            mkdir $subdest
-            chown www-data:www-data $subdest
-            changed=v
-        fi
+        subname=`basename $subdir`
+        rsync -av --delete --exclude '__pycache__' $subdir $shebanqdir/
+        compileneeded=v
     done
-done
 
-# Configure Web2Py and SHEBANQ
+    # make certain dirs in the shebanq app writable
 
-if [[ ! -e $shebanqappdir ]]; then
-    ln -sf ../../shebanq $shebanqappdir
-    changed=v
-fi
+    for wd in log cache errors sessions private uploads databases languages
+    do
+        for basedir in $shebanqdir $adminappdir
+        do
+            subdest=$basedir/$wd
+            if [[ ! -d $subdest ]]; then
+                mkdir $subdest
+                chown www-data:www-data $subdest
+            fi
+        done
+    done
 
-# compile shebanq app
+    # Configure Web2Py and SHEBANQ
 
-if [[ $compileneeded == v ]]; then
-    echo "compiling app ..."
-    generatedDir=$shebanqdir/compiled
-    if [[ ! -e $generatedDir ]]; then
-        mkdir $generatedDir
+    if [[ ! -e $shebanqappdir ]]; then
+        ln -sf ../../shebanq $shebanqappdir
+    fi
+
+    # compile shebanq app
+
+    if [[ $compileneeded == v ]]; then
+        echo "compiling app ..."
+        generatedDir=$shebanqdir/compiled
+        if [[ ! -e $generatedDir ]]; then
+            mkdir $generatedDir
+            chown -R www-data:www-data $generatedDir
+        fi
+        cmd1="import gluon.compileapp;"
+        cmd2="gluon.compileapp.compile_application('applications/shebanq')"
+        cmd3="gluon.compileapp.compile_application('applications/admin')"
+
+        cd $web2pydir
+        python3 -c "$cmd1 $cmd2" > /dev/null
+        python3 -c "$cmd1 $cmd3" > /dev/null
+
+        cd $shebanqappdir
+        python3 -m compileall modules > /dev/null
+        generatedDir=$shebanqdir/modules/__pycache__
+        python3 -m compileall models > /dev/null
+        generatedDir=$shebanqdir/models/__pycache__
+        chown -R www-data:www-data $generatedDir
+
+        cd $adminappdir
+        python3 -m compileall modules > /dev/null
+        generatedDir=$adminappdir/modules/__pycache__
+        python3 -m compileall models > /dev/null
+        generatedDir=$adminappdir/models/__pycache__
         chown -R www-data:www-data $generatedDir
     fi
-    cmd1="import gluon.compileapp;"
-    cmd2="gluon.compileapp.compile_application('applications/shebanq')"
-    cmd3="gluon.compileapp.compile_application('applications/admin')"
 
-    cd $web2pydir
-    python3 -c "$cmd1 $cmd2" > /dev/null
-    python3 -c "$cmd1 $cmd3" > /dev/null
-
-    cd $shebanqappdir
-    python3 -m compileall modules > /dev/null
-    generatedDir=$shebanqdir/modules/__pycache__
-    python3 -m compileall models > /dev/null
-    generatedDir=$shebanqdir/models/__pycache__
-    chown -R www-data:www-data $generatedDir
-
-    cd $adminappdir
-    python3 -m compileall modules > /dev/null
-    generatedDir=$adminappdir/modules/__pycache__
-    python3 -m compileall models > /dev/null
-    generatedDir=$adminappdir/models/__pycache__
-    chown -R www-data:www-data $generatedDir
-    changed=v
-fi
-
-if [[ $changed == v ]]; then
-    echo "shebanq installed"
+    echo "shebanq $action"
+else
+    echo "using existing shebanq without updating"
+    printf "do\n    ./shebanq.sh up update\nto update shebanq.\n"
 fi

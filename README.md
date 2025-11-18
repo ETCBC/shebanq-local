@@ -71,6 +71,8 @@ If something goes wrong, consult the [trouble](trouble.md).
 For more information about how you can use and maintain your own shebanq,
 see the [FAQ](FAQ.md).
 
+If you are a developer, see also [FAQ-dev](FAQ-dev.md).
+
 1.  Install a docker engine that is capable of multi-platform builds,
     we recommend [Docker Desktop](https://www.docker.com/products/docker-desktop/).
 

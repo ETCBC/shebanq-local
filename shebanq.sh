@@ -8,7 +8,8 @@ USAGE
 
 Commands:
 
-up              - start shebanq (press Ctrl-C twice to stop
+up              - start shebanq (press Ctrl-C twice to stop)
+up update       - start shebanq but update first
 down            - stop shebanq (mostly not needed)
 browse          - go to local shebanq website
 browse admin    - go to local shebanq admin website
@@ -25,8 +26,16 @@ push            - push the shebanq docker image (for developers)
 dockerlocation=etcbc/shebanq
 
 function appup {
+    doupdate=""
+
+    if [[ "$1" == "update" ]]; then
+        doupdate=update
+        shift
+    fi
+
     # start shebanq, including its services
     export runmode=production
+    export doupdate
     docker compose pull --policy missing
     docker compose up -d "$@"
     docker compose logs -f

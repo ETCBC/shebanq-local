@@ -5,6 +5,7 @@ services:
     hostname: shebanq
     environment:
       runmode: ${runmode}
+      doupdate: ${doupdate}
       hostname: ${hostname}
       hostport: ${hostport}
       web2pyadminpwd: ${web2pyadminpwd}
