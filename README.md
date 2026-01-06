@@ -19,9 +19,12 @@ and this repo makes it available to you.**
 with the latest data loaded.**
 
 **You can find here the metadata of all
+[lexemes](https://etcbc.github.io/shebanq-local/hebrew/word/index.html).**
+
+**You can find here the metadata of all
 [published queries](https://etcbc.github.io/shebanq-local/hebrew/query/index.html).**
 
-**Finally, you can download the
+**You can download the
 [results of all published queries](https://github.com/ETCBC/shebanq-local/raw/refs/heads/master/content/qresults.tfx)
 and view them in the Text-Fabric browser.**
 
