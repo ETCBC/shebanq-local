@@ -1,5 +1,5 @@
 let sortTable = (columnIndex, asc, asString) => {
-  const table = document.getElementById("queries")
+  const table = document.getElementById("items")
   const rows = Array.from(table.tBodies[0].rows)
 
   const sortedRows = rows.sort((a, b) => {
@@ -18,7 +18,7 @@ let sortTable = (columnIndex, asc, asString) => {
 }
 
 let filterTable = () => {
-  const table = document.getElementById("queries")
+  const table = document.getElementById("items")
   const filterRow = table.tHead.rows.item(1)
   const filters = Array.from(filterRow.getElementsByTagName("input")).map(
     x => x.value.toLowerCase()
@@ -59,17 +59,16 @@ let filterTable = () => {
 
 let navigate = () => {
   const urlParams = new URLSearchParams(window.location.search);
-  const qId = urlParams.get('id');
-  console.warn({ qId })
+  const iId = urlParams.get('id');
 
-  const table = document.getElementById("queries")
+  const table = document.getElementById("items")
   const rows = table.tBodies[0].rows
 
   for (const row of rows) {
     const cell = row.getElementsByTagName("td").item(0)
     const cellText = cell.getAttribute("key")
 
-    if (cellText == qId) {
+    if (cellText == iId) {
       row.scrollIntoView({ behavior: "smooth", block: "center" })
       row.classList.add("active")
     }

@@ -1,3 +1,4 @@
+import collections
 from textwrap import dedent
 from markdown import markdown
 
@@ -15,6 +16,10 @@ VNEXT = {
     "2017": "2021",
     "c": "2021",
 }
+WORDDB = "shebanq_passage2021"
+LEXICON = "lexicon"
+WORD_VERSE = "word_verse"
+WORDTABLES = {LEXICON, WORD_VERSE}
 
 
 def getLocations(obj, BASEDIR):
@@ -28,7 +33,93 @@ def getLocations(obj, BASEDIR):
     obj.tempDir = f"{obj.shebanqDir}/_temp"
     obj.docsDir = f"{obj.shebanqDir}/docs"
     obj.queryDir = f"{obj.docsDir}/hebrew/query"
+    obj.wordDir = f"{obj.docsDir}/hebrew/word"
     obj.bhsa = "ETCBC/bhsa"
+
+
+def htmlEsc(x):
+    return (
+        x.replace("&amp;", "&")
+        .replace("&", "&amp;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+        .replace('"', "&quot;")
+        .replace("'", "&apos;")
+    )
+
+
+class Check:
+    def __init__(self, BASEDIR):
+        getLocations(self, BASEDIR)
+
+    def unzip(self, kind="etcbc", version=None):
+        bhsaDir = self.bhsaDir
+        tempDir = self.tempDir
+
+        versions = VERSIONS if version is None else (version,)
+        ext = "mql" if kind == "etcbc" else "sql"
+        extz = "bz2" if kind == "etcbc" else "gz"
+
+        for version in versions:
+            mqlZipFile = (
+                f"{bhsaDir}/shebanq/{version}/shebanq_{kind}{version}.{ext}.{extz}"
+            )
+            mqlFile = f"{tempDir}/shebanq_etcbc{version}.{ext}"
+
+            if fileExists(mqlFile):
+                console(f"already unzipped: {mqlFile}")
+            else:
+                console(f"unzipping {mqlZipFile}")
+                cmd = "bunzip2" if extz == "bz2" else "gunzip"
+                result = run(f"{cmd} -k -c {mqlZipFile} > {mqlFile}")
+
+                if not result[0]:
+                    console(result[-1], error=True)
+
+    def monads(self):
+        tempDir = self.tempDir
+
+        for version in VERSIONS:
+            mqlFile = f"{tempDir}/shebanq_etcbc{version}.mql"
+
+            console(f"Checking {version} from {mqlFile}")
+
+            curMonad = 0
+            gaps = []
+
+            with open(mqlFile) as fh:
+                skip = True
+
+                for ln, line in enumerate(fh):
+                    if line == "WITH OBJECT TYPE[word]\n":
+                        skip = False
+
+                    if line == "GO\n":
+                        skip = True
+
+                    if skip:
+                        continue
+
+                    if line.startswith("FROM MONADS"):
+                        monad = int(
+                            line.split("=", 1)[1]
+                            .replace("{", "")
+                            .replace("}", "")
+                            .strip()
+                        )
+
+                        if curMonad + 1 != monad:
+                            gaps.append((ln + 1, curMonad, monad))
+
+                        curMonad = monad
+
+            nGaps = len(gaps)
+
+            console(f"\tlast monad = {curMonad}")
+            console(f"\tthere were {nGaps} gaps", error=nGaps > 0)
+
+            for ln, b, e in gaps:
+                console(f"\t\tline {ln}: gap from {b} to {e}", error=True)
 
 
 class SQL:
@@ -50,6 +141,8 @@ class SQL:
 
             for file in files:
                 (table, kind) = file.rsplit(".", 1)
+                if db == WORDDB and table not in WORDTABLES:
+                    continue
 
                 if kind == "txt":
                     tables.add(table)
@@ -77,6 +170,9 @@ class SQL:
         data = self.data
 
         for db, tables in data.items():
+            if db == WORDDB:
+                continue
+
             for table, rows in tables.items():
                 with open(f"{backupDir}/{db}/{table}.txt", "w") as fh:
                     newLine = ""
@@ -122,7 +218,11 @@ class SQL:
 
             console(f"Database {d}:")
             tableInfo = data[d]
-            tables = sorted(tableInfo) if table is None else [table]
+            tables = (
+                (sorted(WORDTABLES) if db == WORDDB else sorted(tableInfo))
+                if table is None
+                else [table]
+            )
 
             for t in tables:
                 if not self.check(d, t):
@@ -233,7 +333,7 @@ class SQL:
         data = self.data
         queryDir = self.queryDir
         curationDir = self.curationDir
-        templateFile = f"{curationDir}/template.html"
+        templateFile = f"{curationDir}/template-queries.html"
         indexFile = f"{queryDir}/index.html"
         jsFileSrc = f"{curationDir}/helpers.js"
         jsFileDst = f"{queryDir}/helpers.js"
@@ -385,9 +485,7 @@ class SQL:
                     """onkeyup="filterTable()" placeholder="filter ..">"""
                 )
                 if sortable
-                else (
-                    """<input class="filter" type="hidden">"""
-                )
+                else ("""<input class="filter" type="hidden">""")
             )
             queryTable.append(f"""<th>{filterControl}</th>\n""")
 
@@ -468,10 +566,7 @@ class SQL:
                 localVFull = f"{localFull}&version={version}"
 
                 tfSet = f"q{qId}{versionRep}"
-
-                origFull = (
-                    "http://shebanq.ancient-data.org/hebrew/query?version=4b&id=1780"
-                )
+                nameH = htmlEsc(name)
 
                 queryTable.append(
                     f"""
@@ -479,7 +574,7 @@ class SQL:
                         <td key="{qId}"><a href="{metaUrl}">{qId}</a></td>
                         <td key="{version}">{version}</td>
                         <td key="{tfSet}">{tfSet}</td>
-                        <td key="{norm(name.lower())}">{name}</td>
+                        <td key="{norm(nameH.lower())}">{nameH}</td>
                         <td key="{createdBy.lower()}">{createdBy}</td>
                         <td key="{project.lower()}"><a href="{pUrl}">{project}</a></td>
                         <td key="{organization.lower()}"><a href="{oUrl}">{organization}</a></td>
@@ -526,79 +621,237 @@ class SQL:
         queryTable.append("</tbody>\n")
 
         with open(indexFile, "w") as fh:
-            fh.write(template.replace("{{queryTable}}", "".join(queryTable)))
+            fh.write(template.replace("{{itemTable}}", "".join(queryTable)))
 
         fileCopy(jsFileSrc, jsFileDst)
         fileCopy(cssFileSrc, cssFileDst)
 
         console(f"Generated {nqe} pages for {nq} queries")
 
+    def genWordPages(self):
+        def nonNull(x):
+            return not (x == "" or x == "\\N")
 
-class Check:
-    def __init__(self, BASEDIR):
-        getLocations(self, BASEDIR)
+        def zapNull(x):
+            return "" if x == "\\N" else x
 
-    def unzip(self):
-        bhsaDir = self.bhsaDir
-        tempDir = self.tempDir
+        def unesc(x):
+            return x.replace("\\n", "\n").replace("\\t", "\t")
 
-        for version in VERSIONS:
-            mqlZipFile = (
-                f"{bhsaDir}/bhsa/shebanq/{version}/shebanq_etcbc{version}.mql.bz2"
+        def norm(x):
+            return x.replace("'", "").replace('"', "").strip()
+
+        ORIG = "shebanq.ancient-data.org/hebrew/word"
+        LOCAL = "localhost:8000/hebrew/word"
+
+        data = self.data
+        wordDir = self.wordDir
+        curationDir = self.curationDir
+        templateFile = f"{curationDir}/template-words.html"
+        indexFile = f"{wordDir}/index.html"
+        jsFileSrc = f"{curationDir}/helpers.js"
+        jsFileDst = f"{wordDir}/helpers.js"
+        cssFileSrc = f"{curationDir}/design.css"
+        cssFileDst = f"{wordDir}/design.css"
+
+        console("Cleaning previous results ... ")
+        initTree(wordDir, fresh=True, gentle=True)
+
+        console("Counting lexemes ...")
+
+        wordVerseRows = data[WORDDB][WORD_VERSE]
+        freqOccs = collections.Counter()
+        freqVerses = collections.defaultdict(set)
+
+        for r in wordVerseRows:
+            (verseId, lexId) = r[1:3]
+            freqOccs[lexId] += 1
+            freqVerses[lexId].add(verseId)
+
+        freqV = {lexId: len(verses) for (lexId, verses) in freqVerses.items()}
+
+        console("Gathering lexemes ... ")
+
+        lexRows = data[WORDDB][LEXICON]
+        lexemes = {}
+
+        for r in lexRows:
+            (
+                lexId,
+                lan,
+                entryId,
+                entry,
+                entryHeb,
+                entryIdHeb,
+                gEntry,
+                gEntryHeb,
+                root,
+                pos,
+                nametype,
+                subpos,
+                gloss,
+            ) = r[0:13]
+
+            lexemes[lexId] = dict(
+                meta=dict(
+                    vocalized=zapNull(gEntryHeb),
+                    consonantal=zapNull(entryHeb),
+                    disambiguated=zapNull(entryIdHeb),
+                    vocalizedTrans=unesc(zapNull(gEntry)),
+                    consonantalTrans=unesc(zapNull(entry)),
+                    disambiguatedTrans=unesc(zapNull(entryId)),
+                    partOfSpeech=zapNull(pos),
+                    lexicalSet=zapNull(subpos),
+                    properNounCategory=zapNull(nametype),
+                    language=zapNull(lan),
+                    gloss=zapNull(gloss),
+                    frequency=freqOccs[lexId],
+                    verses=freqV[lexId],
+                ),
             )
-            mqlFile = f"{tempDir}/shebanq_etcbc{version}.mql"
 
-            if not fileExists(mqlFile):
-                console(f"unzipping {mqlZipFile}")
-                result = run(f"bunzip2 -k -c {mqlZipFile} > {mqlFile}")
+        console("Generating pages ... ")
 
-                if not result[0]:
-                    console(result[-1], error=True)
+        fields = (
+            ("lexId", "lexeme id", True, True),
+            ("disambiguatedTrans", "disambiguated (trans)", True, True),
+            ("vocalized", "vocalized", True, True),
+            ("partOfSpeech", "part of speech", True, True),
+            ("lexicalSet", "lexical set", True, True),
+            ("properNounCategory", "proper noun category", True, True),
+            ("language", "language", True, True),
+            ("gloss", "gloss", True, True),
+            ("frequency", "frequency", True, False),
+            ("local shebanq", "local shebanq", False, True),
+        )
 
-    def monads(self):
-        tempDir = self.tempDir
+        with open(templateFile) as fh:
+            template = fh.read()
 
-        for version in VERSIONS:
-            mqlFile = f"{tempDir}/shebanq_etcbc{version}.mql"
+        nw = 0
 
-            console(f"Checking {version} from {mqlFile}")
+        lexemeTable = []
+        lexemeTable.append("<thead>\n\t<tr>")
 
-            curMonad = 0
-            gaps = []
+        for c, field in enumerate(fields):
+            name, nameRep, sortable, asString = field
+            typeRep = "true" if asString else "false"
+            sortControls = []
 
-            with open(mqlFile) as fh:
-                skip = True
+            if sortable:
+                for asc in True, False:
+                    dRep = "true" if asc else "false"
+                    dIcon = "↑" if asc else "↓"
+                    sortControls.append(
+                        """<a class="button" """
+                        f"""onclick="sortTable({c}, {dRep}, {typeRep})">{dIcon}</a>"""
+                    )
 
-                for ln, line in enumerate(fh):
-                    if line == "WITH OBJECT TYPE[word]\n":
-                        skip = False
+            lexemeTable.append(
+                f"""<th>{sortControls[0]}{nameRep}{sortControls[1]}</th>\n"""
+                if sortable
+                else f"""<th>{nameRep}</th>"""
+            )
 
-                    if line == "GO\n":
-                        skip = True
+        lexemeTable.append("</tr>\n<tr>\n")
 
-                    if skip:
-                        continue
+        for c, field in enumerate(fields):
+            name, nameRep, sortable, asString = field
+            filterControl = (
+                (
+                    """<input class="filter" type="text" """
+                    """onkeyup="filterTable()" placeholder="filter ..">"""
+                )
+                if sortable
+                else ("""<input class="filter" type="hidden">""")
+            )
+            lexemeTable.append(f"""<th>{filterControl}</th>\n""")
 
-                    if line.startswith("FROM MONADS"):
-                        monad = int(
-                            line.split("=", 1)[1]
-                            .replace("{", "")
-                            .replace("}", "")
-                            .strip()
-                        )
+        lexemeTable.append("</tr>\n</thead>\n<tbody>" "")
 
-                        if curMonad + 1 != monad:
-                            gaps.append((ln + 1, curMonad, monad))
+        for lexId in sorted(lexemes, key=lambda x: lexemes[x]["meta"]["disambiguated"]):
+            lexInfo = lexemes[lexId]
+            lexMeta = lexInfo["meta"]
 
-                        curMonad = monad
+            vocalized = lexMeta["vocalized"]
+            vocalizedTrans = lexMeta["vocalizedTrans"]
+            consonantal = lexMeta["consonantal"]
+            consonantalTrans = lexMeta["consonantalTrans"]
+            disambiguated = lexMeta["disambiguated"]
+            disambiguatedTrans = lexMeta["disambiguatedTrans"]
+            gloss = lexMeta["gloss"]
+            language = lexMeta["language"]
+            partOfSpeech = lexMeta["partOfSpeech"]
+            lexicalSet = lexMeta["lexicalSet"]
+            properNounCategory = lexMeta["properNounCategory"]
+            frequency = lexMeta["frequency"]
+            verses = lexMeta["verses"]
 
-            nGaps = len(gaps)
+            fPl = "" if frequency == 1 else "s"
+            vPl = "" if verses == 1 else "s"
 
-            console(f"\tlast monad = {monad}")
-            console(f"\tthere were {nGaps} gaps", error=nGaps > 0)
+            metaUrl = f"w{lexId}.html"
+            origShort = f"{ORIG}?id={lexId}&version={VERSIONS[-1]}"
+            origFull = f"https://{origShort}"
+            localShort = f"{LOCAL}?id={lexId}&version={VERSIONS[-1]}"
+            localFull = f"http://{localShort}"
 
-            for ln, b, e in gaps:
-                console(f"\t\tline {ln}: gap from {b} to {e}", error=True)
+            nw += 1
+
+            disambiguatedTransH = htmlEsc(disambiguatedTrans)
+            glossH = htmlEsc(gloss)
+
+            lexemeTable.append(
+                f"""
+                <tr>
+                    <td key="{lexId}"><a href="{metaUrl}">{lexId}</a></td>
+                    <td key="{disambiguatedTransH}">{disambiguatedTransH}</td>
+                    <td key="{vocalized}">{vocalized}</td>
+                    <td key="{partOfSpeech}">{partOfSpeech}</td>
+                    <td key="{lexicalSet}">{lexicalSet}</td>
+                    <td key="{properNounCategory}">{properNounCategory}</td>
+                    <td key="{language}">{language}</td>
+                    <td key="{glossH}">{glossH}</td>
+                    <td key="{frequency}">{frequency}</td>
+                    <td><a href="{localFull}">url</a></td>
+                </tr>
+                """
+            )
+
+            md = dedent(
+                f"""\
+                # {lexId} - {disambiguatedTrans} - {language} - {gloss}
+                # {disambiguated}
+
+                Occurs {frequency} time{fPl} in {verses} verse{vPl}.
+
+                | property | value |
+                | --- | --- |
+                | *local link* | [{localShort}]({localFull}) |
+                | *original link* | [{origShort}]({origFull}) |
+                | *consonantal* | {consonantal} |
+                | *consonantal (trans)* | `{consonantalTrans}` |
+                | *vocalized* | {vocalized} |
+                | *vocalized (trans)* | `{vocalizedTrans}` |
+                | *part of speech* | `{partOfSpeech}` |
+                | *lexical set* | `{lexicalSet}` |
+                | *proper noun category* | `{properNounCategory}` |
+
+                """
+            )
+
+            with open(f"{wordDir}/w{lexId}.html", "w") as fh:
+                fh.write(markdown(md, extensions=["tables", "fenced_code"]))
+
+        lexemeTable.append("</tbody>\n")
+
+        with open(indexFile, "w") as fh:
+            fh.write(template.replace("{{itemTable}}", "".join(lexemeTable)))
+
+        fileCopy(jsFileSrc, jsFileDst)
+        fileCopy(cssFileSrc, cssFileDst)
+
+        console(f"Generated {nw} word pages")
 
 
 class Mapper:
