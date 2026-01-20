@@ -61,11 +61,16 @@ It still contains the documentation and lots of useful information.
 As of 2023-12-21 SHEBANQ migrated to KNAW/HuC in the context of CLARIAH,
 which acts as the successor of CLARIN.
 
-On 2026-03-01 the maker of SHEBANQ, retired. This repository is a curated version
-of SHEBANQ.
+On 2026-03-01 is the retiremnt data of the maker of SHEBANQ.
+This repository is a curated version of SHEBANQ.
 It contains the resources to set up a local shebanq on your computer which contains
 all the public material that users have contributed over time until the moment
 of curation.
+
+However, it is possible that the ETCBC will continue the hosting of SHEBANQ in the
+current form. For status updates,
+see the
+[SHEBANQ Wiki](https://github.com/ETCBC/shebanq/wiki/Important-notice-about-the-future-of-SHEBANQ).
 
 ## Local deployment
 
