@@ -37,7 +37,7 @@
     If the `dockertag` variable in `.env` is increased, the next start up of your
     local shebanq with will pull a corresponding new version of the `shebanq` docker
     image (only if the `update` parameter is passed.
-1.  If you have a working, local shebanq, it will not only be upgraded if you pass
+1.  If you have a working, local shebanq, it will only be upgraded if you pass
     the `update` parameter explicitly.
 
 ## How can I build a new shebanq image and distribute this?

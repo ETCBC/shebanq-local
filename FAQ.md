@@ -148,7 +148,7 @@ and especially the
 and the
 [auxiliary python curation code](https://github.com/ETCBC/shebanq-local/blob/master/curation/helpers.py).
 
-The data will and up in your `backup` directory, in subdirectories
+The data will end up in your `backup` directory, in subdirectories
 `shebanq_web` and `shebanq_note`. For each table you'll find two files:
 
 *   *table*`.sql` The definition of the table
