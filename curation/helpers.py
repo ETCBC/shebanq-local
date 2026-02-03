@@ -6,7 +6,15 @@ from markdown import markdown
 
 from tf.parameters import PICKLE_PROTOCOL, GZIP_LEVEL
 from tf.core.helpers import console, run
-from tf.core.files import dirContents, initTree, fileExists, fileCopy, expanduser as ex
+from tf.core.files import (
+    dirContents,
+    initTree,
+    fileExists,
+    fileCopy,
+    expanduser as ex,
+    writeJson,
+    readJson,
+)
 from tf.lib import writeSets
 from tf.app import use
 
@@ -30,14 +38,14 @@ def getLocations(obj, BASEDIR):
     obj.shebanqDir = f"{baseDir}/ETCBC/shebanq-local"
     obj.bhsaDir = f"{baseDir}/ETCBC/bhsa"
     obj.backupDir = f"{obj.shebanqDir}/backup"
-    obj.mapDir = f"{obj.shebanqDir}/backup/mapping"
-    obj.mapFile = "mappings.gz"
     obj.contentDir = f"{obj.shebanqDir}/content"
+    obj.gapFile = f"{obj.contentDir}/gaps.json"
+    obj.mapPath = f"{obj.contentDir}/mappings.gz"
     obj.curationDir = f"{obj.shebanqDir}/curation"
     obj.tempDir = f"{obj.shebanqDir}/_temp"
     obj.docsDir = f"{obj.shebanqDir}/docs"
     obj.privDir = f"{obj.shebanqDir}/docsPrivate"
-    obj.userDir = f"{obj.privDir}/user"
+    obj.userBaseDir = f"{obj.privDir}/user"
     obj.queryDir = f"{obj.docsDir}/hebrew/query"
     obj.wordDir = f"{obj.docsDir}/hebrew/word"
     obj.bhsa = "ETCBC/bhsa"
@@ -98,8 +106,10 @@ class Check:
                 if not result[0]:
                     console(result[-1], error=True)
 
-    def monads(self):
+    def monads(self, force=False):
+        gapFile = self.gapFile
         tempDir = self.tempDir
+        allGaps = {}
 
         for version in VERSIONS:
             mqlFile = f"{tempDir}/shebanq_etcbc{version}.mql"
@@ -143,10 +153,181 @@ class Check:
             for ln, b, e in gaps:
                 console(f"\t\tline {ln}: gap from {b} to {e}", error=True)
 
+            allGaps[version] = gaps
+
+        writeJson(allGaps, asFile=gapFile)
+
+    def checkMonads(self, force=False):
+        gapFile = self.gapFile
+
+        if not force and fileExists(gapFile):
+            allGaps = readJson(asFile=gapFile)
+
+            for version in VERSIONS:
+                if version in allGaps:
+                    gaps = allGaps[version]
+                    nGaps = len(gaps)
+
+                    console(f"\t{version:<4}: there were {nGaps} gaps", error=nGaps > 0)
+
+                    for ln, b, e in gaps:
+                        console(f"\t\tline {ln}: gap from {b} to {e}", error=True)
+
+            return
+
+        self.unzip()
+        self.monads()
+
+
+class Mapper:
+    def __init__(self, BASEDIR):
+        getLocations(self, BASEDIR)
+
+        A = {}
+        self.A = A
+
+    def load(self):
+        A = self.A
+        baseDir = self.baseDir
+        bhsa = self.bhsa
+
+        for v in VERSIONS:
+            A[v] = use(
+                f"{bhsa}:clone",
+                checkout="clone",
+                mod=[],
+                version=v,
+                source=baseDir,
+            )
+
+    def unload(self):
+        self.A = {}
+
+    def readMappings(self):
+        mapPath = self.mapPath
+
+        with gzip.open(mapPath, mode="rb") as f:
+            self.mappingsFrom = pickle.load(f)
+
+        console(f"Mappings read from {mapPath}")
+
+    def loadMappings(self, force=False):
+        mapPath = self.mapPath
+
+        if force or not fileExists(mapPath):
+            self.makeMappings()
+            self.writeMappings()
+        else:
+            self.readMappings()
+
+    def writeMappings(self):
+        mapPath = self.mapPath
+        mappingsFrom = self.mappingsFrom
+
+        with gzip.open(mapPath, mode="wb", compresslevel=GZIP_LEVEL) as f:
+            f.write(pickle.dumps(mappingsFrom, protocol=PICKLE_PROTOCOL))
+
+        console(f"Mappings written to {mapPath}")
+
+    def makeMappings(self):
+        A = self.A
+
+        if len(A) == 0:
+            self.load()
+
+        self.mappingsFrom = {}
+        mappingsFrom = self.mappingsFrom
+        self.mappingsGaps = {}
+        mappingsGaps = self.mappingsGaps
+
+        for v in reversed(VERSIONS):
+            if v == "2021":
+                continue
+
+            console(f"map {v}-slots to 2021 slots ...")
+            nextV = VNEXT[v]
+
+            mapFeat = f"omap@{v}-{nextV}"
+            A[nextV].load(mapFeat)
+            smap = A[nextV].api.Es(mapFeat).f
+            maxSlot = A[v].api.F.otype.maxSlot
+
+            thisMapping = {}
+            theseGaps = {}
+
+            for n in range(1, maxSlot + 1):
+                x = smap(n)
+
+                if x:
+                    thisMapping[n] = list(x)[0][0]
+                else:
+                    theseGaps[n] = (v, None)
+
+            if nextV == "2021":
+                mappingsFrom[v] = thisMapping
+            else:
+                remainingMapping = mappingsFrom[nextV]
+                mappingsFrom[v] = {}
+                fullMapping = mappingsFrom[v]
+
+                for n in range(1, maxSlot + 1):
+                    if n in thisMapping:
+                        nn = thisMapping[n]
+
+                        if nn in remainingMapping:
+                            fullMapping[n] = remainingMapping[nn]
+                        else:
+                            theseGaps[n] = (nextV, nn)
+
+            mappingsGaps[v] = theseGaps
+            nGaps = len(theseGaps)
+            console(f"\t{nGaps} gaps")
+
+        console("Extra check on gaps:")
+        self.checkGaps()
+        self.unload()
+
+    def checkGaps(self):
+        A = self.A
+
+        mappingsFrom = self.mappingsFrom
+
+        for v in VERSIONS:
+            if v == "2021":
+                continue
+
+            maxSlot = A[v].api.F.otype.maxSlot
+
+            gaps = 0
+            thisMapping = mappingsFrom[v]
+
+            for n in range(1, maxSlot):
+                if n not in thisMapping:
+                    gaps += 1
+
+            console(f"mapping {v} to 2021 has {gaps} gaps")
+
+    def showValues(self, *nodes):
+        mappingsFrom = self.mappingsFrom
+
+        for n in nodes:
+            for v in reversed(VERSIONS):
+                if v == "2021":
+                    continue
+
+                console(f"{v:>4}-slot {n} maps to {mappingsFrom[v][n]}")
+            console("")
+
 
 class SQL:
     def __init__(self, BASEDIR, zapTables=set()):
         getLocations(self, BASEDIR)
+        self.user = None
+        self.userDir = None
+        self.uids = {}
+        self.qids = {}
+        self.qeids = {}
+        self.A = None
         self.zapTables = zapTables
         self.data = {}
         self.readData()
@@ -169,7 +350,7 @@ class SQL:
                 if kind == "txt":
                     tables.add(table)
 
-                    if tables in zapTables:
+                    if table in zapTables:
                         data.setdefault(db, {})[table] = []
                     else:
                         with open(f"{backupDir}/{db}/{file}") as fh:
@@ -191,6 +372,8 @@ class SQL:
         backupDir = self.backupDir
         data = self.data
 
+        initTree(backupDir, fresh=False)
+
         for db, tables in data.items():
             if db == WORDDB:
                 continue
@@ -209,6 +392,18 @@ class SQL:
                                 for field in row
                             )
                         )
+
+    def load(self):
+        baseDir = self.baseDir
+        bhsa = self.bhsa
+        v = "2021"
+        self.A = use(
+            f"{bhsa}:clone",
+            checkout="clone",
+            mod=[],
+            version=v,
+            source=baseDir,
+        )
 
     def check(self, db, table):
         data = self.data
@@ -315,6 +510,11 @@ class SQL:
                 r[field] = "\\N"
 
     def writeQResultsTF(self, mappingsFrom):
+        user = self.user
+        forUser = user is not None
+        userDir = self.userDir
+        qids = self.qids
+        qeids = self.qeids
         data = self.data
         contentDir = self.contentDir
 
@@ -325,11 +525,19 @@ class SQL:
 
         for r in queryexeRows:
             qId, qeId, version = r[10], r[0], r[2]
+
+            if forUser and qId not in qids:
+                continue
+
             versionFromQueryexe[qeId] = (qId, version)
 
         resultsTF = {}
+        self.resultsTF = resultsTF
 
         for qeId, fromM, toM in monadRows:
+            if forUser and qeId not in qeids:
+                continue
+
             qId, version = versionFromQueryexe[qeId]
             is2021 = version == "2021"
             versionRep = "" if is2021 else f"_{version}"
@@ -338,7 +546,65 @@ class SQL:
                 resultsTF.setdefault(f"q{qId}{versionRep}", set()).add(
                     i if is2021 else mappingsFrom[version][i]
                 )
-        writeSets(resultsTF, f"{contentDir}/qresults.tfx")
+        destDir = userDir if forUser else contentDir
+        writeSets(resultsTF, f"{destDir}/qresults.tfx")
+
+    def writeResultsHtml(self, qId, version):
+        userDir = self.userDir
+        A = self.A
+        resultsTF = self.resultsTF
+
+        is2021 = version == "2021"
+        versionRep = "" if is2021 else f"_{version}"
+        key = f"q{qId}{versionRep}"
+
+        if key not in resultsTF:
+            console(f"Query {key} not in TF results", error=True)
+            return
+
+        nodes = tuple((j,) for j in sorted(resultsTF[key]))
+        html = A.table(nodes, _asString=True, condenseType="verse", condensed=True)
+
+        destDir = f"{userDir}/{qId}/{version}"
+        initTree(destDir, fresh=False)
+        destFile = f"{destDir}/results.html"
+
+        with open(destFile, "w") as fh:
+            fh.write(html)
+
+    def selectUserQueries(self, user):
+        self.user = user
+        uids = self.getIds(
+            "shebanq_web",
+            "auth_user",
+            0,
+            condition=lambda r: f"{r[1]} {r[2]}" == user,
+        )
+        nUids = len(uids)
+
+        if nUids == 0:
+            console(f"No such user: {user}", error=True)
+            self.user = None
+            self.uids = {}
+            return
+
+        self.uids = uids
+
+        if nUids > 1:
+            console(f"There are {nUids} ids for {user}. We merge their queries")
+
+        userBaseDir = self.userBaseDir
+        userDir = f"{userBaseDir}/{user.replace(' ', '_')}"
+        self.userDir = userDir
+        console(f"Result directory is {userDir}")
+
+        qids = self.getIds("shebanq_web", "query", 0, condition=lambda r: r[4] in uids)
+        qeids = self.getIds(
+            "shebanq_web", "query_exe", 0, condition=lambda r: r[10] in qids
+        )
+        self.qids = qids
+        self.qeids = qeids
+        self.load()
 
     def genQueryPages(self, user=None):
         ORIG = "shebanq.ancient-data.org/hebrew/query"
@@ -347,33 +613,6 @@ class SQL:
         forUser = user is not None
 
         if forUser:
-            uids = self.getIds(
-                "shebanq_web",
-                "auth_user",
-                0,
-                condition=lambda r: f"{r[1]} {r[2]}" == name,
-            )
-            nUids = len(uids)
-
-            if nUids == 0:
-                console(f"No such user: {user}", error=True)
-                return
-
-            if nUids > 1:
-                console(f"There are {nUids} ids for {user}. We merge their queries")
-
-            userDir = self.userDir
-            userDir = f"{userDir}/{user.replace(' ', '_')}"
-            console("Result directory is {userDir}")
-
-        if forUser:
-            queryIds = sorted(
-                int(qid)
-                for qid in self.getIds(
-                    "shebanq_web", "query", 0, condition=lambda r: r[4] in uids
-                )
-            )
-            console(f"{queryIds=}")
             return
 
         data = self.data
@@ -872,121 +1111,3 @@ class SQL:
         fileCopy(cssFileSrc, cssFileDst)
 
         console(f"Generated {nw} word pages")
-
-
-class Mapper:
-    def __init__(self, BASEDIR):
-        getLocations(self, BASEDIR)
-        mapDir = self.mapDir
-        initTree(mapDir, fresh=False)
-
-        A = {}
-        self.A = A
-
-    def load(self):
-        A = self.A
-        baseDir = self.baseDir
-        bhsa = self.bhsa
-
-        for v in VERSIONS:
-            A[v] = use(
-                f"{bhsa}:clone",
-                checkout="clone",
-                mod=[],
-                version=v,
-                source=baseDir,
-            )
-
-    def unload(self):
-        self.A = {}
-
-    def makeMappings(self):
-        A = self.A
-        mapDir = self.mapDir
-        mapFile = self.mapFile
-
-        self.mappingsFrom = {}
-        mappingsFrom = self.mappingsFrom
-        self.mappingsGaps = {}
-        mappingsGaps = self.mappingsGaps
-
-        for v in reversed(VERSIONS):
-            if v == "2021":
-                continue
-
-            console(f"map {v}-slots to 2021 slots ...")
-            nextV = VNEXT[v]
-
-            mapFeat = f"omap@{v}-{nextV}"
-            A[nextV].load(mapFeat)
-            smap = A[nextV].api.Es(mapFeat).f
-            maxSlot = A[v].api.F.otype.maxSlot
-
-            thisMapping = {}
-            theseGaps = {}
-
-            for n in range(1, maxSlot + 1):
-                x = smap(n)
-
-                if x:
-                    thisMapping[n] = list(x)[0][0]
-                else:
-                    theseGaps[n] = (v, None)
-
-            if nextV == "2021":
-                mappingsFrom[v] = thisMapping
-            else:
-                remainingMapping = mappingsFrom[nextV]
-                mappingsFrom[v] = {}
-                fullMapping = mappingsFrom[v]
-
-                for n in range(1, maxSlot + 1):
-                    if n in thisMapping:
-                        nn = thisMapping[n]
-
-                        if nn in remainingMapping:
-                            fullMapping[n] = remainingMapping[nn]
-                        else:
-                            theseGaps[n] = (nextV, nn)
-
-            mappingsGaps[v] = theseGaps
-            nGaps = len(theseGaps)
-            console(f"\t{nGaps} gaps")
-
-        mapPath = f"{mapDir}/{mapFile}"
-
-        with gzip.open(mapPath, mode="wb", compresslevel=GZIP_LEVEL) as f:
-            f.write(pickle.dumps(mappingsFrom, protocol=PICKLE_PROTOCOL))
-
-        console(f"Mappings written to {mapPath}")
-
-    def checkGaps(self):
-        A = self.A
-
-        mappingsFrom = self.mappingsFrom
-
-        for v in VERSIONS:
-            if v == "2021":
-                continue
-
-            maxSlot = A[v].api.F.otype.maxSlot
-
-            gaps = 0
-            thisMapping = mappingsFrom[v]
-
-            for n in range(1, maxSlot):
-                if n not in thisMapping:
-                    gaps += 1
-
-            console(f"mapping {v} to 2021 has {gaps} gaps")
-
-    def showValues(self, *nodes):
-        mappingsFrom = self.mappingsFrom
-
-        for n in nodes:
-            for v in reversed(VERSIONS):
-                if v == "2021":
-                    continue
-
-                console(f"{v:>4}-slot {n} maps to {mappingsFrom[v][n]}")
-            console("")
