@@ -73,6 +73,7 @@ _temp/
 #####################
 data/
 backup/
+docsPrivate
 
 # Running app
 ###########################

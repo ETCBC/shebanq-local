@@ -1,12 +1,14 @@
 import collections
+import pickle
+import gzip
 from textwrap import dedent
 from markdown import markdown
 
+from tf.parameters import PICKLE_PROTOCOL, GZIP_LEVEL
 from tf.core.helpers import console, run
 from tf.core.files import dirContents, initTree, fileExists, fileCopy, expanduser as ex
 from tf.lib import writeSets
 from tf.app import use
-
 
 VERSIONS = ("4", "4b", "2016", "2017", "c", "2021")
 VNEXT = {
@@ -28,10 +30,14 @@ def getLocations(obj, BASEDIR):
     obj.shebanqDir = f"{baseDir}/ETCBC/shebanq-local"
     obj.bhsaDir = f"{baseDir}/ETCBC/bhsa"
     obj.backupDir = f"{obj.shebanqDir}/backup"
+    obj.mapDir = f"{obj.shebanqDir}/backup/mapping"
+    obj.mapFile = "mappings.gz"
     obj.contentDir = f"{obj.shebanqDir}/content"
     obj.curationDir = f"{obj.shebanqDir}/curation"
     obj.tempDir = f"{obj.shebanqDir}/_temp"
     obj.docsDir = f"{obj.shebanqDir}/docs"
+    obj.privDir = f"{obj.shebanqDir}/docsPrivate"
+    obj.userDir = f"{obj.privDir}/user"
     obj.queryDir = f"{obj.docsDir}/hebrew/query"
     obj.wordDir = f"{obj.docsDir}/hebrew/word"
     obj.bhsa = "ETCBC/bhsa"
@@ -46,6 +52,22 @@ def htmlEsc(x):
         .replace('"', "&quot;")
         .replace("'", "&apos;")
     )
+
+
+def nonNull(x):
+    return not (x == "" or x == "\\N")
+
+
+def zapNull(x):
+    return "" if x == "\\N" else x
+
+
+def unesc(x):
+    return x.replace("\\n", "\n").replace("\\t", "\t")
+
+
+def norm(x):
+    return x.replace("'", "").replace('"', "").strip()
 
 
 class Check:
@@ -140,7 +162,7 @@ class SQL:
             tables = set()
 
             for file in files:
-                (table, kind) = file.rsplit(".", 1)
+                table, kind = file.rsplit(".", 1)
                 if db == WORDDB and table not in WORDTABLES:
                     continue
 
@@ -243,13 +265,17 @@ class SQL:
         rows = data[db][table]
         data[db][table] = [r for r in rows if condition(r)]
 
-    def getIds(self, db, table, field):
+    def getIds(self, db, table, field, condition=None):
         if not self.check(db, table):
             return
 
         data = self.data
         rows = data[db][table]
-        return {r[field] for r in rows}
+        return (
+            {r[field] for r in rows}
+            if condition is None
+            else {r[field] for r in rows if condition(r)}
+        )
 
     def trimTable(self, db, table, field, keepIds):
         if not self.check(db, table):
@@ -304,7 +330,7 @@ class SQL:
         resultsTF = {}
 
         for qeId, fromM, toM in monadRows:
-            (qId, version) = versionFromQueryexe[qeId]
+            qId, version = versionFromQueryexe[qeId]
             is2021 = version == "2021"
             versionRep = "" if is2021 else f"_{version}"
 
@@ -314,21 +340,41 @@ class SQL:
                 )
         writeSets(resultsTF, f"{contentDir}/qresults.tfx")
 
-    def genQueryPages(self):
-        def nonNull(x):
-            return not (x == "" or x == "\\N")
-
-        def zapNull(x):
-            return "" if x == "\\N" else x
-
-        def unesc(x):
-            return x.replace("\\n", "\n").replace("\\t", "\t")
-
-        def norm(x):
-            return x.replace("'", "").replace('"', "").strip()
-
+    def genQueryPages(self, user=None):
         ORIG = "shebanq.ancient-data.org/hebrew/query"
         LOCAL = "localhost:8000/hebrew/query"
+
+        forUser = user is not None
+
+        if forUser:
+            uids = self.getIds(
+                "shebanq_web",
+                "auth_user",
+                0,
+                condition=lambda r: f"{r[1]} {r[2]}" == name,
+            )
+            nUids = len(uids)
+
+            if nUids == 0:
+                console(f"No such user: {user}", error=True)
+                return
+
+            if nUids > 1:
+                console(f"There are {nUids} ids for {user}. We merge their queries")
+
+            userDir = self.userDir
+            userDir = f"{userDir}/{user.replace(' ', '_')}"
+            console("Result directory is {userDir}")
+
+        if forUser:
+            queryIds = sorted(
+                int(qid)
+                for qid in self.getIds(
+                    "shebanq_web", "query", 0, condition=lambda r: r[4] in uids
+                )
+            )
+            console(f"{queryIds=}")
+            return
 
         data = self.data
         queryDir = self.queryDir
@@ -354,7 +400,7 @@ class SQL:
         projects = {}
 
         for r in projectRows:
-            (projectId, name, website) = r[0:3]
+            projectId, name, website = r[0:3]
             projects[projectId] = (name, website if nonNull(website) else "")
 
         console("Gathering organizations ... ")
@@ -362,7 +408,7 @@ class SQL:
         orgs = {}
 
         for r in orgRows:
-            (orgId, name, website) = r[0:3]
+            orgId, name, website = r[0:3]
             orgs[orgId] = (name, website if nonNull(website) else "")
 
         console("Gathering users ... ")
@@ -370,7 +416,7 @@ class SQL:
         users = {}
 
         for r in userRows:
-            (userId, firstName, lastName) = r[0:3]
+            userId, firstName, lastName = r[0:3]
             users[userId] = f"{zapNull(firstName)} {zapNull(lastName)}"
 
         console("Gathering queries ... ")
@@ -499,8 +545,8 @@ class SQL:
             name = qMeta["name"]
             description = qMeta["description"]
             createdBy = qMeta["createdBy"]
-            (project, pUrl) = qMeta["project"]
-            (organization, oUrl) = qMeta["organization"]
+            project, pUrl = qMeta["project"]
+            organization, oUrl = qMeta["organization"]
             dateCreated = qMeta["dateCreated"]
             dateModified = qMeta["dateModified"]
             dateShared = qMeta["dateShared"]
@@ -516,8 +562,7 @@ class SQL:
 
             nq += 1
 
-            md = dedent(
-                f"""\
+            md = dedent(f"""\
                 # {name}
 
                 | property | value |
@@ -534,16 +579,13 @@ class SQL:
 
                 **Description**
 
-                """
-            )
+                """)
             md += description
-            md += dedent(
-                """\
+            md += dedent("""\
 
                 ## Versions
 
-                """
-            )
+                """)
 
             for version in VERSIONS:
                 if version not in qVersions:
@@ -568,8 +610,7 @@ class SQL:
                 tfSet = f"q{qId}{versionRep}"
                 nameH = htmlEsc(name)
 
-                queryTable.append(
-                    f"""
+                queryTable.append(f"""
                     <tr>
                         <td key="{qId}"><a href="{metaUrl}">{qId}</a></td>
                         <td key="{version}">{version}</td>
@@ -580,12 +621,10 @@ class SQL:
                         <td key="{organization.lower()}"><a href="{oUrl}">{organization}</a></td>
                         <td><a href="{localVFull}">url</a></td>
                     </tr>
-                    """
-                )
+                    """)
 
                 nqe += 1
-                md += dedent(
-                    f"""\
+                md += dedent(f"""\
                     ### {version}
 
                     | property | value |
@@ -604,16 +643,13 @@ class SQL:
                     #### Query instruction (mql)
 
                     ```
-                    """
-                )
+                    """)
                 md += mql
-                md += dedent(
-                    """\
+                md += dedent("""\
 
                     ```
 
-                    """
-                )
+                    """)
 
             with open(f"{queryDir}/q{qId}.html", "w") as fh:
                 fh.write(markdown(md, extensions=["tables", "fenced_code"]))
@@ -629,18 +665,6 @@ class SQL:
         console(f"Generated {nqe} pages for {nq} queries")
 
     def genWordPages(self):
-        def nonNull(x):
-            return not (x == "" or x == "\\N")
-
-        def zapNull(x):
-            return "" if x == "\\N" else x
-
-        def unesc(x):
-            return x.replace("\\n", "\n").replace("\\t", "\t")
-
-        def norm(x):
-            return x.replace("'", "").replace('"', "").strip()
-
         ORIG = "shebanq.ancient-data.org/hebrew/word"
         LOCAL = "localhost:8000/hebrew/word"
 
@@ -664,7 +688,7 @@ class SQL:
         freqVerses = collections.defaultdict(set)
 
         for r in wordVerseRows:
-            (verseId, lexId) = r[1:3]
+            verseId, lexId = r[1:3]
             freqOccs[lexId] += 1
             freqVerses[lexId].add(verseId)
 
@@ -801,8 +825,7 @@ class SQL:
             disambiguatedTransH = htmlEsc(disambiguatedTrans)
             glossH = htmlEsc(gloss)
 
-            lexemeTable.append(
-                f"""
+            lexemeTable.append(f"""
                 <tr>
                     <td key="{lexId}"><a href="{metaUrl}">{lexId}</a></td>
                     <td key="{disambiguatedTransH}">{disambiguatedTransH}</td>
@@ -815,11 +838,9 @@ class SQL:
                     <td key="{frequency}">{frequency}</td>
                     <td><a href="{localFull}">url</a></td>
                 </tr>
-                """
-            )
+                """)
 
-            md = dedent(
-                f"""\
+            md = dedent(f"""\
                 # {lexId} - {disambiguatedTrans} - {language} - {gloss}
                 # {disambiguated}
 
@@ -837,8 +858,7 @@ class SQL:
                 | *lexical set* | `{lexicalSet}` |
                 | *proper noun category* | `{properNounCategory}` |
 
-                """
-            )
+                """)
 
             with open(f"{wordDir}/w{lexId}.html", "w") as fh:
                 fh.write(markdown(md, extensions=["tables", "fenced_code"]))
@@ -857,6 +877,9 @@ class SQL:
 class Mapper:
     def __init__(self, BASEDIR):
         getLocations(self, BASEDIR)
+        mapDir = self.mapDir
+        initTree(mapDir, fresh=False)
+
         A = {}
         self.A = A
 
@@ -879,6 +902,8 @@ class Mapper:
 
     def makeMappings(self):
         A = self.A
+        mapDir = self.mapDir
+        mapFile = self.mapFile
 
         self.mappingsFrom = {}
         mappingsFrom = self.mappingsFrom
@@ -927,6 +952,13 @@ class Mapper:
             mappingsGaps[v] = theseGaps
             nGaps = len(theseGaps)
             console(f"\t{nGaps} gaps")
+
+        mapPath = f"{mapDir}/{mapFile}"
+
+        with gzip.open(mapPath, mode="wb", compresslevel=GZIP_LEVEL) as f:
+            f.write(pickle.dumps(mappingsFrom, protocol=PICKLE_PROTOCOL))
+
+        console(f"Mappings written to {mapPath}")
 
     def checkGaps(self):
         A = self.A
