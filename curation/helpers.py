@@ -2,6 +2,7 @@ import re
 import collections
 import pickle
 import gzip
+from zipfile import ZipFile
 from textwrap import dedent
 from markdown import markdown
 
@@ -9,7 +10,6 @@ from tf.parameters import PICKLE_PROTOCOL, GZIP_LEVEL
 from tf.core.helpers import console, run
 from tf.core.files import (
     dirContents,
-    dirExists,
     initTree,
     fileExists,
     fileCopy,
@@ -53,6 +53,7 @@ def getLocations(obj, BASEDIR):
     obj.queryDir = f"{obj.docsDir}/hebrew/query"
     obj.wordDir = f"{obj.docsDir}/hebrew/word"
     obj.bhsa = "ETCBC/bhsa"
+    obj.qResultsFile = "qresults.tfx"
 
 
 def htmlEsc(x):
@@ -339,6 +340,7 @@ class SQL:
         self.zapTables = zapTables
         self.data = {}
         self.readData()
+        self.stats()
 
     def readData(self):
         backupDir = self.backupDir
@@ -517,10 +519,30 @@ class SQL:
             for field in fields:
                 r[field] = "\\N"
 
-    def writeQResultsTF(self, destDir=None, qIds=None, qeIds=None):
+    def reduceToPublic(self):
+        self.keep("shebanq_web", "query_exe", lambda r: r[8] == "T")
+        self.keep("shebanq_note", "note", lambda r: r[9] == "T" or r[11] == "T")
+        self.trimDetails("shebanq_web", "query_exe", "shebanq_web", "monads", 0)
+        self.trimMaster("shebanq_web", "query_exe", 10, "shebanq_web", "query")
+        self.trimMaster("shebanq_web", "query", 9, "shebanq_web", "organization")
+        self.trimMaster("shebanq_web", "query", 8, "shebanq_web", "project")
+        userIds = (
+            self.getIds("shebanq_web", "query", 4)
+            | self.getIds("shebanq_note", "note", 6)
+            | self.getIds("shebanq_web", "uploaders", 0)
+        )
+        self.trimTable("shebanq_web", "auth_user", 0, userIds)
+        self.trimTable("shebanq_web", "auth_membership", 1, userIds)
+        self.trimMaster("shebanq_web", "auth_membership", 1, "shebanq_web", "auth_group")
+        self.zapFields("shebanq_web", "auth_user", 3, 4, 5, 6, 7)
+        self.writeData()
+        self.stats()
+
+    def writeQResultsTF(self, destPath=None, qIds=None, qeIds=None):
         mappingsFrom = self.M.mappingsFrom
         data = self.data
         contentDir = self.contentDir
+        qResultsFile = self.qResultsFile
 
         monadRows = data["shebanq_web"]["monads"]
         queryexeRows = data["shebanq_web"]["query_exe"]
@@ -550,8 +572,10 @@ class SQL:
                 resultsTF.setdefault(f"q{qId}{versionRep}", set()).add(
                     i if is2021 else mappingsFrom[version][i]
                 )
-        destDir = contentDir if destDir is None else destDir
-        writeSets(resultsTF, f"{destDir}/qresults.tfx")
+        if destPath is None:
+            destPath = f"{contentDir}/{qResultsFile}"
+
+        writeSets(resultsTF, destPath)
 
     def genPrivateQueryPages(self):
         data = self.data
@@ -567,7 +591,9 @@ class SQL:
 
         for r in userRows:
             userId, firstName, lastName = r[0:3]
-            userName = TRIM_RE.sub(" ", f"{zapNull(firstName)} {zapNull(lastName)}".strip())
+            userName = TRIM_RE.sub(
+                " ", f"{zapNull(firstName)} {zapNull(lastName)}".strip()
+            )
 
             if len(userName) > 50:
                 continue
@@ -590,7 +616,9 @@ class SQL:
 
             if j == 10:
                 j = 0
-                console(f"\r{i:>4} of {nUsers} users: {userName[0:25]:<25}", newline=False)
+                console(
+                    f"\r{i:>4} of {nUsers} users: {userName[0:25]:<25}", newline=False
+                )
 
             uRows = users[userName]
             uIds = {r[0] for r in uRows}
@@ -633,22 +661,22 @@ class SQL:
 
         nameRep = userName.replace(" ", "-")
         userBaseDir = self.userBaseDir
-        userDir = f"{userBaseDir}/{nameRep}"
+        userZip = f"{userBaseDir}/{nameRep}.zip"
         curationDir = self.curationDir
         templateFileUser = f"{curationDir}/template-user.html"
         templateFileSingle = f"{curationDir}/template-query.html"
-        indexFile = f"{userDir}/index.html"
+        indexFile = "index.html"
         jsFileSrc = f"{curationDir}/helpers.js"
-        jsFileDst = f"{userDir}/helpers.js"
+        jsFile = "helpers.js"
         cssFileSrc = f"{curationDir}/design.css"
-        cssFileDst = f"{userDir}/design.css"
+        cssFile = "design.css"
+        qResultsFile = self.qResultsFile
 
-        if dirExists(userDir):
-            userDir += "-x"
+        z = 0
 
-        initTree(userDir)
-
-        self.writeQResultsTF(destDir=userDir, qIds=qIds, qeIds=qeIds)
+        while fileExists(userZip):
+            z += 1
+            userZip = f"{userBaseDir}/{nameRep}-{z}.zip"
 
         uidRep = ",".join(uIds)
         email = ", ".join(zapNull(r[3]) for r in uRows)
@@ -728,7 +756,6 @@ class SQL:
             ("is published", True, True),
             ("TF set", True, True),
             ("title", True, True),
-            ("creator", True, True),
             ("project", True, True),
             ("organization", True, True),
             ("local shebanq", False, True),
@@ -781,6 +808,8 @@ class SQL:
             queryTable.append(f"""<th>{filterControl}</th>\n""")
 
         queryTable.append("</tr>\n</thead>\n<tbody>" "")
+
+        qFiles = {}
 
         for qId in sorted(queries):
             qInfo = queries[qId]
@@ -863,6 +892,9 @@ class SQL:
 
                 origLink = f"[{origVShort}]({origVFull})" if isPublished else ""
                 localLink = f"[{localVShort}]({localVFull})" if isPublished else ""
+                localLinkIndex = (
+                    f'<a href="{localVFull}">url</a>' if isPublished else "&nbsp;"
+                )
 
                 tfSet = f"q{qId}{versionRep}"
 
@@ -873,10 +905,9 @@ class SQL:
                         <td key="{isPubRep}">{isPubRep}</td>
                         <td key="{tfSet}">{tfSet}</td>
                         <td key="{norm(nameH.lower())}">{nameH}</td>
-                        <td key="{createdBy.lower()}">{createdBy}</td>
                         <td key="{project.lower()}"><a href="{pUrl}">{project}</a></td>
                         <td key="{organization.lower()}"><a href="{oUrl}">{organization}</a></td>
-                        <td><a href="{localVFull}">url</a></td>
+                        <td>{localLinkIndex}</td>
                     </tr>
                     """)
 
@@ -909,27 +940,33 @@ class SQL:
 
                     """)
 
-            with open(f"{userDir}/q{qId}.html", "w") as fh:
-                fh.write(
-                    templateSingle.replace("{{name}}", f"{qId} - {nameH}").replace(
-                        "{{item}}", markdown(md, extensions=["tables", "fenced_code"])
-                    )
-                )
+            qFiles[f"q{qId}.html"] = templateSingle.replace(
+                "{{name}}", f"{qId} - {nameH}"
+            ).replace("{{item}}", markdown(md, extensions=["tables", "fenced_code"]))
 
         queryTable.append("</tbody>\n")
 
-        with open(indexFile, "w") as fh:
-            fh.write(
-                templateUser.replace("{{name}}", f"{uidRep} - {userName}")
-                .replace(
-                    "{{userInfo}}",
-                    markdown(userInfo, extensions=["tables", "fenced_code"]),
-                )
-                .replace("{{itemTable}}", "".join(queryTable))
+        qFiles[indexFile] = (
+            templateUser.replace("{{name}}", f"{uidRep} - {userName}")
+            .replace(
+                "{{userInfo}}",
+                markdown(userInfo, extensions=["tables", "fenced_code"]),
             )
+            .replace("{{itemTable}}", "".join(queryTable))
+        )
+        qResultsPath = f"{userBaseDir}/{qResultsFile}"
+        self.writeQResultsTF(destPath=qResultsPath, qIds=qIds, qeIds=qeIds)
 
-        fileCopy(jsFileSrc, jsFileDst)
-        fileCopy(cssFileSrc, cssFileDst)
+        with ZipFile(userZip, "w") as zf:
+            for file, contents in qFiles.items():
+                zf.writestr(file, contents)
+
+            for src, dst in (
+                (jsFileSrc, jsFile),
+                (cssFileSrc, cssFile),
+                (qResultsPath, qResultsFile),
+            ):
+                zf.write(src, arcname=dst)
 
     def genPublicQueryPages(self):
         ORIG = "shebanq.ancient-data.org/hebrew/query"

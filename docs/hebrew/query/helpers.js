@@ -48,7 +48,7 @@ let filterTable = () => {
       }
       const cellText = cell.getAttribute("key")
 
-      if (!cellText.includes(filter)) {
+      if (!cellText.toLowerCase().includes(filter)) {
         match = false
         break
       }

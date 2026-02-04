@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SHEBANQ Query q5685 - &apos;some one/thing&apos; did &apos;became&apos; somebody&apos;s rescue - Ex. 15:2</title>
+		<link rel="stylesheet" href="design.css"/>
+		<script defer src="helpers.js"></script>
+  </head>
+  <body>
+<h1>'some one/thing' did 'became' somebody's rescue - Ex. 15:2</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>5685</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=5685">localhost:8000/hebrew/query?id=5685</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=5685">shebanq.ancient-data.org/hebrew/query?id=5685</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Tony Jurg</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://vu.nl/en">Digital Hermeneutics and the Reception of the Bible 2022</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2023-01-27 18:47:20</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2023-01-27 19:31:47</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2023-01-27 19:31:42</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>This is to query for sentences like Ex. 15:2 (וַֽיְהִי־לִ֖י לִֽישׁוּעָ֑ה) where someone (or something) 'became' the rescue to another someone.</p>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>6611</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>q5685</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=5685&amp;version=2021">localhost:8000/hebrew/query?id=5685&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=5685&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=5685&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>13</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>25</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2023-01-27 19:31:48</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2023-01-27 19:30:49</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2026-02-01 17:42:35</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.7.3</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+[clause
+  [Phrase function IN (Subj,Cmpl,Voct,Pred)
+    [word FOCUS]
+  ]
+..
+  [Phrase function = PreC
+     [word FOCUS lex = &quot;L&quot;]
+     [word FOCUS lex =  &quot;JCW&lt;H/&quot;]
+  ]
+]
+</code></pre>
+  </body>
+</html>

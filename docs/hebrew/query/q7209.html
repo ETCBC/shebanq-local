@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SHEBANQ Query q7209 - Come to the Pharao (Ex.10:1)</title>
+		<link rel="stylesheet" href="design.css"/>
+		<script defer src="helpers.js"></script>
+  </head>
+  <body>
+<h1>Come to the Pharao (Ex.10:1)</h1>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>7209</code></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=7209">localhost:8000/hebrew/query?id=7209</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=7209">shebanq.ancient-data.org/hebrew/query?id=7209</a></td>
+</tr>
+<tr>
+<td><em>created by</em></td>
+<td>Tony Jurg</td>
+</tr>
+<tr>
+<td><em>project</em></td>
+<td><a href="https://vu.nl/en/">ReMa Digital Humanities and Biblical Studies</a></td>
+</tr>
+<tr>
+<td><em>organization</em></td>
+<td><a href="http://www.vu.nl">VU Amsterdam</a></td>
+</tr>
+<tr>
+<td><em>date created</em></td>
+<td>2026-01-21 14:21:42</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2026-01-21 15:32:43</td>
+</tr>
+<tr>
+<td><em>date shared</em></td>
+<td>2026-01-21 15:30:02</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description</strong></p>
+<p>Parashat Bo (Exodus 10:1-13:16) opens with the LORD’s command to Moses: “Come to Pharaoh.”  Oddly, although this became the name giver of the parasha, it is not the first occurrence of this phrase in the Torah.</p>
+<p>This query is created to determine where in the Tenach the imperative bōʾ (בֹּא, “go/come”) in conjunction with the preposition אֶל is used to form an instruction/command.</p>
+<h2>Query</h2>
+<p>I add the phrase function (although strictly speaking not required).</p>
+<h2>Observations:</h2>
+<p>The results can  be grouped into three types of usage:</p>
+<ul>
+<li>
+<p>Interpersonal approach (mostly authoritative speech): Exodus 7:26; 9:1; 10:1 (all in connection with Pharaoh with identical construction); Jeremiah 41:6; Isaiah 22:15; Ezekiel 3:4, 3:11.  Here “בֹּא אֶל” effectively means “present yourself to/enter the presence of.”</p>
+</li>
+<li>
+<p>Idiomatic “go in to” (sexual): Genesis 38:8.</p>
+</li>
+<li>
+<p>Entry into a certain place: Ezekiel 10:2.</p>
+</li>
+</ul>
+<h2>Versions</h2>
+<h3>2021</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>id</em></td>
+<td><code>8251</code></td>
+</tr>
+<tr>
+<td><em>TF set</em></td>
+<td><strong><code>q7209</code></strong></td>
+</tr>
+<tr>
+<td><em>local link</em></td>
+<td><a href="http://localhost:8000/hebrew/query?id=7209&amp;version=2021">localhost:8000/hebrew/query?id=7209&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>original link</em></td>
+<td><a href="https://shebanq.ancient-data.org/hebrew/query?id=7209&amp;version=2021">shebanq.ancient-data.org/hebrew/query?id=7209&amp;version=2021</a></td>
+</tr>
+<tr>
+<td><em>results</em></td>
+<td><strong><code>10</code></strong></td>
+</tr>
+<tr>
+<td><em>words in results</em></td>
+<td><strong><code>19</code></strong></td>
+</tr>
+<tr>
+<td><em>date executed</em></td>
+<td>2026-01-21 15:32:44</td>
+</tr>
+<tr>
+<td><em>date modified</em></td>
+<td>2026-01-21 15:26:49</td>
+</tr>
+<tr>
+<td><em>date published</em></td>
+<td>2026-02-01 17:40:52</td>
+</tr>
+<tr>
+<td><em>Emdros version</em></td>
+<td>emdros 3.9.0</td>
+</tr>
+</tbody>
+</table>
+<h4>Query instruction (mql)</h4>
+<pre><code>select all objects where
+[clause
+   [phrase function=Pred
+      [word FOCUS g_lex='B.O&gt;' ]
+   ]
+   [phrase function=Cmpl
+       [word FOCUS g_lex='&gt;EL' ]
+   ]
+]
+</code></pre>
+  </body>
+</html>
