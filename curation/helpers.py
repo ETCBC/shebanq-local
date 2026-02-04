@@ -1,3 +1,4 @@
+import re
 import collections
 import pickle
 import gzip
@@ -8,6 +9,7 @@ from tf.parameters import PICKLE_PROTOCOL, GZIP_LEVEL
 from tf.core.helpers import console, run
 from tf.core.files import (
     dirContents,
+    dirExists,
     initTree,
     fileExists,
     fileCopy,
@@ -30,6 +32,8 @@ WORDDB = "shebanq_passage2021"
 LEXICON = "lexicon"
 WORD_VERSE = "word_verse"
 WORDTABLES = {LEXICON, WORD_VERSE}
+
+TRIM_RE = re.compile(r"[\s+]")
 
 
 def getLocations(obj, BASEDIR):
@@ -68,6 +72,10 @@ def nonNull(x):
 
 def zapNull(x):
     return "" if x == "\\N" else x
+
+
+def zapNullBool(x):
+    return False if x == "\\N" else x == "T"
 
 
 def unesc(x):
@@ -199,6 +207,10 @@ class Mapper:
                 version=v,
                 source=baseDir,
             )
+            if v in {"4", "4b"}:
+                console(
+                    "RELAX: warnings concerning the feature voc_lex_utf8 are harmless"
+                )
 
     def unload(self):
         self.A = {}
@@ -320,13 +332,9 @@ class Mapper:
 
 
 class SQL:
-    def __init__(self, BASEDIR, zapTables=set()):
+    def __init__(self, BASEDIR, M, zapTables=set()):
         getLocations(self, BASEDIR)
-        self.user = None
-        self.userDir = None
-        self.uids = {}
-        self.qids = {}
-        self.qeids = {}
+        self.M = M
         self.A = None
         self.zapTables = zapTables
         self.data = {}
@@ -509,12 +517,8 @@ class SQL:
             for field in fields:
                 r[field] = "\\N"
 
-    def writeQResultsTF(self, mappingsFrom):
-        user = self.user
-        forUser = user is not None
-        userDir = self.userDir
-        qids = self.qids
-        qeids = self.qeids
+    def writeQResultsTF(self, destDir=None, qIds=None, qeIds=None):
+        mappingsFrom = self.M.mappingsFrom
         data = self.data
         contentDir = self.contentDir
 
@@ -526,7 +530,7 @@ class SQL:
         for r in queryexeRows:
             qId, qeId, version = r[10], r[0], r[2]
 
-            if forUser and qId not in qids:
+            if qIds is not None and qId not in qIds:
                 continue
 
             versionFromQueryexe[qeId] = (qId, version)
@@ -535,7 +539,7 @@ class SQL:
         self.resultsTF = resultsTF
 
         for qeId, fromM, toM in monadRows:
-            if forUser and qeId not in qeids:
+            if qeIds is not None and qeId not in qeIds:
                 continue
 
             qId, version = versionFromQueryexe[qeId]
@@ -546,79 +550,396 @@ class SQL:
                 resultsTF.setdefault(f"q{qId}{versionRep}", set()).add(
                     i if is2021 else mappingsFrom[version][i]
                 )
-        destDir = userDir if forUser else contentDir
+        destDir = contentDir if destDir is None else destDir
         writeSets(resultsTF, f"{destDir}/qresults.tfx")
 
-    def writeResultsHtml(self, qId, version):
-        userDir = self.userDir
-        A = self.A
-        resultsTF = self.resultsTF
-
-        is2021 = version == "2021"
-        versionRep = "" if is2021 else f"_{version}"
-        key = f"q{qId}{versionRep}"
-
-        if key not in resultsTF:
-            console(f"Query {key} not in TF results", error=True)
-            return
-
-        nodes = tuple((j,) for j in sorted(resultsTF[key]))
-        html = A.table(nodes, _asString=True, condenseType="verse", condensed=True)
-
-        destDir = f"{userDir}/{qId}/{version}"
-        initTree(destDir, fresh=False)
-        destFile = f"{destDir}/results.html"
-
-        with open(destFile, "w") as fh:
-            fh.write(html)
-
-    def selectUserQueries(self, user):
-        self.user = user
-        uids = self.getIds(
-            "shebanq_web",
-            "auth_user",
-            0,
-            condition=lambda r: f"{r[1]} {r[2]}" == user,
-        )
-        nUids = len(uids)
-
-        if nUids == 0:
-            console(f"No such user: {user}", error=True)
-            self.user = None
-            self.uids = {}
-            return
-
-        self.uids = uids
-
-        if nUids > 1:
-            console(f"There are {nUids} ids for {user}. We merge their queries")
-
+    def genPrivateQueryPages(self):
+        data = self.data
         userBaseDir = self.userBaseDir
-        userDir = f"{userBaseDir}/{user.replace(' ', '_')}"
-        self.userDir = userDir
-        console(f"Result directory is {userDir}")
 
-        qids = self.getIds("shebanq_web", "query", 0, condition=lambda r: r[4] in uids)
-        qeids = self.getIds(
-            "shebanq_web", "query_exe", 0, condition=lambda r: r[10] in qids
-        )
-        self.qids = qids
-        self.qeids = qeids
-        self.load()
+        userRows = data["shebanq_web"]["auth_user"]
+        orgRows = data["shebanq_web"]["organization"]
+        projectRows = data["shebanq_web"]["project"]
+        queryRows = data["shebanq_web"]["query"]
+        queryexeRows = data["shebanq_web"]["query_exe"]
 
-    def genQueryPages(self, user=None):
+        users = {}
+
+        for r in userRows:
+            userId, firstName, lastName = r[0:3]
+            userName = TRIM_RE.sub(" ", f"{zapNull(firstName)} {zapNull(lastName)}".strip())
+
+            if len(userName) > 50:
+                continue
+
+            users.setdefault(userName, []).append(r)
+
+        nUsers = len(users)
+
+        console("Cleaning previous results ... ")
+        initTree(userBaseDir, fresh=True, gentle=False)
+
+        console(f"Curating queries for {nUsers} users")
+
+        i = 0
+        j = 0
+
+        for userName in sorted(users, key=lambda x: x.lower()):
+            i += 1
+            j += 1
+
+            if j == 10:
+                j = 0
+                console(f"\r{i:>4} of {nUsers} users: {userName[0:25]:<25}", newline=False)
+
+            uRows = users[userName]
+            uIds = {r[0] for r in uRows}
+            qRows = [r for r in queryRows if r[4] in uIds]
+            qIds = {r[0] for r in qRows}
+            qeRows = [r for r in queryexeRows if r[10] in qIds]
+            qeIds = {r[0] for r in qeRows}
+            pIds = {r[8] for r in qRows}
+            oIds = {r[9] for r in qRows}
+
+            projects = {}
+
+            for r in projectRows:
+                if r[0] not in pIds:
+                    continue
+
+                projectId, name, website = r[0:3]
+                projects[projectId] = (name, website if nonNull(website) else "")
+
+            orgs = {}
+
+            for r in orgRows:
+                if r[0] not in oIds:
+                    continue
+
+                orgId, name, website = r[0:3]
+                orgs[orgId] = (name, website if nonNull(website) else "")
+
+            self.genUserQueryPages(
+                userName, uIds, uRows, qIds, qRows, qeIds, qeRows, projects, orgs
+            )
+
+        console(f"\r{nUsers} users done                     \n")
+
+    def genUserQueryPages(
+        self, userName, uIds, uRows, qIds, qRows, qeIds, qeRows, projects, orgs
+    ):
         ORIG = "shebanq.ancient-data.org/hebrew/query"
         LOCAL = "localhost:8000/hebrew/query"
 
-        forUser = user is not None
+        nameRep = userName.replace(" ", "-")
+        userBaseDir = self.userBaseDir
+        userDir = f"{userBaseDir}/{nameRep}"
+        curationDir = self.curationDir
+        templateFileUser = f"{curationDir}/template-user.html"
+        templateFileSingle = f"{curationDir}/template-query.html"
+        indexFile = f"{userDir}/index.html"
+        jsFileSrc = f"{curationDir}/helpers.js"
+        jsFileDst = f"{userDir}/helpers.js"
+        cssFileSrc = f"{curationDir}/design.css"
+        cssFileDst = f"{userDir}/design.css"
 
-        if forUser:
-            return
+        if dirExists(userDir):
+            userDir += "-x"
+
+        initTree(userDir)
+
+        self.writeQResultsTF(destDir=userDir, qIds=qIds, qeIds=qeIds)
+
+        uidRep = ",".join(uIds)
+        email = ", ".join(zapNull(r[3]) for r in uRows)
+
+        userInfo = dedent(f"""\
+            # {userName}
+
+            | property | value |
+            | --- | --- |
+            | *id* | `{uidRep}` |
+            | *name* | {userName} |
+            | *email* | {email} |
+
+            """)
+
+        queries = {}
+
+        for r in qRows:
+            (
+                queryId,
+                name,
+                description,
+                createdOn,
+                createdBy,
+                modifiedOn,
+                sharedOn,
+                isShared,
+                project,
+                organization,
+            ) = r[0:10]
+
+            queries[queryId] = dict(
+                exe={},
+                meta=dict(
+                    name=zapNull(name),
+                    description=unesc(zapNull(description)),
+                    dateCreated=zapNull(createdOn),
+                    createdBy=userName,
+                    dateModified=zapNull(modifiedOn),
+                    isShared=zapNullBool(isShared),
+                    dateShared=zapNull(sharedOn),
+                    project=projects[project] if nonNull(project) else "",
+                    organization=orgs[organization] if nonNull(organization) else "",
+                ),
+            )
+
+        for r in qeRows:
+            (
+                qeId,
+                mql,
+                version,
+                eversion,
+                resultMonads,
+                results,
+                executedOn,
+                modifiedOn,
+                isPublished,
+                publishedOn,
+                queryId,
+            ) = r[0:11]
+
+            queries[queryId]["exe"][version] = dict(
+                qeId=qeId,
+                mql=unesc(zapNull(mql)),
+                emdrosVersion=zapNull(eversion),
+                resultWords=int(resultMonads) if nonNull(resultMonads) else "??",
+                results=int(results) if nonNull(results) else "??",
+                dateExecuted=zapNull(executedOn),
+                dateModified=zapNull(modifiedOn),
+                isPublished=zapNullBool(isPublished),
+                datePublished=zapNull(publishedOn),
+            )
+
+        fields = (
+            ("query id", True, False),
+            ("text version", True, True),
+            ("is published", True, True),
+            ("TF set", True, True),
+            ("title", True, True),
+            ("creator", True, True),
+            ("project", True, True),
+            ("organization", True, True),
+            ("local shebanq", False, True),
+        )
+
+        with open(templateFileUser) as fh:
+            templateUser = fh.read()
+
+        with open(templateFileSingle) as fh:
+            templateSingle = fh.read()
+
+        nq = 0
+        nqe = 0
+
+        queryTable = []
+        queryTable.append("<thead>\n\t<tr>")
+
+        for c, field in enumerate(fields):
+            name, sortable, asString = field
+            typeRep = "true" if asString else "false"
+            sortControls = []
+
+            if sortable:
+                for asc in True, False:
+                    dRep = "true" if asc else "false"
+                    dIcon = "↑" if asc else "↓"
+                    sortControls.append(
+                        """<a class="button" """
+                        f"""onclick="sortTable({c}, {dRep}, {typeRep})">{dIcon}</a>"""
+                    )
+
+            queryTable.append(
+                f"""<th>{sortControls[0]}{name}{sortControls[1]}</th>\n"""
+                if sortable
+                else f"""<th>{name}</th>"""
+            )
+
+        queryTable.append("</tr>\n<tr>\n")
+
+        for c, field in enumerate(fields):
+            name, sortable, asString = field
+            filterControl = (
+                (
+                    """<input class="filter" type="text" """
+                    """onkeyup="filterTable()" placeholder="filter ..">"""
+                )
+                if sortable
+                else ("""<input class="filter" type="hidden">""")
+            )
+            queryTable.append(f"""<th>{filterControl}</th>\n""")
+
+        queryTable.append("</tr>\n</thead>\n<tbody>" "")
+
+        for qId in sorted(queries):
+            qInfo = queries[qId]
+            qMeta = qInfo["meta"]
+            qVersions = qInfo["exe"]
+
+            name = qMeta["name"]
+            nameH = htmlEsc(name)
+            description = qMeta["description"]
+            createdBy = qMeta["createdBy"]
+            project, pUrl = qMeta["project"]
+            organization, oUrl = qMeta["organization"]
+            dateCreated = qMeta["dateCreated"]
+            dateModified = qMeta["dateModified"]
+            isShared = qMeta["isShared"]
+            dateShared = qMeta["dateShared"]
+            isSharedRep = "yes" if isShared else "no"
+
+            pRep = f"[{project}]({pUrl})" if pUrl else project
+            oRep = f"[{organization}]({oUrl})" if oUrl else organization
+
+            metaUrl = f"q{qId}.html"
+            origShort = f"{ORIG}?id={qId}"
+            origFull = f"https://{origShort}"
+            localShort = f"{LOCAL}?id={qId}"
+            localFull = f"http://{localShort}"
+
+            origLink = f"[{origShort}]({origFull})" if isShared else ""
+            localLink = f"[{localShort}]({localFull})" if isShared else ""
+
+            nq += 1
+
+            md = dedent(f"""\
+                # {name}
+
+                | property | value |
+                | --- | --- |
+                | *id* | `{qId}` |
+                | *local link* | {origLink} |
+                | *original link* | {localLink} |
+                | *created by* | {createdBy} |
+                | *project* | {pRep} |
+                | *organization* | {oRep} |
+                | *date created* | {dateCreated} |
+                | *date modified* | {dateModified} |
+                | *is shared* | {isSharedRep} |
+                | *date shared* | {dateShared} |
+
+                **Description**
+
+                """)
+            md += description
+            md += dedent("""\
+
+                ## Versions
+
+                """)
+
+            for version in VERSIONS:
+                if version not in qVersions:
+                    continue
+
+                versionRep = "" if version == "2021" else f"-{version}"
+                qeInfo = qVersions[version]
+                qeId = qeInfo["qeId"]
+                mql = qeInfo["mql"]
+                emdrosVersion = qeInfo["emdrosVersion"]
+                results = qeInfo["results"]
+                resultWords = qeInfo["resultWords"]
+                dateExecuted = qeInfo["dateExecuted"]
+                dateModified = qeInfo["dateModified"]
+                isPublished = qeInfo["isPublished"]
+                datePublished = qeInfo["datePublished"]
+                isPubRep = "yes" if isPublished else "no"
+
+                origVShort = f"{origShort}&version={version}"
+                origVFull = f"{origFull}&version={version}"
+                localVShort = f"{localShort}&version={version}"
+                localVFull = f"{localFull}&version={version}"
+
+                origLink = f"[{origVShort}]({origVFull})" if isPublished else ""
+                localLink = f"[{localVShort}]({localVFull})" if isPublished else ""
+
+                tfSet = f"q{qId}{versionRep}"
+
+                queryTable.append(f"""
+                    <tr>
+                        <td key="{qId}"><a href="{metaUrl}">{qId}</a></td>
+                        <td key="{version}">{version}</td>
+                        <td key="{isPubRep}">{isPubRep}</td>
+                        <td key="{tfSet}">{tfSet}</td>
+                        <td key="{norm(nameH.lower())}">{nameH}</td>
+                        <td key="{createdBy.lower()}">{createdBy}</td>
+                        <td key="{project.lower()}"><a href="{pUrl}">{project}</a></td>
+                        <td key="{organization.lower()}"><a href="{oUrl}">{organization}</a></td>
+                        <td><a href="{localVFull}">url</a></td>
+                    </tr>
+                    """)
+
+                nqe += 1
+                md += dedent(f"""\
+                    ### {version}
+
+                    | property | value |
+                    | --- | --- |
+                    | *id* | `{qeId}` |
+                    | *TF set* | **`{tfSet}`** |
+                    | *local link* | {localLink} |
+                    | *original link* | {origLink} |
+                    | *results* | **`{results}`** |
+                    | *words in results* | **`{resultWords}`** |
+                    | *date executed* | {dateExecuted} |
+                    | *date modified* | {dateModified} |
+                    | *is published* | {isPubRep} |
+                    | *date published* | {datePublished} |
+                    | *Emdros version* | {emdrosVersion} |
+
+                    #### Query instruction (mql)
+
+                    ```
+                    """)
+                md += mql
+                md += dedent("""\
+
+                    ```
+
+                    """)
+
+            with open(f"{userDir}/q{qId}.html", "w") as fh:
+                fh.write(
+                    templateSingle.replace("{{name}}", f"{qId} - {nameH}").replace(
+                        "{{item}}", markdown(md, extensions=["tables", "fenced_code"])
+                    )
+                )
+
+        queryTable.append("</tbody>\n")
+
+        with open(indexFile, "w") as fh:
+            fh.write(
+                templateUser.replace("{{name}}", f"{uidRep} - {userName}")
+                .replace(
+                    "{{userInfo}}",
+                    markdown(userInfo, extensions=["tables", "fenced_code"]),
+                )
+                .replace("{{itemTable}}", "".join(queryTable))
+            )
+
+        fileCopy(jsFileSrc, jsFileDst)
+        fileCopy(cssFileSrc, cssFileDst)
+
+    def genPublicQueryPages(self):
+        ORIG = "shebanq.ancient-data.org/hebrew/query"
+        LOCAL = "localhost:8000/hebrew/query"
 
         data = self.data
         queryDir = self.queryDir
         curationDir = self.curationDir
         templateFile = f"{curationDir}/template-queries.html"
+        templateFileSingle = f"{curationDir}/template-query.html"
         indexFile = f"{queryDir}/index.html"
         jsFileSrc = f"{curationDir}/helpers.js"
         jsFileDst = f"{queryDir}/helpers.js"
@@ -733,6 +1054,9 @@ class SQL:
 
         with open(templateFile) as fh:
             template = fh.read()
+
+        with open(templateFileSingle) as fh:
+            templateSingle = fh.read()
 
         nq = 0
         nqe = 0
@@ -891,7 +1215,11 @@ class SQL:
                     """)
 
             with open(f"{queryDir}/q{qId}.html", "w") as fh:
-                fh.write(markdown(md, extensions=["tables", "fenced_code"]))
+                fh.write(
+                    templateSingle.replace("{{name}}", f"{tfSet} - {nameH}").replace(
+                        "{{item}}", markdown(md, extensions=["tables", "fenced_code"])
+                    )
+                )
 
         queryTable.append("</tbody>\n")
 
@@ -903,14 +1231,34 @@ class SQL:
 
         console(f"Generated {nqe} pages for {nq} queries")
 
-    def genWordPages(self):
+    def genWordPages(self, force=False):
         ORIG = "shebanq.ancient-data.org/hebrew/word"
         LOCAL = "localhost:8000/hebrew/word"
 
         data = self.data
         wordDir = self.wordDir
+        reportFile = f"{wordDir}/__README__.txt"
+        report = []
+
+        def writeReportFile():
+            with open(reportFile, "w") as fh:
+                for kind, msg in report:
+                    fh.write(f"{kind}\t{msg}\n")
+
+        def readReportFile():
+            with open(reportFile) as fh:
+                for line in fh:
+                    line = line.rstrip()
+                    kind, msg = line.split("\t")
+                    console(msg, error=kind == "E")
+
+        if not force and fileExists(reportFile):
+            readReportFile()
+            return
+
         curationDir = self.curationDir
         templateFile = f"{curationDir}/template-words.html"
+        templateFileSingle = f"{curationDir}/template-word.html"
         indexFile = f"{wordDir}/index.html"
         jsFileSrc = f"{curationDir}/helpers.js"
         jsFileDst = f"{wordDir}/helpers.js"
@@ -918,7 +1266,7 @@ class SQL:
         cssFileDst = f"{wordDir}/design.css"
 
         console("Cleaning previous results ... ")
-        initTree(wordDir, fresh=True, gentle=True)
+        initTree(wordDir, fresh=True, gentle=False)
 
         console("Counting lexemes ...")
 
@@ -973,7 +1321,9 @@ class SQL:
                 ),
             )
 
-        console("Generating pages ... ")
+        nLexemes = len(lexemes)
+        console("Generating pages for lexemes ... ")
+        report.append(("I", f"There are {nLexemes} lexemes"))
 
         fields = (
             ("lexId", "lexeme id", True, True),
@@ -991,7 +1341,8 @@ class SQL:
         with open(templateFile) as fh:
             template = fh.read()
 
-        nw = 0
+        with open(templateFileSingle) as fh:
+            templateSingle = fh.read()
 
         lexemeTable = []
         lexemeTable.append("<thead>\n\t<tr>")
@@ -1032,7 +1383,18 @@ class SQL:
 
         lexemeTable.append("</tr>\n</thead>\n<tbody>" "")
 
+        seen = set()
+
         for lexId in sorted(lexemes, key=lambda x: lexemes[x]["meta"]["disambiguated"]):
+            lexLower = lexId.lower()
+
+            if lexLower in seen:
+                lexIdF = f"{lexId}-"
+                report.append(("E", f"File name clash {lexId}: becomes {lexIdF}"))
+            else:
+                lexIdF = lexId
+                seen.add(lexLower)
+
             lexInfo = lexemes[lexId]
             lexMeta = lexInfo["meta"]
 
@@ -1053,13 +1415,11 @@ class SQL:
             fPl = "" if frequency == 1 else "s"
             vPl = "" if verses == 1 else "s"
 
-            metaUrl = f"w{lexId}.html"
+            metaUrl = f"w{lexIdF}.html"
             origShort = f"{ORIG}?id={lexId}&version={VERSIONS[-1]}"
             origFull = f"https://{origShort}"
             localShort = f"{LOCAL}?id={lexId}&version={VERSIONS[-1]}"
             localFull = f"http://{localShort}"
-
-            nw += 1
 
             disambiguatedTransH = htmlEsc(disambiguatedTrans)
             glossH = htmlEsc(gloss)
@@ -1099,8 +1459,17 @@ class SQL:
 
                 """)
 
-            with open(f"{wordDir}/w{lexId}.html", "w") as fh:
-                fh.write(markdown(md, extensions=["tables", "fenced_code"]))
+            wordFile = f"w{lexIdF}.html"
+            wordPath = f"{wordDir}/{wordFile}"
+
+            with open(wordPath, "w") as fh:
+                fh.write(
+                    templateSingle.replace(
+                        "{{name}}", f"{lexId} - {vocalized}"
+                    ).replace(
+                        "{{item}}", markdown(md, extensions=["tables", "fenced_code"])
+                    )
+                )
 
         lexemeTable.append("</tbody>\n")
 
@@ -1110,4 +1479,27 @@ class SQL:
         fileCopy(jsFileSrc, jsFileDst)
         fileCopy(cssFileSrc, cssFileDst)
 
-        console(f"Generated {nw} word pages")
+        nPages = len(dirContents(wordDir)[0])
+        nExtra = 4
+        nLexPages = nPages - (nExtra - 1)
+        # the -1 is for the report file which does not yet exist
+
+        if nLexPages != nLexemes:
+            report.append(
+                (
+                    "E",
+                    f"Mismatch between number of lexemes ({nLexemes}) and "
+                    f"number of lexeme pages ({nLexPages})",
+                )
+            )
+        else:
+            report.append(
+                (
+                    "I",
+                    f"Generated {nLexPages} word pages "
+                    f"plus {nExtra} additional files in {wordDir}",
+                )
+            )
+
+        writeReportFile()
+        readReportFile()
