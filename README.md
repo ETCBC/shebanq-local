@@ -6,11 +6,24 @@
 ![tf](/src/shebanq/static/images/tf-small.png)
 [![etcbc](src/shebanq/static/images/etcbc-small.png)](https://github.com/ETCBC)
 
+## Note on 2026-02-05 by Dirk Roorda
+
+Today I brought SHEBANQ down, backed up the user data, and handed it over to Constantijn
+Sikkel of the ETCBC, who is going to host SHEBANQ in the future.
+
+There might be a transition time during which SHEBANQ is hosted under
+[shebanq.etcbc.nl](https://shebanq.etcbc.nl).
+
+After that, SHEBANQ will be hosted under its current url
+[shebanq.ancient-data.org](https://shebanq.ancient-data.org)
+
+In the meanwhile the data of SHEBANQ is curated as best as I could, see below.
+
 ## Status
 
 **The days of shebanq.ancient-data.org as a website are numbered.**
 
-**At some point in the (near) future shebanq will be shut down.**
+**At some point in the future shebanq will be shut down.**
 
 **However, all public data in it has been curated
 and this repo makes it available to you.**
@@ -27,6 +40,13 @@ with the latest data loaded.**
 **You can download the
 [results of all published queries](https://github.com/ETCBC/shebanq-local/raw/refs/heads/master/content/qresults.tfx)
 and view them in the Text-Fabric browser.**
+
+**Your unpublished queries are also curated, but not publicly disclosed, of course.**
+
+You can ask a member of the ETCBC for a zip file that contains your work on
+shebanq, in much the same shape as the curated *public* queries.
+If you make such a request, please use the same email addres by which you used to log
+in on the SHEBANQ web site.
 
 ### Caution
 
