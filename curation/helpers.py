@@ -50,6 +50,7 @@ def getLocations(obj, BASEDIR):
     obj.docsDir = f"{obj.shebanqDir}/docs"
     obj.privDir = f"{obj.shebanqDir}/docsPrivate"
     obj.userBaseDir = f"{obj.privDir}/user"
+    obj.userEmailFile = f"{obj.privDir}/userEmail.tsv"
     obj.queryDir = f"{obj.docsDir}/hebrew/query"
     obj.wordDir = f"{obj.docsDir}/hebrew/word"
     obj.bhsa = "ETCBC/bhsa"
@@ -533,7 +534,9 @@ class SQL:
         )
         self.trimTable("shebanq_web", "auth_user", 0, userIds)
         self.trimTable("shebanq_web", "auth_membership", 1, userIds)
-        self.trimMaster("shebanq_web", "auth_membership", 1, "shebanq_web", "auth_group")
+        self.trimMaster(
+            "shebanq_web", "auth_membership", 1, "shebanq_web", "auth_group"
+        )
         self.zapFields("shebanq_web", "auth_user", 3, 4, 5, 6, 7)
         self.writeData()
         self.stats()
@@ -577,9 +580,10 @@ class SQL:
 
         writeSets(resultsTF, destPath)
 
-    def genPrivateQueryPages(self):
+    def genPrivateQueryPages(self, indexOnly=False):
         data = self.data
         userBaseDir = self.userBaseDir
+        userEmailFile = self.userEmailFile
 
         userRows = data["shebanq_web"]["auth_user"]
         orgRows = data["shebanq_web"]["organization"]
@@ -588,6 +592,7 @@ class SQL:
         queryexeRows = data["shebanq_web"]["query_exe"]
 
         users = {}
+        userEmail = {}
 
         for r in userRows:
             userId, firstName, lastName = r[0:3]
@@ -602,10 +607,14 @@ class SQL:
 
         nUsers = len(users)
 
-        console("Cleaning previous results ... ")
-        initTree(userBaseDir, fresh=True, gentle=False)
+        if indexOnly:
+            initTree(userBaseDir, fresh=False)
+        else:
+            console("Cleaning previous results ... ")
+            initTree(userBaseDir, fresh=True, gentle=False)
 
-        console(f"Curating queries for {nUsers} users")
+        if not indexOnly:
+            console(f"Curating queries for {nUsers} users")
 
         i = 0
         j = 0
@@ -648,13 +657,40 @@ class SQL:
                 orgs[orgId] = (name, website if nonNull(website) else "")
 
             self.genUserQueryPages(
-                userName, uIds, uRows, qIds, qRows, qeIds, qeRows, projects, orgs
+                userName,
+                uIds,
+                uRows,
+                qIds,
+                qRows,
+                qeIds,
+                qeRows,
+                projects,
+                orgs,
+                userEmail,
+                indexOnly=indexOnly,
             )
+
+        with open(userEmailFile, "w") as fh:
+            for email, name in sorted(
+                userEmail.items(), key=lambda x: (x[1].lower(), x[0])
+            ):
+                fh.write(f"{name}\t{email}\n")
 
         console(f"\r{nUsers} users done                     \n")
 
     def genUserQueryPages(
-        self, userName, uIds, uRows, qIds, qRows, qeIds, qeRows, projects, orgs
+        self,
+        userName,
+        uIds,
+        uRows,
+        qIds,
+        qRows,
+        qeIds,
+        qeRows,
+        projects,
+        orgs,
+        userEmail,
+        indexOnly=False,
     ):
         ORIG = "shebanq.ancient-data.org/hebrew/query"
         LOCAL = "localhost:8000/hebrew/query"
@@ -674,12 +710,20 @@ class SQL:
 
         z = 0
 
-        while fileExists(userZip):
-            z += 1
-            userZip = f"{userBaseDir}/{nameRep}-{z}.zip"
+        if not indexOnly:
+            while fileExists(userZip):
+                z += 1
+                userZip = f"{userBaseDir}/{nameRep}-{z}.zip"
 
         uidRep = ",".join(uIds)
-        email = ", ".join(zapNull(r[3]) for r in uRows)
+        emails = [zapNull(r[3]) for r in uRows]
+        email = ", ".join(emails)
+
+        for e in emails:
+            userEmail[e] = nameRep
+
+        if indexOnly:
+            return
 
         userInfo = dedent(f"""\
             # {userName}
