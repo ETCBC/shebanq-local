@@ -12,7 +12,7 @@ Today I brought SHEBANQ down, backed up the user data, and handed it over to Con
 Sikkel of the ETCBC, who is going to host SHEBANQ in the future.
 
 There might be a transition time during which SHEBANQ is hosted under
-[shebanq.etcbc.nl](https://shebanq.etcbc.nl).
+[shebanq.etcbc.vu.nl](https://shebanq.etcbc.vu.nl).
 
 After that, SHEBANQ will be hosted under its current url
 [shebanq.ancient-data.org](https://shebanq.ancient-data.org)
